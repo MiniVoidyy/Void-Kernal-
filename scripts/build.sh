@@ -77,6 +77,8 @@ export ARCH=arm64
 export KBUILD_BUILD_USER=void
 export KBUILD_BUILD_HOST=exynos9810
 export LOCALVERSION="-VOID-${ROOT}-${VARIANT}"
+# Silences "environment variable ANDROID_MAJOR_VERSION undefined" kconfig warning
+export ANDROID_MAJOR_VERSION="${ANDROID_MAJOR_VERSION:-a13}"
 
 CROSS_A64="aarch64-linux-gnu-"
 CROSS_A32="arm-linux-gnueabi-"

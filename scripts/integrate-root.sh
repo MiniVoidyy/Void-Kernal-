@@ -57,12 +57,23 @@ if [ "$need_clone" = 1 ]; then
     fi
 fi
 
-if ! grep -Eq "^obj-.CONFIG_KSU.[[:space:]]*\+= $DIR/" "$DRIVERS_MAKEFILE"; then
-    printf 'obj-$(CONFIG_KSU)\t+= %s/\n' "$DIR" >> "$DRIVERS_MAKEFILE"
+# The root-solution repos ship the kbuild module inside a kernel/ subdir;
+# wire kbuild to whichever layout this checkout actually provides.
+REL_DIR="$DIR"
+if [ ! -f "$DRIVERS_DIR/$DIR/Kconfig" ] && [ -f "$DRIVERS_DIR/$DIR/kernel/Kconfig" ]; then
+    REL_DIR="$DIR/kernel"
+fi
+if [ ! -f "$DRIVERS_DIR/$REL_DIR/Kconfig" ]; then
+    echo "ERROR: no Kconfig found under $DRIVERS_DIR/$DIR" >&2
+    exit 1
 fi
 
-if ! grep -q "source \"$DIR/Kconfig\"" "$DRIVERS_KCONFIG"; then
-    printf '\nsource "%s/Kconfig"\n' "$DIR" >> "$DRIVERS_KCONFIG"
-fi
+# Purge stale/broken wiring for this dir (including leftovers from the
+# kernel tree itself), then append correct lines.
+sed -i "\#^[[:space:]]*obj-.CONFIG_KSU.[[:space:]]*\+= *$DIR/#d" "$DRIVERS_MAKEFILE"
+printf 'obj-$(CONFIG_KSU)\t+= %s/\n' "$REL_DIR" >> "$DRIVERS_MAKEFILE"
+
+sed -i "\#source \".*$DIR/#d" "$DRIVERS_KCONFIG"
+printf '\nsource "drivers/%s/Kconfig"\n' "$REL_DIR" >> "$DRIVERS_KCONFIG"
 
 echo "==> Root solution '$ROOT' wired into drivers/{Makefile,Kconfig}"
