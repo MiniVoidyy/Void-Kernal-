@@ -1,12 +1,14 @@
-menu "DSACK extra cpufreq governors (20-governor pack)"
+menu "Void extra cpufreq governors (20-governor pack)"
 
 config CPU_FREQ_GOV_DARKNESS
+	depends on CPU_FREQ
 	tristate "'darkness' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
 	  Aggressive ramp-to-max on load breach with gradual step decay.
 
 config CPU_FREQ_GOV_NIGHTMARE
+	depends on CPU_FREQ
 	tristate "'nightmare' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -14,6 +16,7 @@ config CPU_FREQ_GOV_NIGHTMARE
 	  stepped boost on medium load, fast decay below low threshold.
 
 config CPU_FREQ_GOV_INTELLIDEMAND
+	depends on CPU_FREQ
 	tristate "'intellidemand' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -21,12 +24,14 @@ config CPU_FREQ_GOV_INTELLIDEMAND
 	  knob so storage waits can count as busy time.
 
 config CPU_FREQ_GOV_ALUCARD
+	depends on CPU_FREQ
 	tristate "'alucard' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
 	  Dual-step tunable governor with separate up/down step sizes.
 
 config CPU_FREQ_GOV_BLU_ACTIVE
+	depends on CPU_FREQ
 	tristate "'blu_active' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -34,6 +39,7 @@ config CPU_FREQ_GOV_BLU_ACTIVE
 	  sustained load climbs to max.
 
 config CPU_FREQ_GOV_INTELLIACTIVE
+	depends on CPU_FREQ
 	tristate "'intelliactive' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -41,6 +47,7 @@ config CPU_FREQ_GOV_INTELLIACTIVE
 	  framework with idle drop control.
 
 config CPU_FREQ_GOV_YANKACTIVE
+	depends on CPU_FREQ
 	tristate "'yankactive' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -48,12 +55,14 @@ config CPU_FREQ_GOV_YANKACTIVE
 	  faster, idle periods slower.
 
 config CPU_FREQ_GOV_LIONFISH
+	depends on CPU_FREQ
 	tristate "'lionfish' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
 	  Stepped conservative-style governor with a sticky hispeed floor.
 
 config CPU_FREQ_GOV_IMPULSE
+	depends on CPU_FREQ
 	tristate "'impulse' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -61,6 +70,7 @@ config CPU_FREQ_GOV_IMPULSE
 	  configurable number of samples before decaying.
 
 config CPU_FREQ_GOV_WAVE
+	depends on CPU_FREQ
 	tristate "'wave' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
@@ -68,18 +78,21 @@ config CPU_FREQ_GOV_WAVE
 	  policy limits.
 
 config CPU_FREQ_GOV_SMARTASS2
+	depends on CPU_FREQ
 	tristate "'smartassV2' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
 	  Screen-state aware governor capping frequency while asleep.
 
 config CPU_FREQ_GOV_SMARTMAX
+	depends on CPU_FREQ
 	tristate "'smartmax' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help
 	  Screen-aware stepped governor with sleep frequency cap.
 
 config CPU_FREQ_GOV_SMARTMAX_EPS
+	depends on CPU_FREQ
 	tristate "'smartmax_eps' cpufreq governor"
 	select CPU_FREQ_GOV_COMMON
 	help

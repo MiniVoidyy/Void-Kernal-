@@ -16,7 +16,7 @@ env:
 jobs:
   kernel:
     name: ${{ matrix.variant }} / ${{ matrix.root }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -30,7 +30,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             bc bison build-essential ccache curl flex git unzip zip \
-            libssl-dev libfl-dev python-is-python3
+            libssl-dev libfl-dev python-is-python3 \
+            gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
 
       - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }})
         run: |
@@ -46,7 +47,7 @@ jobs:
 
   manager:
     name: Void Kernel Manager module
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 

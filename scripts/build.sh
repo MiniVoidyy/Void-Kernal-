@@ -65,12 +65,14 @@ if [ ! -x "$TOOLCHAIN_DIR/bin/clang" ]; then
     unzip -q /tmp/proton-clang.zip -d "$PROJECT_ROOT/toolchain"
     mv "$PROJECT_ROOT/toolchain/proton-clang-master" "$TOOLCHAIN_DIR"
     rm -f /tmp/proton-clang.zip
+    # Proton ships an ancient GNU ld/as that cannot link modern glibc
+    # (SHT_RELR). Remove them so HOSTCC=gcc uses the system binutils;
+    # target linking uses ld.lld and cross-prefixed tools regardless.
+    rm -f "$TOOLCHAIN_DIR/bin/ld" "$TOOLCHAIN_DIR/bin/as"
 fi
 
 export PATH="$TOOLCHAIN_DIR/bin:$PATH"
 command -v clang >/dev/null 2>&1 || { echo "ERROR: clang not found after toolchain setup" >&2; exit 1; }
-
-export PATH="$TOOLCHAIN_DIR/bin:$PATH"
 export ARCH=arm64
 export KBUILD_BUILD_USER=void
 export KBUILD_BUILD_HOST=exynos9810
@@ -95,7 +97,6 @@ for dev in $DEVICES; do
         CROSS_COMPILE_ARM32="$CROSS_A32" \
         CC=clang \
         LD=ld.lld \
-        HOSTLD=ld.lld \
         AR=llvm-ar \
         NM=llvm-nm \
         STRIP=llvm-strip \
@@ -104,12 +105,6 @@ for dev in $DEVICES; do
         READELF=llvm-readelf \
         HOSTCC=gcc \
         HOSTAR=ar \
-        Image.gz-dtb Image.gz dtbs || \
-    make -j"$(nproc)" O="$OUT_DIR" \
-        CROSS_COMPILE="$CROSS_A64" \
-        CROSS_COMPILE_ARM32="$CROSS_A32" \
-        CC=clang \
-        HOSTCC=gcc \
         Image.gz-dtb Image.gz dtbs
 
     ZIP_NAME="VoidKernel-4.9.337-${VARIANT}-${ROOT}-${dev}"

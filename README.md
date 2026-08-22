@@ -74,7 +74,7 @@ Artifacts are named `VoidKernel-<variant>-<root>`; zips inside are
 ## Build locally (Linux/WSL2)
 
 ```sh
-sudo apt install bc bison build-essential curl flex git unzip zip libssl-dev python-is-python3
+sudo apt install bc bison build-essential curl flex git unzip zip libssl-dev python-is-python3 gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
 scripts/build.sh --variant oneui-enforcing --root sukisu --devices starlte
 # output: build/zips/VoidKernel-4.9.337-oneui-enforcing-sukisu-starlte.zip
 ```

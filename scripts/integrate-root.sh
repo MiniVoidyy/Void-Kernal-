@@ -57,7 +57,7 @@ if [ "$need_clone" = 1 ]; then
     fi
 fi
 
-if ! grep -qE "obj-\\\$\(CONFIG_KSU\)\s*\+= $DIR/" "$DRIVERS_MAKEFILE"; then
+if ! grep -Eq "^obj-.CONFIG_KSU.[[:space:]]*\+= $DIR/" "$DRIVERS_MAKEFILE"; then
     printf 'obj-$(CONFIG_KSU)\t+= %s/\n' "$DIR" >> "$DRIVERS_MAKEFILE"
 fi
 
