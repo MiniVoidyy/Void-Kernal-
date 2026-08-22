@@ -1,0 +1,88 @@
+menu "DSACK extra cpufreq governors (20-governor pack)"
+
+config CPU_FREQ_GOV_DARKNESS
+	tristate "'darkness' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Aggressive ramp-to-max on load breach with gradual step decay.
+
+config CPU_FREQ_GOV_NIGHTMARE
+	tristate "'nightmare' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Two-phase aggressive governor: instant max above 90% load,
+	  stepped boost on medium load, fast decay below low threshold.
+
+config CPU_FREQ_GOV_INTELLIDEMAND
+	tristate "'intellidemand' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Ondemand-style behaviour with a runtime-toggleable io_is_busy
+	  knob so storage waits can count as busy time.
+
+config CPU_FREQ_GOV_ALUCARD
+	tristate "'alucard' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Dual-step tunable governor with separate up/down step sizes.
+
+config CPU_FREQ_GOV_BLU_ACTIVE
+	tristate "'blu_active' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Hispeed-first ramping: first breach jumps to hispeed frequency,
+	  sustained load climbs to max.
+
+config CPU_FREQ_GOV_INTELLIACTIVE
+	tristate "'intelliactive' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Interactive-style behaviour implemented in the generic dbs
+	  framework with idle drop control.
+
+config CPU_FREQ_GOV_YANKACTIVE
+	tristate "'yankactive' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Dynamic-sampling interactive governor: busy periods re-sample
+	  faster, idle periods slower.
+
+config CPU_FREQ_GOV_LIONFISH
+	tristate "'lionfish' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Stepped conservative-style governor with a sticky hispeed floor.
+
+config CPU_FREQ_GOV_IMPULSE
+	tristate "'impulse' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Spike-reactive: heavy-load sample pulses to max and holds for a
+	  configurable number of samples before decaying.
+
+config CPU_FREQ_GOV_WAVE
+	tristate "'wave' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Oscillating governor drifting frequency up and down between
+	  policy limits.
+
+config CPU_FREQ_GOV_SMARTASS2
+	tristate "'smartassV2' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Screen-state aware governor capping frequency while asleep.
+
+config CPU_FREQ_GOV_SMARTMAX
+	tristate "'smartmax' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Screen-aware stepped governor with sleep frequency cap.
+
+config CPU_FREQ_GOV_SMARTMAX_EPS
+	tristate "'smartmax_eps' cpufreq governor"
+	select CPU_FREQ_GOV_COMMON
+	help
+	  Extreme power save variant of smartmax.
+
+endmenu

@@ -1,0 +1,43 @@
+#!/sbin/sh
+
+#################
+# Initialization
+#################
+
+umask 022
+
+# echo before loading util_functions
+ui_print() { echo "$1"; }
+
+require_root_manager() {
+  ui_print "***************************************"
+  ui_print " No supported root manager found!"
+  ui_print " Install Magisk or KernelSU/SukiSU"
+  ui_print " first, then re-flash this module."
+  ui_print "***************************************"
+  exit 1
+}
+
+#########################
+# Load util_functions.sh
+#########################
+
+OUTFD=$2
+ZIPFILE=$3
+
+mount /data 2>/dev/null
+
+# KernelSU family (KernelSU / KSU Next / SukiSU)
+if [ -f /data/adb/ksu/util_functions.sh ]; then
+  . /data/adb/ksu/util_functions.sh
+# Magisk
+elif [ -f /data/adb/magisk/util_functions.sh ]; then
+  . /data/adb/magisk/util_functions.sh
+fi
+
+if ! command -v install_module >/dev/null 2>&1; then
+  require_root_manager
+fi
+
+install_module
+exit 0

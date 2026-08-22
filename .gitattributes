@@ -1,0 +1,5 @@
+# Keep everything LF - shell scripts and kernel sources must not get CRLF
+* text=auto eol=lf
+*.zip binary
+*.png binary
+*.jpg binary

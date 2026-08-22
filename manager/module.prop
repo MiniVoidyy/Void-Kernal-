@@ -1,0 +1,6 @@
+id=void_kernel_manager
+name=Void Kernel Manager
+version=v1.0
+versionCode=1
+author=Mini_Voidyy <Void Kernel>
+description=Governor and profile manager for Void Kernel exynos9810 (20 governors). CLI: run 'su -c voidman help'. Applies saved profile at boot.

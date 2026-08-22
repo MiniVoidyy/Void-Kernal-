@@ -1,0 +1,62 @@
+name: Build Void Kernel
+
+on:
+  workflow_dispatch:
+    inputs:
+      ksu_ref:
+        description: "Root solution repo ref (tag/branch, blank = HEAD)"
+        required: false
+        default: ""
+  push:
+    branches: [main, master]
+
+env:
+  KSU_REF: ${{ github.event.inputs.ksu_ref || '' }}
+
+jobs:
+  kernel:
+    name: ${{ matrix.variant }} / ${{ matrix.root }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
+        root: [ksu, ksu-next, sukisu]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            bc bison build-essential ccache curl flex git unzip zip \
+            libssl-dev libfl-dev python-is-python3
+
+      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }})
+        run: |
+          chmod +x scripts/*.sh
+          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}"
+
+      - name: Upload flashable zips
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}
+          path: build/zips/*.zip
+          if-no-files-found: error
+
+  manager:
+    name: Void Kernel Manager module
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pack manager module
+        run: |
+          mkdir -p build/zips
+          (cd manager && zip -r9 ../build/zips/VoidKernel-Manager-v1.0.zip .)
+
+      - name: Upload manager module
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoidKernel-Manager
+          path: build/zips/VoidKernel-Manager-v1.0.zip

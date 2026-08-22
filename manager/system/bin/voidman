@@ -1,0 +1,178 @@
+#!/system/bin/sh
+# voidman - Void Kernel Manager CLI
+# Manage the 20-governor DSACK exynos9810 kernel from a root shell.
+CPU=/sys/devices/system/cpu
+CONF=/data/adb/void_kernel_manager/profile.conf
+
+need_root() {
+    if [ "$(id -u)" != "0" ]; then
+        echo "voidman: root required (run via su)" >&2
+        exit 1
+    fi
+}
+
+list_policies() {
+    SEEN=""
+    for cf in $CPU/cpu*/cpufreq; do
+        [ -d "$cf" ] || continue
+        P=$(readlink -f "$cf")
+        case " $SEEN " in *" $P "*) continue ;; esac
+        SEEN="$SEEN $P"
+        echo "$P $(cat "$P/cpuinfo_max_freq" 2>/dev/null || echo 0)"
+    done | sort -k2 -n | awk '{print $1}'
+}
+
+policy_for() {
+    case "$1" in
+        little) list_policies | head -n 1 ;;
+        big)    list_policies | tail -n 1 ;;
+        all)    list_policies ;;
+        *)      echo "" ;;
+    esac
+}
+
+cmd_status() {
+    echo "Kernel : $(uname -r)"
+    echo "SELinux: $(getenforce 2>/dev/null || echo unknown)"
+    echo ""
+    for p in $(list_policies); do
+        CLUSTER=$([ "$p" = "$(policy_for little)" ] && echo little || echo big)
+        echo "[$CLUSTER] $p"
+        echo "  governor: $(cat $p/scaling_governor)"
+        echo "  cur     : $(cat $p/scaling_cur_freq)"
+        echo "  min/max : $(cat $p/scaling_min_freq)/$(cat $p/scaling_max_freq)"
+        echo "  hw range: $(cat $p/cpuinfo_min_freq)-$(cat $p/cpuinfo_max_freq)"
+    done
+    echo ""
+    echo "Governors available:"
+    echo "  $(cat $(policy_for big)/scaling_available_governors 2>/dev/null || cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors)"
+}
+
+cmd_govs() {
+    cat "$(policy_for big)/scaling_available_governors" 2>/dev/null \
+        || cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+}
+
+setgov() {
+    ROLE="$1"; GOV="$2"
+    for p in $(policy_for "$ROLE"); do
+        if ! grep -qw "$GOV" "$p/scaling_available_governors" 2>/dev/null; then
+            echo "voidman: '$GOV' not available on $p" >&2
+            exit 1
+        fi
+        echo "$GOV" > "$p/scaling_governor"
+        echo "$p -> $GOV"
+    done
+}
+
+freqset() {
+    ROLE="$1"; WHICH="$2"; VAL="$3"
+    FILE="scaling_${WHICH}_freq"
+    for p in $(policy_for "$ROLE"); do
+        echo "$VAL" > "$p/$FILE"
+        echo "$p/$FILE = $VAL"
+    done
+}
+
+apply_profile_file() {
+    F="$1"
+    . "$F"
+    [ -n "$LITTLE_GOVERNOR" ] && setgov little "$LITTLE_GOVERNOR" >/dev/null
+    [ -n "$BIG_GOVERNOR" ] && setgov big "$BIG_GOVERNOR" >/dev/null
+    [ -n "$LITTLE_MIN" ] && freqset little min "$LITTLE_MIN" >/dev/null
+    [ -n "$LITTLE_MAX" ] && freqset little max "$LITTLE_MAX" >/dev/null
+    [ -n "$BIG_MIN" ] && freqset big min "$BIG_MIN" >/dev/null
+    [ -n "$BIG_MAX" ] && freqset big max "$BIG_MAX" >/dev/null
+    echo "profile applied."
+}
+
+save_current() {
+    mkdir -p "$(dirname "$CONF")"
+    L=$(policy_for little); B=$(policy_for big)
+    cat > "$CONF" <<EOF
+# DSACK Manager saved profile (applied at boot)
+LITTLE_GOVERNOR=$(cat $L/scaling_governor)
+LITTLE_MIN=$(cat $L/scaling_min_freq)
+LITTLE_MAX=$(cat $L/scaling_max_freq)
+BIG_GOVERNOR=$(cat $B/scaling_governor)
+BIG_MIN=$(cat $B/scaling_min_freq)
+BIG_MAX=$(cat $B/scaling_max_freq)
+EOF
+    echo "saved current settings to $CONF (boot-persistent)"
+}
+
+builtin_profile() {
+    L=$(policy_for little); B=$(policy_for big)
+    LMAX=$(cat $L/cpuinfo_max_freq); BMAX=$(cat $B/cpuinfo_max_freq)
+    LMIN=$(cat $L/cpuinfo_min_freq); BMIN=$(cat $B/cpuinfo_min_freq)
+
+    case "$1" in
+        battery)
+            echo "LITTLE_GOVERNOR=smartmax_eps" > /tmp/dsprof
+            echo "LITTLE_MIN=$LMIN" >> /tmp/dsprof
+            echo "LITTLE_MAX=$((LMAX * 60 / 100))" >> /tmp/dsprof
+            echo "BIG_GOVERNOR=smartmax_eps" >> /tmp/dsprof
+            echo "BIG_MIN=$BMIN" >> /tmp/dsprof
+            echo "BIG_MAX=$((BMAX * 55 / 100))" >> /tmp/dsprof
+            ;;
+        balanced)
+            echo "LITTLE_GOVERNOR=schedutil" > /tmp/dsprof
+            echo "LITTLE_MIN=$LMIN" >> /tmp/dsprof
+            echo "LITTLE_MAX=$LMAX" >> /tmp/dsprof
+            echo "BIG_GOVERNOR=schedutil" >> /tmp/dsprof
+            echo "BIG_MIN=$BMIN" >> /tmp/dsprof
+            echo "BIG_MAX=$BMAX" >> /tmp/dsprof
+            ;;
+        performance)
+            echo "LITTLE_GOVERNOR=intelliactive" > /tmp/dsprof
+            echo "LITTLE_MIN=$((LMAX * 50 / 100))" >> /tmp/dsprof
+            echo "LITTLE_MAX=$LMAX" >> /tmp/dsprof
+            echo "BIG_GOVERNOR=darkness" >> /tmp/dsprof
+            echo "BIG_MIN=$((BMAX * 50 / 100))" >> /tmp/dsprof
+            echo "BIG_MAX=$BMAX" >> /tmp/dsprof
+            ;;
+        gaming)
+            echo "LITTLE_GOVERNOR=performance" > /tmp/dsprof
+            echo "LITTLE_MIN=$LMAX" >> /tmp/dsprof
+            echo "LITTLE_MAX=$LMAX" >> /tmp/dsprof
+            echo "BIG_GOVERNOR=performance" >> /tmp/dsprof
+            echo "BIG_MIN=$BMAX" >> /tmp/dsprof
+            echo "BIG_MAX=$BMAX" >> /tmp/dsprof
+            ;;
+        *) echo "voidman: unknown profile '$1'" >&2; exit 1 ;;
+    esac
+    apply_profile_file /tmp/dsprof
+}
+
+usage() {
+    cat <<'EOF'
+Void Manager - usage:
+  dsman status                     show kernel/SELinux/policy state
+  dsman govs                       list all available governors (20)
+  dsman setgov <little|big|all> <governor>
+  dsman freq <little|big> <min|max> <kHz>
+  dsman profile battery|balanced|performance|gaming
+  dsman save                       persist current settings (boot-applied)
+  dsman selinux                    get SELinux mode
+  dsman selinux enforcing|permissive
+EOF
+}
+
+[ $# -lt 1 ] && { usage; exit 0; }
+
+case "$1" in
+    status|info) cmd_status ;;
+    govs|governors) cmd_govs ;;
+    setgov) shift; need_root; setgov "$@" ;;
+    freq)   shift; need_root; freqset "$@" ;;
+    profile) shift; need_root; builtin_profile "$1" ;;
+    save)   need_root; save_current ;;
+    selinux)
+        shift
+        need_root
+        if [ -z "${1:-}" ]; then getenforce
+        else setenforce "$([ "$1" = enforcing ] && echo 1 || echo 0)"; getenforce; fi
+        ;;
+    help|--help|-h) usage ;;
+    *) usage; exit 1 ;;
+esac
