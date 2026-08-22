@@ -82,6 +82,7 @@ CROSS_A64="aarch64-linux-gnu-"
 CROSS_A32="arm-linux-gnueabi-"
 
 ZIPS=""
+mkdir -p "$PROJECT_ROOT/logs"
 for dev in $DEVICES; do
     OUT_DIR="$PROJECT_ROOT/out/$dev"
     DEFCONFIG_FILE="$KERNEL_DIR/arch/arm64/configs/${dev}_defconfig"
@@ -92,7 +93,8 @@ for dev in $DEVICES; do
     "$SCRIPT_DIR/apply-variant.sh" "$KERNEL_DIR" "$VARIANT" "$OUT_DIR"
 
     echo "==> [$dev] building (jobs=$(nproc))"
-    make -j"$(nproc)" O="$OUT_DIR" \
+    BUILD_LOG="$PROJECT_ROOT/logs/${dev}.log"
+    if ! make -j"$(nproc)" O="$OUT_DIR" \
         CROSS_COMPILE="$CROSS_A64" \
         CROSS_COMPILE_ARM32="$CROSS_A32" \
         CC=clang \
@@ -105,7 +107,12 @@ for dev in $DEVICES; do
         READELF=llvm-readelf \
         HOSTCC=gcc \
         HOSTAR=ar \
-        Image.gz-dtb Image.gz dtbs
+        Image.gz-dtb Image.gz dtbs >"$BUILD_LOG" 2>&1; then
+        echo "==> BUILD FAILED for $dev - last 80 lines of $BUILD_LOG:"
+        tail -n 80 "$BUILD_LOG"
+        exit 1
+    fi
+    echo "==> [$dev] build OK"
 
     ZIP_NAME="VoidKernel-4.9.337-${VARIANT}-${ROOT}-${dev}"
     "$SCRIPT_DIR/package.sh" "$KERNEL_DIR" "$OUT_DIR" "$dev" "$ZIP_NAME"
