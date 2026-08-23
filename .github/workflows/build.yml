@@ -17,6 +17,8 @@ jobs:
   kernel:
     name: ${{ matrix.variant }} / ${{ matrix.root }}
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -52,6 +54,17 @@ jobs:
           name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}
           path: logs/*.log
           if-no-files-found: ignore
+
+      - name: Commit failure logs back to repo
+        if: failure()
+        run: |
+          git config user.name "void-ci-bot"
+          git config user.email "bot@users.noreply.github.com"
+          mkdir -p "ci-logs/${{ matrix.variant }}-${{ matrix.root }}"
+          cp logs/*.log "ci-logs/${{ matrix.variant }}-${{ matrix.root }}/" 2>/dev/null || true
+          git add ci-logs
+          git commit -m "ci: failure logs for ${{ matrix.variant }}/${{ matrix.root }} [skip ci]" || true
+          git push || true
 
   manager:
     name: Void Kernel Manager module
