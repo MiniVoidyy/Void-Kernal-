@@ -70,10 +70,17 @@ fi
 
 # Purge ALL stale/broken root-solution wiring (the kernel tree itself ships
 # an old 'kernelsu' source line), then append correct lines.
-sed -i '\#^[[:space:]]*obj-.CONFIG_KSU.[[:space:]]*\+= *\(kernelsu\|kernelsu_next\|sukisu\)#d' "$DRIVERS_MAKEFILE"
+# NOTE: 'obj-$(CONFIG_KSU)' - the $() is two chars, hence ERE with escapes.
+sed -Ei '\#^[[:space:]]*obj-\$\(CONFIG_KSU\)[[:space:]]*\+=[[:space:]]*(kernelsu|kernelsu_next|sukisu)#d' "$DRIVERS_MAKEFILE"
 printf 'obj-$(CONFIG_KSU)\t+= %s/\n' "$REL_DIR" >> "$DRIVERS_MAKEFILE"
 
 sed -i '\#source ".*/\(kernelsu\|kernelsu_next\|sukisu\)/#d' "$DRIVERS_KCONFIG"
 printf '\nsource "drivers/%s/Kconfig"\n' "$REL_DIR" >> "$DRIVERS_KCONFIG"
+
+# Physically remove unused root-solution dirs (the stock kernelsu/ dir has
+# no kbuild Makefile and would break the build if anything still points at it)
+for d in kernelsu kernelsu_next sukisu; do
+    [ "$d" = "$DIR" ] || rm -rf "$DRIVERS_DIR/$d"
+done
 
 echo "==> Root solution '$ROOT' wired into drivers/{Makefile,Kconfig}"
