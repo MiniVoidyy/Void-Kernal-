@@ -2,7 +2,7 @@
 ==> Root    : sukisu
 ==> Device  : starlte
 Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
-Updating files:  31% (20410/64948)Updating files:  32% (20784/64948)Updating files:  33% (21433/64948)Updating files:  34% (22083/64948)Updating files:  35% (22732/64948)Updating files:  36% (23382/64948)Updating files:  37% (24031/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  54% (35095/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  70% (45655/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  91% (59505/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Updating files:  38% (25156/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  64% (42153/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  90% (58619/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
 Void governor pack installed: +13 custom (+7 stock = 20 total)
 ==> Cloning https://github.com/SukiSU-Ultra/SukiSU-Ultra.git -> drivers/sukisu
 Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu'...
@@ -28,7 +28,7 @@ Turn off this advice by setting config variable advice.detachedHead to false
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  9  448M    9 44.0M    0     0  58.1M      0  0:00:07 --:--:--  0:00:07 58.1M 51  448M   51  230M    0     0   130M      0  0:00:03  0:00:01  0:00:02  186M 87  448M   87  394M    0     0   142M      0  0:00:03  0:00:02  0:00:01  175M100  448M  100  448M    0     0   146M      0  0:00:03  0:00:03 --:--:--  175M
+100 22.6M    0 22.6M    0     0  41.7M      0 --:--:-- --:--:-- --:--:-- 41.7M100 32.6M    0 32.6M    0     0  20.3M      0 --:--:--  0:00:01 --:--:-- 9620k100 52.0M    0 52.0M    0     0  18.1M      0 --:--:--  0:00:02 --:--:-- 12.6M100 52.0M    0 52.0M    0     0  13.4M      0 --:--:--  0:00:03 --:--:-- 9058k100 66.7M    0 66.7M    0     0  13.0M      0 --:--:--  0:00:05 --:--:-- 9910k100 66.7M    0 66.7M    0     0  10.9M      0 --:--:--  0:00:06 --:--:-- 8124k100 66.7M    0 66.7M    0     0  9625k      0 --:--:--  0:00:07 --:--:-- 6355k100 66.7M    0 66.7M    0     0  8435k      0 --:--:--  0:00:08 --:--:-- 2878k100 96.4M    0 96.4M    0     0  10.1M      0 --:--:--  0:00:09 --:--:-- 8131k100 96.4M    0 96.4M    0     0  9928k      0 --:--:--  0:00:09 --:--:-- 6274k100  106M    0  106M    0     0  9887k      0 --:--:--  0:00:11 --:--:-- 8254k100  116M    0  116M    0     0  9507k      0 --:--:--  0:00:12 --:--:-- 9353k100  116M    0  116M    0     0  9234k      0 --:--:--  0:00:12 --:--:-- 10.3M100  127M    0  127M    0     0  9204k      0 --:--:--  0:00:14 --:--:-- 6735k100  127M    0  127M    0     0  8833k      0 --:--:--  0:00:14 --:--:-- 6590k100  140M    0  140M    0     0  8864k      0 --:--:--  0:00:16 --:--:-- 6702k100  140M    0  140M    0     0  8349k      0 --:--:--  0:00:17 --:--:-- 5293k100  140M    0  140M    0     0  8080k      0 --:--:--  0:00:17 --:--:-- 5083k100  155M    0  155M    0     0  8416k      0 --:--:--  0:00:18 --:--:-- 6043k100  155M    0  155M    0     0  7993k      0 --:--:--  0:00:19 --:--:-- 5561k100  156M    0  156M    0     0  7783k      0 --:--:--  0:00:20 --:--:-- 3704k100  176M    0  176M    0     0  8348k      0 --:--:--  0:00:21 --:--:-- 8342k100  188M    0  188M    0     0  8445k      0 --:--:--  0:00:22 --:--:-- 9750k100  191M    0  191M    0     0  8192k      0 --:--:--  0:00:23 --:--:-- 7356k100  192M    0  192M    0     0  8018k      0 --:--:--  0:00:24 --:--:-- 8125k100  207M    0  207M    0     0  8273k      0 --:--:--  0:00:25 --:--:-- 10.0M100  210M    0  210M    0     0  7971k      0 --:--:--  0:00:27 --:--:-- 6463k100  210M    0  210M    0     0  7816k      0 --:--:--  0:00:27 --:--:-- 4824k100  221M    0  221M    0     0  7910k      0 --:--:--  0:00:28 --:--:-- 6465k100  232M    0  232M    0     0  7869k      0 --:--:--  0:00:30 --:--:-- 7224k100  232M    0  232M    0     0  7769k      0 --:--:--  0:00:30 --:--:-- 5173k100  242M    0  242M    0     0  7845k      0 --:--:--  0:00:31 --:--:-- 7107k100  252M    0  252M    0     0  7757k      0 --:--:--  0:00:33 --:--:-- 7475k100  252M    0  252M    0     0  7531k      0 --:--:--  0:00:34 --:--:-- 5599k100  252M    0  252M    0     0  7413k      0 --:--:--  0:00:34 --:--:-- 4431k100  268M    0  268M    0     0  7653k      0 --:--:--  0:00:35 --:--:-- 6986k100  268M    0  268M    0     0  7446k      0 --:--:--  0:00:36 --:--:-- 5048k100  268M    0  268M    0     0  7302k      0 --:--:--  0:00:37 --:--:-- 3850k100  291M    0  291M    0     0  7692k      0 --:--:--  0:00:38 --:--:-- 8917k100  297M    0  297M    0     0  7698k      0 --:--:--  0:00:39 --:--:-- 9801k100  304M    0  304M    0     0  7664k      0 --:--:--  0:00:40 --:--:-- 7748k100  311M    0  311M    0     0  7661k      0 --:--:--  0:00:41 --:--:-- 9370k100  316M    0  316M    0     0  7474k      0 --:--:--  0:00:43 --:--:-- 8621k100  316M    0  316M    0     0  7305k      0 --:--:--  0:00:44 --:--:-- 4589k100  316M    0  316M    0     0  7181k      0 --:--:--  0:00:45 --:--:-- 3482k100  336M    0  336M    0     0  7534k      0 --:--:--  0:00:45 --:--:-- 6461k100  341M    0  341M    0     0  7503k      0 --:--:--  0:00:46 --:--:-- 6189k100  343M    0  343M    0     0  7381k      0 --:--:--  0:00:47 --:--:-- 6451k100  343M    0  343M    0     0  7230k      0 --:--:--  0:00:48 --:--:-- 6453k100  343M    0  343M    0     0  7084k      0 --:--:--  0:00:49 --:--:-- 6120k100  363M    0  363M    0     0  7369k      0 --:--:--  0:00:50 --:--:-- 5824k100  369M    0  369M    0     0  7335k      0 --:--:--  0:00:51 --:--:-- 5749k100  370M    0  370M    0     0  7183k      0 --:--:--  0:00:52 --:--:-- 5371k100  370M    0  370M    0     0  7049k      0 --:--:--  0:00:53 --:--:-- 5370k100  376M    0  376M    0     0  7077k      0 --:--:--  0:00:54 --:--:-- 7012k100  388M    0  388M    0     0  7147k      0 --:--:--  0:00:55 --:--:-- 4923k100  388M    0  388M    0     0  7020k      0 --:--:--  0:00:56 --:--:-- 3802k100  388M    0  388M    0     0  6898k      0 --:--:--  0:00:57 --:--:-- 3717k100  388M    0  388M    0     0  6780k      0 --:--:--  0:00:58 --:--:-- 3717k100  415M    0  415M    0     0  7103k      0 --:--:--  0:00:59 --:--:-- 7361k100  415M    0  415M    0     0  6986k      0 --:--:--  0:01:00 --:--:-- 5288k100  415M    0  415M    0     0  6873k      0 --:--:--  0:01:01 --:--:-- 5288k100  438M    0  438M    0     0  7185k      0 --:--:--  0:01:02 --:--:-- 10.2M100  444M    0  444M    0     0  7164k      0 --:--:--  0:01:03 --:--:-- 11.4M100  448M    0  448M    0     0  7144k      0 --:--:--  0:01:04 --:--:-- 7706k
 ==> defconfig + starlte overlay + variant merge
 make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
 make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
@@ -243,128 +243,128 @@ CONFIG_SECURITY_SELINUX_DEVELOP=y
 ==> Governors enabled: 19
 ==> building (jobs=4)
 ==> BUILD FAILED - compiler/kbuild errors:
-3868:/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/ksu.c:96:18: error: a parameter list without types is only allowed in a function definition
-3872:make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:337: drivers/sukisu/kernel/ksu.o] Error 1
-3873:make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: drivers/sukisu/kernel] Error 2
-3902:make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1258: drivers] Error 2
-3904:make: *** [Makefile:152: sub-make] Error 2
+3890:/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/sucompat.c:11:10: fatal error: 'linux/sched/task_stack.h' file not found
+3896:make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:337: drivers/sukisu/kernel/sucompat.o] Error 1
+3897:make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: drivers/sukisu/kernel] Error 2
+3915:make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1258: drivers] Error 2
+3917:make: *** [Makefile:152: sub-make] Error 2
 ==> last 120 lines of /home/runner/work/Void-Kernal-/Void-Kernal-/logs/build.log:
-static int is_client_alive(struct ion_client *client)
-           ^
-  CC      drivers/spi/spi-gpio.o
-  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink-protocol-msg.o
-1 warning generated.
-  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink-selftest.o
-  CC      drivers/net/wireless/bcmdhd_101_16/dhd_flowring.o
-  CC      drivers/staging/android/ion/ion-ioctl.o
-  CC      drivers/spi/spi-s3c64xx.o
-  AR      drivers/soc/samsung/exynos-hdcp/built-in.o
-  CC      drivers/soc/samsung/exynos-chipid.o
-  CC      drivers/staging/android/ion/ion_heap.o
+  AR      drivers/sensorhub/brcm/bbdpl/built-in.o
+  CC      drivers/sensorhub/brcm/factory/thermistor.o
   AR      drivers/spi/built-in.o
-  CC      drivers/staging/samsung/sec_notifier/vbus_notifier.o
-  CC      drivers/soc/samsung/exynos-pd.o
-  CC      drivers/net/wireless/bcmdhd_101_16/dhd_msgbuf.o
-  AR      drivers/staging/samsung/sec_notifier/built-in.o
-  CC      drivers/net/wireless/bcmdhd_101_16/dhd_linux_lb.o
-  CC      drivers/staging/android/ion/ion_page_pool.o
-  CC      drivers/soc/samsung/exynos-pd-dbg.o
-  CC      drivers/staging/android/ion/ion_system_heap.o
-  CC      drivers/soc/samsung/exynos-flexpmu-dbg.o
-  CC      drivers/staging/android/ion/ion_carveout_heap.o
+  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink.o
+  CC      drivers/staging/android/ion/ion-ioctl.o
   AR      drivers/staging/iio/accel/built-in.o
   AR      drivers/staging/iio/adc/built-in.o
+  AR      drivers/sensorhub/brcm/built-in.o
+  AR      drivers/sensorhub/built-in.o
   AR      drivers/staging/iio/addac/built-in.o
   AR      drivers/staging/iio/cdc/built-in.o
-  AR      drivers/staging/iio/frequency/built-in.o
+  AR      drivers/staging/media/built-in.o
   AR      drivers/staging/iio/gyro/built-in.o
+  AR      drivers/staging/iio/frequency/built-in.o
+  CC      drivers/soc/samsung/exynos-pd-dbg.o
   AR      drivers/staging/iio/impedance-analyzer/built-in.o
-  CC      drivers/soc/samsung/exynos-pm-dvs.o
   AR      drivers/staging/iio/light/built-in.o
-  CC      drivers/staging/android/ion/ion_chunk_heap.o
+  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink-if.o
+  CC      drivers/staging/android/ion/ion_heap.o
   AR      drivers/staging/iio/meter/built-in.o
   AR      drivers/staging/iio/resolver/built-in.o
   AR      drivers/staging/iio/trigger/built-in.o
   AR      drivers/staging/iio/built-in.o
+  CC      drivers/staging/samsung/sec_log.o
   CC      drivers/staging/android/switch/switch_class.o
-  CC      drivers/soc/samsung/ect_parser.o
-  CC      drivers/net/wireless/bcmdhd_101_16/wl_cfgvendor.o
-  CC      drivers/staging/android/ion/ion_cma_heap.o
+drivers/staging/samsung/.tmp_sec_log.o: no symbols
+  CC      drivers/staging/samsung/sec_sysfs.o
+  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink-auth.o
+  CC      drivers/staging/android/ion/ion_page_pool.o
   AR      drivers/staging/android/switch/built-in.o
   CC      drivers/staging/android/ashmem.o
+  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink-protocol-msg.o
+  CC      drivers/staging/samsung/sec_batt.o
+  CC      drivers/staging/android/ion/ion_system_heap.o
+  CC      drivers/soc/samsung/exynos-hdcp/dp_link/exynos-hdcp2-dplink-selftest.o
+  CC      drivers/staging/samsung/sec_reboot.o
+  CC      drivers/staging/samsung/sec_notifier/vbus_notifier.o
+  AR      drivers/soc/samsung/exynos-hdcp/built-in.o
+  CC      drivers/soc/samsung/exynos-flexpmu-dbg.o
+  CC      drivers/staging/android/ion/ion_carveout_heap.o
+  AR      drivers/staging/samsung/sec_notifier/built-in.o
+  CC      drivers/staging/android/ion/ion_chunk_heap.o
+  CC      drivers/staging/samsung/sec_nad.o
+  CC      drivers/soc/samsung/exynos-pm-dvs.o
+  CC      drivers/staging/android/ion/ion_cma_heap.o
+  CC      drivers/staging/samsung/sec_nad_balancer.o
+  CC      drivers/soc/samsung/ect_parser.o
   CC      drivers/staging/android/ion/ion_rbin_heap.o
-  CC      drivers/soc/samsung/usi.o
-  CC      drivers/staging/android/alarm-dev.o
+  CC      drivers/staging/samsung/sec_heavy_task_cpu.o
+  CC      drivers/staging/samsung/sec_pm_debug.o
+  CC      drivers/staging/samsung/sec_hqm_device.o
   CC      drivers/staging/android/ion/compat_ion.o
+  CC      drivers/soc/samsung/usi.o
+  AR      drivers/staging/samsung/built-in.o
+  CC      drivers/staging/android/alarm-dev.o
   CC      drivers/soc/samsung/exynos-reboot.o
   CC      drivers/staging/android/ion/exynos/exynos_ion.o
   CC      drivers/soc/samsung/exynos-powermode.o
-  CC      drivers/net/wireless/bcmdhd_101_16/bcm_app_utils.o
+  CC      drivers/thermal/thermal_core.o
   CC      drivers/staging/android/ion/exynos/exynos_ion_sync.o
   CC      drivers/soc/samsung/exynos-pm.o
-  CC      drivers/net/wireless/bcmdhd_101_16/wl_bam.o
   CC      drivers/staging/android/ion/exynos/dmabuf_container.o
   CC      drivers/staging/android/ion/exynos/ion_hpa_heap.o
+  CC      drivers/thermal/thermal_hwmon.o
   CC      drivers/soc/samsung/usi_v2.o
-  CC      drivers/net/wireless/bcmdhd_101_16/dhd_pktlog.o
   AR      drivers/staging/android/ion/exynos/built-in.o
   AR      drivers/staging/android/ion/built-in.o
   CC      drivers/staging/android/freecess.o
+  CC      drivers/thermal/of-thermal.o
   CC      drivers/soc/samsung/cpuidle_profiler.o
   CC      drivers/staging/android/freecess_pkg.o
-  CC      drivers/soc/samsung/exynos-cpu_hotplug.o
-  CC      drivers/net/wireless/bcmdhd_101_16/wl_bigdata.o
-  AR      drivers/staging/android/built-in.o
-  AR      drivers/staging/media/built-in.o
-  CC      drivers/staging/samsung/sec_log.o
 -- KernelSU version: 12596
 -- KernelSU Manager signature size: 0x35c
 -- KernelSU Manager signature hash: 947ae944f3de4ed4c21a7e4f7953ecf351bfa2b36239da37a34111ad29993eef
 -- Supported Unofficial Manager: ShirkNeko (GKI) (Non-GKI)
 -- KERNEL_VERSION: 4.9
-  CC      drivers/soc/samsung/exynos-hotplug_governor.o
+  CC      drivers/soc/samsung/exynos-cpu_hotplug.o
+  CC      drivers/thermal/step_wise.o
   CC      drivers/sukisu/kernel/ksu.o
-  CC      drivers/net/wireless/bcmdhd_101_16/dhd_event_log_filter.o
-drivers/staging/samsung/.tmp_sec_log.o: no symbols
-  CC      drivers/staging/samsung/sec_sysfs.o
-/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/ksu.c:96:1: warning: declaration specifier missing, defaulting to 'int'
-MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
-^
-int
-/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/ksu.c:96:18: error: a parameter list without types is only allowed in a function definition
-MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
-                 ^
-1 warning and 1 error generated.
-make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:337: drivers/sukisu/kernel/ksu.o] Error 1
+  AR      drivers/staging/android/built-in.o
+  CC      drivers/staging/sti/abc/abc_common.o
+  CC      drivers/sukisu/kernel/allowlist.o
+  CC      drivers/thermal/power_allocator.o
+  CC      drivers/thermal/cpu_cooling.o
+  CC      drivers/soc/samsung/exynos-hotplug_governor.o
+  CC      drivers/sukisu/kernel/apk_sign.o
+  CC      drivers/staging/sti/abc/abc_hub.o
+  CC      drivers/soc/samsung/exynos-dm.o
+  CC      drivers/thermal/devfreq_cooling.o
+  CC      drivers/sukisu/kernel/sucompat.o
+  CC      drivers/staging/sti/abc/abc_hub_cond.o
+/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/sucompat.c:11:10: fatal error: 'linux/sched/task_stack.h' file not found
+#include <linux/sched/task_stack.h>
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+  CC      drivers/soc/samsung/exynos-mcinfo.o
+1 error generated.
+  CC      drivers/thermal/samsung/exynos_tmu.o
+make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:337: drivers/sukisu/kernel/sucompat.o] Error 1
 make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: drivers/sukisu/kernel] Error 2
 make[2]: *** Waiting for unfinished jobs....
-  CC      drivers/staging/sti/abc/abc_common.o
-  CC      drivers/staging/samsung/sec_batt.o
-  CC      drivers/soc/samsung/exynos-dm.o
-  AR      drivers/net/wireless/bcmdhd_101_16/dhd.o
-  AR      drivers/net/wireless/bcmdhd_101_16/built-in.o
-  AR      drivers/net/wireless/built-in.o
-  AR      drivers/net/built-in.o
-  CC      drivers/staging/samsung/sec_reboot.o
-  CC      drivers/staging/samsung/sec_nad.o
-  CC      drivers/staging/sti/abc/abc_hub.o
-  CC      drivers/soc/samsung/exynos-mcinfo.o
-  CC      drivers/staging/samsung/sec_nad_balancer.o
-  CC      drivers/soc/samsung/pmu-cp.o
-  CC      drivers/staging/samsung/sec_heavy_task_cpu.o
-  CC      drivers/staging/sti/abc/abc_hub_cond.o
-  CC      drivers/staging/samsung/sec_pm_debug.o
-  CC      drivers/soc/samsung/exynos-seclog.o
+  CC      drivers/thermal/gpu_cooling.o
   CC      drivers/staging/sti/abc/abc_hub_bootc.o
-  CC      drivers/staging/samsung/sec_hqm_device.o
-  CC      drivers/soc/samsung/secmem.o
-  AR      drivers/staging/samsung/built-in.o
-  CC      drivers/soc/samsung/sec_dummy.o
+  CC      drivers/soc/samsung/pmu-cp.o
   AR      drivers/staging/sti/abc/built-in.o
   AR      drivers/staging/sti/built-in.o
   AR      drivers/staging/built-in.o
+  CC      drivers/soc/samsung/exynos-seclog.o
+  CC      drivers/thermal/samsung/exynos_acpm_tmu.o
+  CC      drivers/thermal/isp_cooling.o
+  AR      drivers/thermal/thermal_sys.o
+  CC      drivers/soc/samsung/secmem.o
+  CC      drivers/soc/samsung/sec_dummy.o
+  AR      drivers/thermal/samsung/built-in.o
   AR      drivers/soc/samsung/built-in.o
   AR      drivers/soc/built-in.o
+  AR      drivers/thermal/built-in.o
 make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1258: drivers] Error 2
 make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
 make: *** [Makefile:152: sub-make] Error 2
