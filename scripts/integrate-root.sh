@@ -65,6 +65,18 @@ if [ "$need_clone" = 1 ]; then
     fi
 fi
 
+# Upstream bug in KernelSU-Next's <4.12 kvmalloc/kvfree shim: its kvfree
+# replacement drops the const qualifier the real kvfree has, so const-qualified
+# callers fail under Samsung's -Werror on 4.9. Cast explicitly instead.
+COMPAT_H="$DRIVERS_DIR/$DIR/kernel/compat/kernel_compat.h"
+if [ -f "$COMPAT_H" ]; then
+    sed -i \
+        -e 's/static inline void ksu_kvfree(void \*buf)/static inline void ksu_kvfree(const void *buf)/' \
+        -e 's/vfree(buf);/vfree((void *)buf);/' \
+        -e 's/kfree(buf);/kfree((void *)buf);/' \
+        "$COMPAT_H"
+fi
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
