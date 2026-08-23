@@ -25,7 +25,9 @@ cd "$KERNEL_DIR"
 
 # -O puts the merged result back into $OUT_DIR/.config (default would be $PWD/.config)
 scripts/kconfig/merge_config.sh -m -O "$OUT_DIR" "$OUT_DIR/.config" "$BASE_FRAG" "$VARIANT_FRAG"
-yes "" | make ARCH=arm64 O="$OUT_DIR" olddefconfig
+# olddefconfig resolves new symbols non-interactively (no 'yes' needed;
+# piping yes into it dies with SIGPIPE under pipefail)
+make ARCH=arm64 O="$OUT_DIR" olddefconfig
 
 echo "==> Variant '$VARIANT' applied:"
 grep -E 'CONFIG_(CMDLINE=|CMDLINE_EXTEND|SECURITY_SELINUX_DEVELOP|KPROBES=)' "$OUT_DIR/.config" || true
