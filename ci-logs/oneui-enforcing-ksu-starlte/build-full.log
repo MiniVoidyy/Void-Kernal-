@@ -1,0 +1,366 @@
+==> Variant : oneui-enforcing
+==> Root    : ksu
+==> Device  : starlte
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
+Updating files:  20% (13430/64948)Updating files:  21% (13640/64948)Updating files:  22% (14289/64948)Updating files:  23% (14939/64948)Updating files:  24% (15588/64948)Updating files:  25% (16237/64948)Updating files:  26% (16887/64948)Updating files:  27% (17536/64948)Updating files:  28% (18186/64948)Updating files:  29% (18835/64948)Updating files:  30% (19485/64948)Updating files:  31% (20134/64948)Updating files:  32% (20784/64948)Updating files:  33% (21433/64948)Updating files:  34% (22083/64948)Updating files:  35% (22732/64948)Updating files:  36% (23382/64948)Updating files:  37% (24031/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  42% (27782/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  58% (38120/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  70% (46036/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  87% (56603/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  98% (63838/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Void governor pack installed: +13 custom (+7 stock = 20 total)
+==> Cloning https://github.com/tiann/KernelSU.git -> drivers/kernelsu
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/kernelsu'...
+Note: switching to 'b766b98513b5a7eb33bc1c4a76b5702bf1288f07'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+==> Root solution 'ksu' wired into drivers/{Makefile,Kconfig}
+==> Downloading Proton Clang toolchain
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 32.6M    0 32.6M    0     0  16.6M      0 --:--:--  0:00:01 --:--:-- 16.6M100 32.6M    0 32.6M    0     0  11.0M      0 --:--:--  0:00:02 --:--:--     0100 32.6M    0 32.6M    0     0  10.3M      0 --:--:--  0:00:03 --:--:--  3454100 52.0M    0 52.0M    0     0  11.7M      0 --:--:--  0:00:04 --:--:-- 8007k100 52.0M    0 52.0M    0     0  9792k      0 --:--:--  0:00:05 --:--:-- 5700k100 66.7M    0 66.7M    0     0   9.9M      0 --:--:--  0:00:06 --:--:-- 7389k100 66.7M    0 66.7M    0     0  8891k      0 --:--:--  0:00:07 --:--:-- 7389k100 66.7M    0 66.7M    0     0  7866k      0 --:--:--  0:00:08 --:--:-- 6302k100 66.8M    0 66.8M    0     0  7159k      0 --:--:--  0:00:09 --:--:-- 2968k100 96.4M    0 96.4M    0     0  8991k      0 --:--:--  0:00:10 --:--:-- 8206k100 96.5M    0 96.5M    0     0  8636k      0 --:--:--  0:00:11 --:--:-- 6410k100  106M    0  106M    0     0  8660k      0 --:--:--  0:00:12 --:--:-- 8298k100  111M    0  111M    0     0  8745k      0 --:--:--  0:00:13 --:--:-- 10.2M100  116M    0  116M    0     0  8433k      0 --:--:--  0:00:14 --:--:-- 10.8M100  127M    0  127M    0     0  8319k      0 --:--:--  0:00:15 --:--:-- 6755k100  127M    0  127M    0     0  7977k      0 --:--:--  0:00:16 --:--:-- 6448k100  140M    0  140M    0     0  8074k      0 --:--:--  0:00:17 --:--:-- 6666k100  140M    0  140M    0     0  7644k      0 --:--:--  0:00:18 --:--:-- 5177k100  140M    0  140M    0     0  7401k      0 --:--:--  0:00:19 --:--:-- 4692k100  155M    0  155M    0     0  7691k      0 --:--:--  0:00:20 --:--:-- 5714k100  155M    0  155M    0     0  7336k      0 --:--:--  0:00:21 --:--:-- 5359k100  155M    0  155M    0     0  7183k      0 --:--:--  0:00:22 --:--:-- 3520k100  176M    0  176M    0     0  7700k      0 --:--:--  0:00:23 --:--:-- 7927k100  186M    0  186M    0     0  7957k      0 --:--:--  0:00:24 --:--:-- 10.0M100  191M    0  191M    0     0  7669k      0 --:--:--  0:00:25 --:--:-- 7576k100  191M    0  191M    0     0  7500k      0 --:--:--  0:00:26 --:--:-- 8290k100  207M    0  207M    0     0  7778k      0 --:--:--  0:00:27 --:--:-- 10.1M100  210M    0  210M    0     0  7502k      0 --:--:--  0:00:28 --:--:-- 6619k100  210M    0  210M    0     0  7364k      0 --:--:--  0:00:29 --:--:-- 4660k100  221M    0  221M    0     0  7451k      0 --:--:--  0:00:30 --:--:-- 6291k100  232M    0  232M    0     0  7441k      0 --:--:--  0:00:31 --:--:-- 7174k100  232M    0  232M    0     0  7350k      0 --:--:--  0:00:32 --:--:-- 5057k100  242M    0  242M    0     0  7438k      0 --:--:--  0:00:33 --:--:-- 7045k100  252M    0  252M    0     0  7387k      0 --:--:--  0:00:34 --:--:-- 7511k100  252M    0  252M    0     0  7182k      0 --:--:--  0:00:35 --:--:-- 5698k100  252M    0  252M    0     0  7057k      0 --:--:--  0:00:36 --:--:-- 4404k100  268M    0  268M    0     0  7269k      0 --:--:--  0:00:37 --:--:-- 6789k100  268M    0  268M    0     0  7082k      0 --:--:--  0:00:38 --:--:-- 4894k100  268M    0  268M    0     0  6982k      0 --:--:--  0:00:39 --:--:-- 3802k100  289M    0  289M    0     0  7373k      0 --:--:--  0:00:40 --:--:-- 8980k100  294M    0  294M    0     0  7339k      0 --:--:--  0:00:41 --:--:-- 9625k100  302M    0  302M    0     0  7335k      0 --:--:--  0:00:42 --:--:-- 7905k100  309M    0  309M    0     0  7348k      0 --:--:--  0:00:43 --:--:-- 9782k100  315M    0  315M    0     0  7335k      0 --:--:--  0:00:44 --:--:-- 10.0M100  316M    0  316M    0     0  7186k      0 --:--:--  0:00:45 --:--:-- 5629k100  316M    0  316M    0     0  7029k      0 --:--:--  0:00:46 --:--:-- 4455k100  327M    0  327M    0     0  7139k      0 --:--:--  0:00:47 --:--:-- 5398k100  340M    0  340M    0     0  7257k      0 --:--:--  0:00:48 --:--:-- 6456k100  343M    0  343M    0     0  7130k      0 --:--:--  0:00:49 --:--:-- 5416k100  343M    0  343M    0     0  6988k      0 --:--:--  0:00:50 --:--:-- 5295k100  347M    0  347M    0     0  6967k      0 --:--:--  0:00:51 --:--:-- 6389k100  365M    0  365M    0     0  7198k      0 --:--:--  0:00:52 --:--:-- 7755k100  370M    0  370M    0     0  7066k      0 --:--:--  0:00:53 --:--:-- 5463k100  370M    0  370M    0     0  6937k      0 --:--:--  0:00:54 --:--:-- 5179k100  370M    0  370M    0     0  6853k      0 --:--:--  0:00:55 --:--:-- 5517k100  388M    0  388M    0     0  7011k      0 --:--:--  0:00:56 --:--:-- 7406k100  388M    0  388M    0     0  6890k      0 --:--:--  0:00:57 --:--:-- 4048k100  388M    0  388M    0     0  6772k      0 --:--:--  0:00:58 --:--:-- 3568k100  388M    0  388M    0     0  6673k      0 --:--:--  0:00:59 --:--:-- 3665k100  413M    0  413M    0     0  7062k      0 --:--:--  0:01:00 --:--:-- 9595k100  415M    0  415M    0     0  6968k      0 --:--:--  0:01:01 --:--:-- 6407k100  415M    0  415M    0     0  6856k      0 --:--:--  0:01:02 --:--:-- 6407k100  426M    0  426M    0     0  6934k      0 --:--:--  0:01:03 --:--:-- 9122k100  443M    0  443M    0     0  7089k      0 --:--:--  0:01:04 --:--:-- 12.2M100  448M    0  448M    0     0  7077k      0 --:--:--  0:01:04 --:--:-- 7253k
+==> defconfig + starlte overlay + variant merge
+make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  HOSTCC  scripts/basic/fixdep
+  GEN     ./Makefile
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging arch/arm64/configs/starlte_defconfig
+Value of CONFIG_VMPRESSURE_LEVEL_MED is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: CONFIG_VMPRESSURE_LEVEL_MED=60
+New value: CONFIG_VMPRESSURE_LEVEL_MED=60
+
+Value of CONFIG_MUIC_UNIVERSAL is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_MUIC_UNIVERSAL is not set
+New value: CONFIG_MUIC_UNIVERSAL=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN_TCLM is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN_TCLM is not set
+New value: CONFIG_INPUT_TOUCHSCREEN_TCLM=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is not set
+New value: # CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is not set
+
+Value of CONFIG_TOUCHSCREEN_SEC_TS is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_TOUCHSCREEN_SEC_TS is not set
+New value: CONFIG_TOUCHSCREEN_SEC_TS=y
+
+Value of CONFIG_TOUCHSCREEN_SEC_TS_Y771 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_TOUCHSCREEN_SEC_TS_Y771 is not set
+New value: # CONFIG_TOUCHSCREEN_SEC_TS_Y771 is not set
+
+Value of CONFIG_INPUT_WACOM is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_INPUT_WACOM is not set
+New value: # CONFIG_INPUT_WACOM is not set
+
+Value of CONFIG_EPEN_WACOM_W9018 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_EPEN_WACOM_W9018 is not set
+New value: # CONFIG_EPEN_WACOM_W9018 is not set
+
+Value of CONFIG_MFD_MAX77865 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_MFD_MAX77865 is not set
+New value: CONFIG_MFD_MAX77865=y
+
+Value of CONFIG_CAMERA_CIS_3M3_OBJ is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_CIS_3M3_OBJ is not set
+New value: # CONFIG_CAMERA_CIS_3M3_OBJ is not set
+
+Value of CONFIG_OIS_USE_RUMBA_S4 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_OIS_USE_RUMBA_S4 is not set
+New value: CONFIG_OIS_USE_RUMBA_S4=y
+
+Value of CONFIG_CAMERA_STAR is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_STAR is not set
+New value: CONFIG_CAMERA_STAR=y
+
+Value of CONFIG_CAMERA_STAR2 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_STAR2 is not set
+New value: # CONFIG_CAMERA_STAR2 is not set
+
+Value of CONFIG_CAMERA_CROWN is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_CROWN is not set
+New value: # CONFIG_CAMERA_CROWN is not set
+
+Value of CONFIG_OIS_USE_RUMBA_S6 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_OIS_USE_RUMBA_S6 is not set
+New value: # CONFIG_OIS_USE_RUMBA_S6 is not set
+
+Value of CONFIG_SUPPORT_DIM_FLASH is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SUPPORT_DIM_FLASH is not set
+New value: # CONFIG_SUPPORT_DIM_FLASH is not set
+
+Value of CONFIG_SELF_MOVE_3PX is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SELF_MOVE_3PX is not set
+New value: # CONFIG_SELF_MOVE_3PX is not set
+
+Value of CONFIG_FUELGAUGE_MAX77865 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_FUELGAUGE_MAX77865 is not set
+New value: CONFIG_FUELGAUGE_MAX77865=y
+
+Value of CONFIG_CHARGER_MAX77865 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CHARGER_MAX77865 is not set
+New value: CONFIG_CHARGER_MAX77865=y
+
+Value of CONFIG_WIRELESS_FIRMWARE_65 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_WIRELESS_FIRMWARE_65 is not set
+New value: # CONFIG_WIRELESS_FIRMWARE_65 is not set
+
+Value of CONFIG_SENSORS_SSP_AK09918 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_AK09918 is not set
+New value: # CONFIG_SENSORS_SSP_AK09918 is not set
+
+Value of CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is not set
+New value: # CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is not set
+
+Value of CONFIG_SENSORS_SSP_STAR is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_STAR is not set
+New value: CONFIG_SENSORS_SSP_STAR=y
+
+Value of CONFIG_SENSORS_SSP_CROWN is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_CROWN is not set
+New value: # CONFIG_SENSORS_SSP_CROWN is not set
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment
+Value of CONFIG_KPROBES is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_KPROBES is not set
+New value: # Loadable module support: required by CONFIG_KPROBES (kprobes depends on CONFIG_KPROBES=y
+
+Value of CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is not set
+New value: CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+
+Value of CONFIG_CPU_FREQ_GOV_USERSPACE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_USERSPACE is not set
+New value: CONFIG_CPU_FREQ_GOV_USERSPACE=y
+
+Value of CONFIG_CPU_FREQ_GOV_ONDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ONDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_CONSERVATIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_CONSERVATIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_DARKNESS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_DARKNESS is not set
+New value: CONFIG_CPU_FREQ_GOV_DARKNESS=y
+
+Value of CONFIG_CPU_FREQ_GOV_NIGHTMARE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_NIGHTMARE is not set
+New value: CONFIG_CPU_FREQ_GOV_NIGHTMARE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_ALUCARD is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ALUCARD is not set
+New value: CONFIG_CPU_FREQ_GOV_ALUCARD=y
+
+Value of CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_BLU_ACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_YANKACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_YANKACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_YANKACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_LIONFISH is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_LIONFISH is not set
+New value: CONFIG_CPU_FREQ_GOV_LIONFISH=y
+
+Value of CONFIG_CPU_FREQ_GOV_IMPULSE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_IMPULSE is not set
+New value: CONFIG_CPU_FREQ_GOV_IMPULSE=y
+
+Value of CONFIG_CPU_FREQ_GOV_WAVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_WAVE is not set
+New value: CONFIG_CPU_FREQ_GOV_WAVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTASS2 is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTASS2 is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTASS2=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
+
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-enforcing.config
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  GEN     ./Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+==> Variant 'oneui-enforcing' applied:
+CONFIG_KPROBES=y
+CONFIG_CMDLINE="loop.max_part=7"
+CONFIG_CMDLINE_EXTEND=y
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+==> Governors enabled: 19
+==> building (jobs=4)
+==> BUILD FAILED - compiler/kbuild errors:
+4252:ld.lld: error: undefined symbol: ksu_handle_setresuid
+4256:ld.lld: error: undefined symbol: ksu_handle_sys_reboot
+4259:make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1239: vmlinux] Error 1
+4261:make: *** [Makefile:152: sub-make] Error 2
+==> last 120 lines of /home/runner/work/Void-Kernal-/Void-Kernal-/logs/build.log:
+  CC      drivers/video/fbdev/exynos/panel/dpui.o
+  CC      drivers/usb/host/xhci.o
+  CC      drivers/video/fbdev/exynos/panel/panel_poc.o
+  AR      drivers/usb/manager/built-in.o
+  CC      drivers/usb/gadget/u_f.o
+  AR      drivers/usb/misc/built-in.o
+  CC      drivers/usb/host/xhci-mem.o
+  CC      drivers/video/fbdev/exynos/panel/aod/aod_drv.o
+  CC      drivers/usb/gadget/function/f_acm.o
+  AR      drivers/usb/gadget/legacy/built-in.o
+  CC      drivers/usb/notify/host_notify_class.o
+  CC      drivers/usb/host/xhci-ring.o
+  AR      drivers/video/fbdev/exynos/panel/built-in.o
+  AR      drivers/video/fbdev/exynos/built-in.o
+  AR      drivers/video/fbdev/built-in.o
+  AR      drivers/video/built-in.o
+  CC      drivers/usb/phy/of.o
+  CC      drivers/usb/notify/external_notify.o
+  CC      drivers/usb/gadget/function/f_uts.o
+  CC      drivers/usb/notify/usblog_proc_notify.o
+  AR      drivers/usb/phy/built-in.o
+  CC      drivers/usb/gadget/function/u_serial.o
+  CC      drivers/usb/host/xhci-hub.o
+  CC      drivers/usb/serial/usb-serial.o
+  CC      drivers/usb/host/xhci-dbg.o
+  CC      drivers/usb/notify/usb_notify.o
+  CC      drivers/usb/gadget/function/u_ether.o
+  CC      drivers/usb/serial/generic.o
+  CC      drivers/usb/host/xhci-trace.o
+drivers/usb/host/.tmp_xhci-trace.o: no symbols
+  CC      drivers/usb/host/xhci-pci.o
+  CC      drivers/usb/notify/usb_notify_sysfs.o
+  CC      drivers/usb/serial/bus.o
+  CC      drivers/usb/gadget/function/f_ncm.o
+  CC      drivers/usb/host/xhci-plat.o
+  CC      drivers/usb/serial/ch341.o
+  CC      drivers/usb/notify/dock_notify.o
+  AR      drivers/usb/host/xhci-hcd.o
+  AR      drivers/usb/host/xhci-plat-hcd.o
+  CC      drivers/usb/serial/cp210x.o
+  AR      drivers/usb/host/built-in.o
+  CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/usb/notify/usb_notifier.o
+  CC      drivers/usb/serial/ftdi_sio.o
+  CC      drivers/usb/gadget/function/f_rndis.o
+  AR      drivers/usb/notify/usb_notify_layer.o
+  AR      drivers/usb/notify/built-in.o
+  CC      drivers/usb/typec/typec.o
+  CC      drivers/usb/storage/protocol.o
+  CC      drivers/usb/serial/pl2303.o
+  AR      drivers/usb/typec/built-in.o
+  CC      drivers/usb/gadget/udc/core.o
+  CC      drivers/usb/gadget/function/rndis.o
+  CC      drivers/usb/storage/transport.o
+  AR      drivers/usb/serial/usbserial.o
+  AR      drivers/usb/serial/built-in.o
+  CC      drivers/usb/storage/usb.o
+  CC      drivers/usb/gadget/udc/trace.o
+  CC      drivers/usb/gadget/function/f_mass_storage.o
+  CC      drivers/usb/storage/initializers.o
+drivers/usb/gadget/udc/.tmp_trace.o: no symbols
+  AR      drivers/usb/gadget/udc/udc-core.o
+  AR      drivers/usb/gadget/udc/built-in.o
+  AR      drivers/usb/gadget/libcomposite.o
+  CC      drivers/usb/storage/sierra_ms.o
+  CC      drivers/usb/gadget/function/storage_common.o
+  CC      drivers/usb/storage/option_ms.o
+  CC      drivers/usb/gadget/function/f_fs.o
+  CC      drivers/usb/storage/usual-tables.o
+  CC      drivers/usb/gadget/function/f_midi.o
+  CC      drivers/usb/gadget/function/f_dm.o
+  AR      drivers/usb/storage/usb-storage.o
+  AR      drivers/usb/storage/built-in.o
+  CC      drivers/usb/gadget/function/f_mtp_samsung.o
+  CC      drivers/usb/gadget/function/f_ptp.o
+  CC      drivers/usb/gadget/function/f_audio_source.o
+  CC      drivers/usb/gadget/function/f_accessory.o
+  CC      drivers/usb/gadget/function/f_conn_gadget.o
+  CC      drivers/usb/gadget/function/multi_config.o
+  CC      drivers/usb/gadget/function/f_ss_mon_gadget.o
+  AR      drivers/usb/gadget/function/usb_f_acm.o
+  AR      drivers/usb/gadget/function/usb_f_uts.o
+  AR      drivers/usb/gadget/function/usb_f_ncm.o
+  AR      drivers/usb/gadget/function/usb_f_rndis.o
+  AR      drivers/usb/gadget/function/usb_f_mass_storage.o
+  AR      drivers/usb/gadget/function/usb_f_fs.o
+  AR      drivers/usb/gadget/function/usb_f_midi.o
+  AR      drivers/usb/gadget/function/usb_f_dm.o
+  AR      drivers/usb/gadget/function/usb_f_mtp_samsung.o
+  AR      drivers/usb/gadget/function/usb_f_ptp.o
+  AR      drivers/usb/gadget/function/usb_f_audio_source.o
+  AR      drivers/usb/gadget/function/usb_f_accessory.o
+  AR      drivers/usb/gadget/function/usb_f_conn_gadget.o
+  AR      drivers/usb/gadget/function/usb_f_ss_mon_gadget.o
+  AR      drivers/usb/gadget/function/built-in.o
+  AR      drivers/usb/gadget/built-in.o
+  AR      drivers/usb/built-in.o
+  AR      drivers/built-in.o
+  GEN     .version
+  AR      built-in.o
+  LTO     vmlinux.o
+  MODPOST vmlinux.o
+WARNING: modpost: Found 1 section mismatch(es).
+To see full details build your kernel with:
+'make CONFIG_DEBUG_SECTION_MISMATCH=y'
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  AR      init/built-in.o
+ld.lld: error: undefined symbol: ksu_handle_setresuid
+>>> referenced by sys.c:716 (/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/kernel/sys.c:716)
+>>>               vmlinux.o:(sys_setresuid)
+
+ld.lld: error: undefined symbol: ksu_handle_sys_reboot
+>>> referenced by reboot.c:308 (/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/kernel/reboot.c:308)
+>>>               vmlinux.o:(sys_reboot)
+make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1239: vmlinux] Error 1
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: *** [Makefile:152: sub-make] Error 2
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
