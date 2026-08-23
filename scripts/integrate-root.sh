@@ -23,7 +23,7 @@ case "$ROOT" in
     ksu)
         REPO="https://github.com/tiann/KernelSU.git"
         DIR="kernelsu"
-        DEFAULT_REF="v1.0.5"
+        DEFAULT_REF="v0.9.5"
         ;;
     ksu-next)
         REPO="https://github.com/rifsxd/KernelSU-Next.git"
@@ -70,6 +70,8 @@ while IFS= read -r source_file; do
         -e 's#<linux/sched/task_stack.h>#<linux/sched.h>#' \
         -e 's#<uapi/linux/sched/types.h>#<uapi/linux/sched.h>#' \
         -e 's/security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), "ksu");/security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks));/' \
+        -e 's/selinux_state\.enforcing/selinux_enforcing/g' \
+        -e 's/selinux_state\.disabled/selinux_disabled/g' \
         "$source_file"
 done < <(find "$DRIVERS_DIR/$DIR/kernel" -type f \( -name '*.c' -o -name '*.h' \))
 

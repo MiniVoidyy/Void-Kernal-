@@ -81,7 +81,7 @@ scripts/build.sh --variant oneui-enforcing --root sukisu --devices starlte
 ```
 
 Toolchain (Proton Clang) downloads automatically. Root defaults are KernelSU
-`v1.0.5`, KernelSU Next `v3.2.0-legacy`, and SukiSU-Ultra `v2.0_beta`.
+`v0.9.5`, KernelSU Next `v3.2.0-legacy`, and SukiSU-Ultra `v2.0_beta`.
 Override with `KERNEL_REPO`, `KERNEL_BRANCH`, `KSU_REF`, `TOOLCHAIN_DIR` env
 vars.
 
