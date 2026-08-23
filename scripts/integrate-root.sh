@@ -94,7 +94,10 @@ fi
 # The base tree's manual calls match KernelSU Next, but KernelSU and SukiSU do
 # not provide those symbols and instead use their own kprobe/LSM hooks.
 if [ "$ROOT" != "ksu-next" ]; then
-    for hook_source in "$KERNEL_DIR/kernel/sys.c" "$KERNEL_DIR/kernel/reboot.c"; do
+    for hook_source in \
+        "$KERNEL_DIR/kernel/sys.c" \
+        "$KERNEL_DIR/kernel/reboot.c" \
+        "$KERNEL_DIR/drivers/tty/pty.c"; do
         if [ -f "$hook_source" ]; then
             sed -i '/^#ifdef CONFIG_KSU$/,/^#endif$/d' "$hook_source"
         fi
