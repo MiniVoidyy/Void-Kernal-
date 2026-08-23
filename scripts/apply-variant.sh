@@ -23,7 +23,8 @@ VARIANT_FRAG="$SCRIPT_DIR/../configs/$VARIANT.config"
 
 cd "$KERNEL_DIR"
 
-scripts/kconfig/merge_config.sh -m "$OUT_DIR/.config" "$BASE_FRAG" "$VARIANT_FRAG"
+# -O puts the merged result back into $OUT_DIR/.config (default would be $PWD/.config)
+scripts/kconfig/merge_config.sh -m -O "$OUT_DIR" "$OUT_DIR/.config" "$BASE_FRAG" "$VARIANT_FRAG"
 yes "" | make ARCH=arm64 O="$OUT_DIR" olddefconfig
 
 echo "==> Variant '$VARIANT' applied:"
