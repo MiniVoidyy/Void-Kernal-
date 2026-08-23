@@ -58,6 +58,15 @@ if [ "$need_clone" = 1 ]; then
     git clone --depth=1 --branch "$KSU_REF" "$REPO" "$DRIVERS_DIR/$DIR"
 fi
 
+# SukiSU's first release kept the newer SELinux policydb implementation.
+# Use KernelSU's API-compatible 4.9 implementation; both expose the same
+# sepolicy.h interface, so SukiSU's rules and features remain intact.
+if [ "$ROOT" = "sukisu" ]; then
+    curl --fail --location --retry 3 \
+        --output "$DRIVERS_DIR/$DIR/kernel/selinux/sepolicy.c" \
+        "https://raw.githubusercontent.com/tiann/KernelSU/b766b98513b5a7eb33bc1c4a76b5702bf1288f07/kernel/selinux/sepolicy.c"
+fi
+
 # These releases support Linux 4.9, but retain declarations and include paths
 # from newer kernels. Normalize them to the headers available in this tree.
 while IFS= read -r source_file; do
@@ -79,6 +88,15 @@ KSU_COMPAT_SOURCE="$DRIVERS_DIR/$DIR/kernel/compat/kernel_compat.c"
 if [ -f "$KSU_COMPAT_SOURCE" ]; then
     sed -i 's/kvfree(p);/kvfree((void *)p);/' "$KSU_COMPAT_SOURCE"
 fi
+
+# The base tree contains calls for an older, removed manual-hook KernelSU.
+# The selected roots use their own kprobe/LSM hooks, so remove those stale
+# calls before linking.
+for hook_source in "$KERNEL_DIR/kernel/sys.c" "$KERNEL_DIR/kernel/reboot.c"; do
+    if [ -f "$hook_source" ]; then
+        sed -i '/^#ifdef CONFIG_KSU$/,/^#endif$/d' "$hook_source"
+    fi
+done
 
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
