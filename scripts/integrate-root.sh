@@ -69,6 +69,7 @@ while IFS= read -r source_file; do
         -e 's#<linux/sched/task.h>#<linux/sched.h>#' \
         -e 's#<linux/sched/task_stack.h>#<linux/sched.h>#' \
         -e 's#<uapi/linux/sched/types.h>#<uapi/linux/sched.h>#' \
+        -e 's/security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), "ksu");/security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks));/' \
         "$source_file"
 done < <(find "$DRIVERS_DIR/$DIR/kernel" -type f \( -name '*.c' -o -name '*.h' \))
 
