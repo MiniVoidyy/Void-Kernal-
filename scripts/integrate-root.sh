@@ -62,9 +62,11 @@ fi
 # Use KernelSU's API-compatible 4.9 implementation; both expose the same
 # sepolicy.h interface, so SukiSU's rules and features remain intact.
 if [ "$ROOT" = "sukisu" ]; then
-    curl --fail --location --retry 3 \
-        --output "$DRIVERS_DIR/$DIR/kernel/selinux/sepolicy.c" \
-        "https://raw.githubusercontent.com/tiann/KernelSU/b766b98513b5a7eb33bc1c4a76b5702bf1288f07/kernel/selinux/sepolicy.c"
+    for policy_file in sepolicy.c rules.c; do
+        curl --fail --location --retry 3 \
+            --output "$DRIVERS_DIR/$DIR/kernel/selinux/$policy_file" \
+            "https://raw.githubusercontent.com/tiann/KernelSU/b766b98513b5a7eb33bc1c4a76b5702bf1288f07/kernel/selinux/$policy_file"
+    done
 fi
 
 # These releases support Linux 4.9, but retain declarations and include paths
@@ -89,14 +91,15 @@ if [ -f "$KSU_COMPAT_SOURCE" ]; then
     sed -i 's/kvfree(p);/kvfree((void *)p);/' "$KSU_COMPAT_SOURCE"
 fi
 
-# The base tree contains calls for an older, removed manual-hook KernelSU.
-# The selected roots use their own kprobe/LSM hooks, so remove those stale
-# calls before linking.
-for hook_source in "$KERNEL_DIR/kernel/sys.c" "$KERNEL_DIR/kernel/reboot.c"; do
-    if [ -f "$hook_source" ]; then
-        sed -i '/^#ifdef CONFIG_KSU$/,/^#endif$/d' "$hook_source"
-    fi
-done
+# The base tree's manual calls match KernelSU Next, but KernelSU and SukiSU do
+# not provide those symbols and instead use their own kprobe/LSM hooks.
+if [ "$ROOT" != "ksu-next" ]; then
+    for hook_source in "$KERNEL_DIR/kernel/sys.c" "$KERNEL_DIR/kernel/reboot.c"; do
+        if [ -f "$hook_source" ]; then
+            sed -i '/^#ifdef CONFIG_KSU$/,/^#endif$/d' "$hook_source"
+        fi
+    done
+fi
 
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
