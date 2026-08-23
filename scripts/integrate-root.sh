@@ -7,9 +7,10 @@
 #   sukisu    -> SukiSU-Ultra/SukiSU     into drivers/sukisu
 #
 # All three expose the same CONFIG_KSU tristate from their own Kconfig,
-# and hook syscalls via kprobes on non-GKI kernels (CONFIG_KPROBES=y is
-# set by configs/base.fragment). Exactly one root solution is integrated
-# per build.
+# and hook syscalls via kprobes/manual hooks on non-GKI kernels
+# (CONFIG_KPROBES=y is set by configs/base.fragment). Each root is pinned
+# to a release ref known to build against 4.9-era kernels; override with
+# the KSU_REF env var. Exactly one root solution is integrated per build.
 set -euo pipefail
 
 ROOT="${1:?usage: integrate-root.sh <ksu|ksu-next|sukisu> [kernel_dir]}"
@@ -23,14 +24,17 @@ case "$ROOT" in
     ksu)
         REPO="https://github.com/tiann/KernelSU.git"
         DIR="kernelsu"
+        DEFAULT_REF="v0.9.5"            # last pure-kprobes release; newer refs need GKI-era syscall headers
         ;;
     ksu-next)
-        REPO="https://github.com/rifsxd/KernelSU-Next.git"
+        REPO="https://github.com/KernelSU-Next/KernelSU-Next.git"
         DIR="kernelsu_next"
+        DEFAULT_REF="v3.2.0-legacy"     # -legacy branch targets pre-GKI (4.x) kernels
         ;;
     sukisu)
         REPO="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"
         DIR="sukisu"
+        DEFAULT_REF="v4.1.3"            # SukiSU-Ultra supports 4.4+ non-GKI on mainline releases
         ;;
     *)
         echo "ERROR: unknown root solution '$ROOT' (expected ksu|ksu-next|sukisu)" >&2
@@ -38,7 +42,7 @@ case "$ROOT" in
         ;;
 esac
 
-KSU_REF="${KSU_REF:-}"
+KSU_REF="${KSU_REF:-$DEFAULT_REF}"
 
 echo "==> Cloning $REPO -> drivers/$DIR"
 
@@ -46,8 +50,12 @@ need_clone=0
 if [ ! -d "$DRIVERS_DIR/$DIR/.git" ]; then
     need_clone=1
 elif [ -n "$KSU_REF" ]; then
-    cur_ref="$(git -C "$DRIVERS_DIR/$DIR" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
-    [ "$cur_ref" != "$KSU_REF" ] && need_clone=1
+    # Tags yield detached HEADs, so compare commits rather than branch names.
+    cur_commit="$(git -C "$DRIVERS_DIR/$DIR" rev-parse HEAD 2>/dev/null || echo "")"
+    ref_commit="$(git -C "$DRIVERS_DIR/$DIR" rev-parse -q --verify "${KSU_REF}^{commit}" 2>/dev/null || echo "")"
+    if [ -z "$ref_commit" ] || [ "$cur_commit" != "$ref_commit" ]; then
+        need_clone=1
+    fi
 fi
 
 if [ "$need_clone" = 1 ]; then
