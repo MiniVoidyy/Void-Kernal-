@@ -1,0 +1,128 @@
+make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  GEN     ./Makefile
+scripts/kconfig/conf  --silentoldconfig Kconfig
+  CHK     include/config/kernel.release
+  UPD     include/config/kernel.release
+  GEN     ./Makefile
+  CHK     include/generated/uapi/linux/version.h
+  UPD     include/generated/uapi/linux/version.h
+  WRAP    arch/arm64/include/generated/asm/bugs.h
+  WRAP    arch/arm64/include/generated/asm/clkdev.h
+  WRAP    arch/arm64/include/generated/asm/cputime.h
+  WRAP    arch/arm64/include/generated/asm/delay.h
+  WRAP    arch/arm64/include/generated/asm/div64.h
+  WRAP    arch/arm64/include/generated/asm/dma.h
+  WRAP    arch/arm64/include/generated/asm/dma-contiguous.h
+  WRAP    arch/arm64/include/generated/asm/early_ioremap.h
+  WRAP    arch/arm64/include/generated/asm/emergency-restart.h
+  CHK     include/generated/utsrelease.h
+  WRAP    arch/arm64/include/generated/asm/errno.h
+  WRAP    arch/arm64/include/generated/asm/hw_irq.h
+  WRAP    arch/arm64/include/generated/asm/ioctl.h
+  WRAP    arch/arm64/include/generated/asm/ioctls.h
+  WRAP    arch/arm64/include/generated/asm/ipcbuf.h
+  WRAP    arch/arm64/include/generated/asm/irq_regs.h
+  UPD     include/generated/utsrelease.h
+  WRAP    arch/arm64/include/generated/asm/kdebug.h
+  WRAP    arch/arm64/include/generated/asm/kmap_types.h
+  WRAP    arch/arm64/include/generated/asm/kvm_para.h
+  WRAP    arch/arm64/include/generated/asm/local.h
+  WRAP    arch/arm64/include/generated/asm/local64.h
+  WRAP    arch/arm64/include/generated/asm/mcs_spinlock.h
+  WRAP    arch/arm64/include/generated/asm/mm-arch-hooks.h
+  WRAP    arch/arm64/include/generated/asm/mman.h
+  WRAP    arch/arm64/include/generated/asm/msgbuf.h
+  WRAP    arch/arm64/include/generated/asm/msi.h
+  WRAP    arch/arm64/include/generated/asm/mutex.h
+  WRAP    arch/arm64/include/generated/asm/poll.h
+  WRAP    arch/arm64/include/generated/asm/preempt.h
+  WRAP    arch/arm64/include/generated/asm/resource.h
+  WRAP    arch/arm64/include/generated/asm/rwsem.h
+  WRAP    arch/arm64/include/generated/asm/segment.h
+  WRAP    arch/arm64/include/generated/asm/sembuf.h
+  WRAP    arch/arm64/include/generated/asm/serial.h
+  WRAP    arch/arm64/include/generated/asm/set_memory.h
+  WRAP    arch/arm64/include/generated/asm/shmbuf.h
+  WRAP    arch/arm64/include/generated/asm/simd.h
+  WRAP    arch/arm64/include/generated/asm/sizes.h
+  WRAP    arch/arm64/include/generated/asm/socket.h
+  WRAP    arch/arm64/include/generated/asm/sockios.h
+  WRAP    arch/arm64/include/generated/asm/swab.h
+  WRAP    arch/arm64/include/generated/asm/switch_to.h
+  WRAP    arch/arm64/include/generated/asm/termbits.h
+  WRAP    arch/arm64/include/generated/asm/termios.h
+  WRAP    arch/arm64/include/generated/asm/trace_clock.h
+  WRAP    arch/arm64/include/generated/asm/types.h
+  WRAP    arch/arm64/include/generated/asm/unaligned.h
+  WRAP    arch/arm64/include/generated/asm/user.h
+  WRAP    arch/arm64/include/generated/asm/vga.h
+  HOSTCC  scripts/basic/fixdep
+  WRAP    arch/arm64/include/generated/uapi/asm/kvm_para.h
+  Using /home/runner/work/Void-Kernal-/Void-Kernal-/kernel as source for kernel
+  HOSTCC  scripts/basic/bin2c
+  CHK     include/generated/timeconst.h
+  CC      kernel/bounds.s
+  LDS     scripts/module-lto.lds
+  UPD     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  UPD     include/generated/bounds.h
+  HOSTCC  scripts/dtbtool_exynos/dtbtool.o
+  CC      arch/arm64/kernel/asm-offsets.s
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/genksyms/genksyms.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtbtool_exynos/../dtc/libfdt/fdt.o
+  SHIPPED scripts/genksyms/parse.tab.c
+  HOSTCC  scripts/dtbtool_exynos/../dtc/libfdt/fdt_ro.o
+  SHIPPED scripts/genksyms/lex.lex.c
+  SHIPPED scripts/genksyms/keywords.hash.c
+  SHIPPED scripts/genksyms/parse.tab.h
+  HOSTCC  scripts/genksyms/parse.tab.o
+  CHK     include/generated/asm-offsets.h
+  UPD     include/generated/asm-offsets.h
+  CALL    /home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/checksyscalls.sh
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTCC  scripts/genksyms/lex.lex.o
+  HOSTCC  scripts/dtc/data.o
+  HOSTLD  scripts/dtbtool_exynos/dtbtool
+  HOSTCC  scripts/dtc/livetree.o
+  CC      scripts/mod/empty.o
+Assembler messages:
+Error: unknown cpu `exynos-m3'
+Error: unrecognized option -mcpu=exynos-m3
+clang-13: error: assembler command failed with exit code 1 (use -v to see invocation)
+make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:338: scripts/mod/empty.o] Error 1
+make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: scripts/mod] Error 2
+make[2]: *** Waiting for unfinished jobs....
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  LDS     arch/arm64/kernel/vdso/vdso.lds
+  VDSOC   arch/arm64/kernel/vdso/vgettimeofday.o
+  HOSTLD  scripts/genksyms/genksyms
+  VDSOA   arch/arm64/kernel/vdso/note.o
+  HOSTCC  scripts/dtc/util.o
+Assembler messages:
+Error: unknown cpu `exynos-m3'
+Error: unrecognized option -mcpu=exynos-m3
+clang-13: error: assembler command failed with exit code 1 (use -v to see invocation)
+make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/arch/arm64/kernel/vdso/Makefile:65: arch/arm64/kernel/vdso/note.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+  SHIPPED scripts/dtc/dtc-lexer.lex.c
+  SHIPPED scripts/dtc/dtc-parser.tab.h
+  SHIPPED scripts/dtc/dtc-parser.tab.c
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+Assembler messages:
+Error: unknown cpu `exynos-m3'
+Error: unrecognized option -mcpu=exynos-m3
+clang-13: error: assembler command failed with exit code 1 (use -v to see invocation)
+make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/arch/arm64/kernel/vdso/Makefile:68: arch/arm64/kernel/vdso/vgettimeofday.o] Error 1
+make[1]: *** [arch/arm64/Makefile:249: vdso_prepare] Error 2
+make[1]: *** Waiting for unfinished jobs....
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTLD  scripts/dtc/dtc
+make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:620: scripts] Error 2
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: *** [Makefile:152: sub-make] Error 2
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
