@@ -62,13 +62,18 @@ jobs:
         run: |
           git config user.name "void-ci-bot"
           git config user.email "bot@users.noreply.github.com"
-          mkdir -p "ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}"
-          cp "$GITHUB_WORKSPACE/build-full.log" "ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}/build-full.log" 2>/dev/null || true
-          cp logs/*.log "ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}/" 2>/dev/null || true
+          D="ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}"
+          mkdir -p "$D"
+          cp "$GITHUB_WORKSPACE/build-full.log" "$D/build-full.log" 2>/dev/null || true
+          cp logs/*.log "$D/" 2>/dev/null || true
           git add ci-logs
-          git commit -m "ci: failure logs for ${{ matrix.variant }}/${{ matrix.root }}/${{ matrix.device }} [skip ci]" || true
-          git pull --rebase origin main || true
-          git push || true
+          git commit -m "ci: failure logs for ${{ matrix.variant }}/${{ matrix.root }}/${{ matrix.device }} [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((RANDOM % 20 + 5))
+          done
 
   manager:
     name: Void Kernel Manager module
