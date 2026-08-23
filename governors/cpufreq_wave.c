@@ -23,6 +23,7 @@ static inline struct wave_policy_dbs_info *to_dbs_info(struct policy_dbs_info *p
 }
 
 struct wave_dbs_tuners {
+	unsigned int down_threshold_pct;
 	unsigned int wave_step_pct;
 	unsigned int wave_interval;
 };
@@ -104,8 +105,8 @@ static ssize_t store_up_threshold(struct gov_attr_set *attr_set,
 	return count;
 }
 
-static ssize_t store_down_threshold(struct gov_attr_set *attr_set,
-				    const char *buf, size_t count)
+static ssize_t store_down_threshold_pct(struct gov_attr_set *attr_set,
+					const char *buf, size_t count)
 {
 	struct dbs_data *dbs_data = to_dbs_data(attr_set);
 	struct wave_dbs_tuners *tuners = dbs_data->tuners;
@@ -121,8 +122,8 @@ static ssize_t store_down_threshold(struct gov_attr_set *attr_set,
 	return count;
 }
 
-static ssize_t store_wave_step(struct gov_attr_set *attr_set, const char *buf,
-			       size_t count)
+static ssize_t store_wave_step_pct(struct gov_attr_set *attr_set,
+				   const char *buf, size_t count)
 {
 	struct dbs_data *dbs_data = to_dbs_data(attr_set);
 	struct wave_dbs_tuners *tuners = dbs_data->tuners;
