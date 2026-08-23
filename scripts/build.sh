@@ -119,7 +119,6 @@ echo "==> building (jobs=$(nproc))"
 BUILD_LOG="$PROJECT_ROOT/logs/build.log"
 if ! make -j"$(nproc)" -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 \
     CROSS_COMPILE="$CROSS_A64" \
-    CROSS_COMPILE_ARM32="$CROSS_A32" \
     CC=clang \
     LD=ld.lld \
     AR=llvm-ar \
