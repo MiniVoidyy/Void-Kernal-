@@ -88,7 +88,7 @@ command -v clang >/dev/null 2>&1 || { echo "ERROR: clang not found after toolcha
 export ARCH=arm64
 export KBUILD_BUILD_USER=void
 export KBUILD_BUILD_HOST=exynos9810
-if [ "$ROOT" = "y" ]
+if [ "$ROOT" = "y" ]; then
     export LOCALVERSION="-VOID-ksun-${VARIANT}"
 else
     export LOCALVERSION="-VOID-${VARIANT}"
