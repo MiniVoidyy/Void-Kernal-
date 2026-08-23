@@ -85,6 +85,21 @@ if [ -f "$RULES_C" ]; then
     sed -i '\|^#include <uapi/linux/sched/types.h>|d' "$RULES_C"
 fi
 
+# Tree-level: the stock tree ships manual KernelSU hooks guarded ONLY by
+# '#ifdef CONFIG_KSU' in kernel/{sys,reboot}.c, but roots integrated here run
+# kprobes-only and never define ksu_handle_setresuid/ksu_handle_sys_reboot ->
+# undefined symbols at link. Align with the tree's own pattern used in fs/*.c
+# ('defined(CONFIG_KSU) && !defined(CONFIG_KPROBES)'), which compiles them out.
+for f in "$KERNEL_DIR/kernel/sys.c" "$KERNEL_DIR/kernel/reboot.c"; do
+    [ -f "$f" ] && sed -i \
+        's|^#ifdef CONFIG_KSU$|#if defined(CONFIG_KSU) \&\& !defined(CONFIG_KPROBES)|' "$f"
+done
+
+# SukiSU-Ultra (<=v2.0_beta) uses MODULE_IMPORT_NS(), a >=5.x module macro;
+# leave it undefined on 4.9 rather than inventing a stub.
+SSU_KSU_C="$DRIVERS_DIR/$DIR/kernel/ksu.c"
+[ -f "$SSU_KSU_C" ] && sed -i '\|^MODULE_IMPORT_NS(|d' "$SSU_KSU_C"
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
