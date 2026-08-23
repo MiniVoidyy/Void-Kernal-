@@ -57,6 +57,12 @@ fi
 "$SCRIPT_DIR/add-governors.sh" "$KERNEL_DIR"
 "$SCRIPT_DIR/integrate-root.sh" "$ROOT" "$KERNEL_DIR"
 
+# Samsung hardcodes -mcpu/-mtune=exynos-m3 (their out-of-tree toolchain);
+# neither clang's integrated assembler nor modern GNU as knows that cpu.
+# Retune to a supported ARMv8 big core - instruction set is unchanged
+# (-march=armv8-a+crypto+crc stays).
+sed -i 's/exynos-m3/cortex-a75/g' "$KERNEL_DIR/Makefile"
+
 if [ ! -x "$TOOLCHAIN_DIR/bin/clang" ]; then
     echo "==> Downloading Proton Clang toolchain"
     curl -L --fail -o /tmp/proton-clang.zip \
