@@ -58,12 +58,19 @@ if [ "$need_clone" = 1 ]; then
     git clone --depth=1 --branch "$KSU_REF" "$REPO" "$DRIVERS_DIR/$DIR"
 fi
 
-# These releases support Linux 4.9, but retain two declarations from newer
-# kernels that Clang treats as errors against this tree's older headers.
-KSU_SOURCE="$DRIVERS_DIR/$DIR/kernel/ksu.c"
-if [ -f "$KSU_SOURCE" ]; then
-    sed -i '\#^MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);$#d' "$KSU_SOURCE"
-fi
+# These releases support Linux 4.9, but retain declarations and include paths
+# from newer kernels. Normalize them to the headers available in this tree.
+while IFS= read -r source_file; do
+    sed -i \
+        -e '/^[[:space:]]*MODULE_IMPORT_NS/d' \
+        -e '/^#include <linux\/compiler_types\.h>$/d' \
+        -e 's#<linux/input-event-codes.h>#<uapi/linux/input-event-codes.h>#' \
+        -e 's#<linux/limits.h>#<uapi/linux/limits.h>#' \
+        -e 's#<linux/sched/task.h>#<linux/sched.h>#' \
+        -e 's#<linux/sched/task_stack.h>#<linux/sched.h>#' \
+        -e 's#<uapi/linux/sched/types.h>#<uapi/linux/sched.h>#' \
+        "$source_file"
+done < <(find "$DRIVERS_DIR/$DIR/kernel" -type f \( -name '*.c' -o -name '*.h' \))
 
 KSU_COMPAT_SOURCE="$DRIVERS_DIR/$DIR/kernel/compat/kernel_compat.c"
 if [ -f "$KSU_COMPAT_SOURCE" ]; then
