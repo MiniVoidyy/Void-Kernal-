@@ -70,10 +70,17 @@ fi
 
 # Purge ALL stale/broken root-solution wiring (the kernel tree itself ships
 # an old 'kernelsu' source line), then append correct lines.
-sed -i '\#^[[:space:]]*obj-.CONFIG_KSU.[[:space:]]*\+= *\(kernelsu\|kernelsu_next\|sukisu\)#d' "$DRIVERS_MAKEFILE"
+sed -i '\#^[[:space:]]*obj-.*CONFIG_KSU.*[[:space:]]+=[[:space:]]*\(kernelsu\|kernelsu_next\|sukisu\)/#d' "$DRIVERS_MAKEFILE"
 printf 'obj-$(CONFIG_KSU)\t+= %s/\n' "$REL_DIR" >> "$DRIVERS_MAKEFILE"
 
 sed -i '\#source ".*/\(kernelsu\|kernelsu_next\|sukisu\)/#d' "$DRIVERS_KCONFIG"
 printf '\nsource "drivers/%s/Kconfig"\n' "$REL_DIR" >> "$DRIVERS_KCONFIG"
+
+root_make_entries="$(grep -Ec '^[[:space:]]*obj-.*CONFIG_KSU.*(kernelsu|kernelsu_next|sukisu)/' "$DRIVERS_MAKEFILE" || true)"
+root_kconfig_entries="$(grep -Ec 'source ".*/(kernelsu|kernelsu_next|sukisu)/' "$DRIVERS_KCONFIG" || true)"
+if [ "$root_make_entries" -ne 1 ] || [ "$root_kconfig_entries" -ne 1 ]; then
+    echo "ERROR: expected one root-solution Makefile and Kconfig entry" >&2
+    exit 1
+fi
 
 echo "==> Root solution '$ROOT' wired into drivers/{Makefile,Kconfig}"
