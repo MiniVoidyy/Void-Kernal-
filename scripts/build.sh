@@ -50,6 +50,7 @@ if [ ! -d "$KERNEL_DIR/.git" ] || [ "$CLEAN" = 1 ]; then
         git clone --depth=1 --recursive -b "$KERNEL_BRANCH" "$KERNEL_REPO" "$KERNEL_DIR"
     else
         git clone --depth=1 --recursive "$KERNEL_REPO" "$KERNEL_DIR"
+    fi
 fi
 
 "$SCRIPT_DIR/add-governors.sh" "$KERNEL_DIR"
