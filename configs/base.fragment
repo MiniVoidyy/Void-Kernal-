@@ -1,7 +1,16 @@
 # Void Kernel base fragment - applied to every build
+
+# Loadable module support: required by CONFIG_KPROBES (kprobes depends on
+# modules in 4.9) and keeps tristate governor options selectable as =y
+CONFIG_MODULES=y
+
 # Root-solution support (KernelSU / KernelSU Next / SukiSU use kprobes
 # for syscall hooking on this non-GKI kernel)
 CONFIG_KPROBES=y
+
+# Flashable image: embed all enabled board DTBs (S9/S9+/Note9) into Image.gz-dtb
+CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+CONFIG_BUILD_ARM64_APPENDED_KERNEL_IMAGE_NAME="Image.gz-dtb"
 
 # Allow runtime SELinux mode switching from userspace
 CONFIG_SECURITY_SELINUX_DEVELOP=y
