@@ -58,6 +58,18 @@ if [ "$need_clone" = 1 ]; then
     git clone --depth=1 --branch "$KSU_REF" "$REPO" "$DRIVERS_DIR/$DIR"
 fi
 
+# These releases support Linux 4.9, but retain two declarations from newer
+# kernels that Clang treats as errors against this tree's older headers.
+KSU_SOURCE="$DRIVERS_DIR/$DIR/kernel/ksu.c"
+if [ -f "$KSU_SOURCE" ]; then
+    sed -i '\#^MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);$#d' "$KSU_SOURCE"
+fi
+
+KSU_COMPAT_SOURCE="$DRIVERS_DIR/$DIR/kernel/compat/kernel_compat.c"
+if [ -f "$KSU_COMPAT_SOURCE" ]; then
+    sed -i 's/kvfree(p);/kvfree((void *)p);/' "$KSU_COMPAT_SOURCE"
+fi
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
