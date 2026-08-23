@@ -1,0 +1,370 @@
+==> Variant : oneui-permissive
+==> Root    : ksu
+==> Device  : crownlte
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
+Updating files:  33% (21985/64948)Updating files:  34% (22083/64948)Updating files:  35% (22732/64948)Updating files:  36% (23382/64948)Updating files:  37% (24031/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  57% (37469/64948)Updating files:  58% (37670/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  74% (48437/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  96% (62921/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Void governor pack installed: +13 custom (+7 stock = 20 total)
+==> Cloning https://github.com/tiann/KernelSU.git -> drivers/kernelsu
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/kernelsu'...
+Note: switching to 'b766b98513b5a7eb33bc1c4a76b5702bf1288f07'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+==> Root solution 'ksu' wired into drivers/{Makefile,Kconfig}
+==> Downloading Proton Clang toolchain
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  4  448M    4 20.4M    0     0  27.4M      0  0:00:16 --:--:--  0:00:16 27.4M 34  448M   34  155M    0     0  89.5M      0  0:00:05  0:00:01  0:00:04  135M 65  448M   65  293M    0     0   107M      0  0:00:04  0:00:02  0:00:02  137M 96  448M   96  432M    0     0   115M      0  0:00:03  0:00:03 --:--:--  137M100  448M  100  448M    0     0   116M      0  0:00:03  0:00:03 --:--:--  137M
+==> defconfig + crownlte overlay + variant merge
+make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  HOSTCC  scripts/basic/fixdep
+  GEN     ./Makefile
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging arch/arm64/configs/crownlte_defconfig
+Value of CONFIG_VMPRESSURE_LEVEL_MED is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: CONFIG_VMPRESSURE_LEVEL_MED=60
+New value: CONFIG_VMPRESSURE_LEVEL_MED=70
+
+Value of CONFIG_MUIC_UNIVERSAL is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_MUIC_UNIVERSAL is not set
+New value: # CONFIG_MUIC_UNIVERSAL is not set
+
+Value of CONFIG_INPUT_TOUCHSCREEN_TCLM is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN_TCLM is not set
+New value: # CONFIG_INPUT_TOUCHSCREEN_TCLM is not set
+
+Value of CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is not set
+New value: CONFIG_INPUT_TOUCHSCREEN_TCLMV2=y
+
+Value of CONFIG_TOUCHSCREEN_SEC_TS is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_TOUCHSCREEN_SEC_TS is not set
+New value: # CONFIG_TOUCHSCREEN_SEC_TS is not set
+
+Value of CONFIG_TOUCHSCREEN_SEC_TS_Y771 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_TOUCHSCREEN_SEC_TS_Y771 is not set
+New value: CONFIG_TOUCHSCREEN_SEC_TS_Y771=y
+
+Value of CONFIG_INPUT_WACOM is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_INPUT_WACOM is not set
+New value: CONFIG_INPUT_WACOM=y
+
+Value of CONFIG_EPEN_WACOM_W9018 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_EPEN_WACOM_W9018 is not set
+New value: CONFIG_EPEN_WACOM_W9018=y
+
+Value of CONFIG_MFD_MAX77865 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_MFD_MAX77865 is not set
+New value: # CONFIG_MFD_MAX77865 is not set
+
+Value of CONFIG_CAMERA_CIS_3M3_OBJ is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_CAMERA_CIS_3M3_OBJ is not set
+New value: CONFIG_CAMERA_CIS_3M3_OBJ=y
+
+Value of CONFIG_OIS_USE_RUMBA_S4 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_OIS_USE_RUMBA_S4 is not set
+New value: # CONFIG_OIS_USE_RUMBA_S4 is not set
+
+Value of CONFIG_CAMERA_STAR is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_CAMERA_STAR is not set
+New value: # CONFIG_CAMERA_STAR is not set
+
+Value of CONFIG_CAMERA_STAR2 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_CAMERA_STAR2 is not set
+New value: # CONFIG_CAMERA_STAR2 is not set
+
+Value of CONFIG_CAMERA_CROWN is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_CAMERA_CROWN is not set
+New value: CONFIG_CAMERA_CROWN=y
+
+Value of CONFIG_OIS_USE_RUMBA_S6 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_OIS_USE_RUMBA_S6 is not set
+New value: CONFIG_OIS_USE_RUMBA_S6=y
+
+Value of CONFIG_SUPPORT_DIM_FLASH is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_SUPPORT_DIM_FLASH is not set
+New value: CONFIG_SUPPORT_DIM_FLASH=y
+
+Value of CONFIG_SELF_MOVE_3PX is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_SELF_MOVE_3PX is not set
+New value: CONFIG_SELF_MOVE_3PX=y
+
+Value of CONFIG_FUELGAUGE_MAX77865 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_FUELGAUGE_MAX77865 is not set
+New value: # CONFIG_FUELGAUGE_MAX77865 is not set
+
+Value of CONFIG_CHARGER_MAX77865 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_CHARGER_MAX77865 is not set
+New value: # CONFIG_CHARGER_MAX77865 is not set
+
+Value of CONFIG_WIRELESS_FIRMWARE_65 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_WIRELESS_FIRMWARE_65 is not set
+New value: CONFIG_WIRELESS_FIRMWARE_65=y
+
+Value of CONFIG_SENSORS_SSP_AK09918 is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_AK09918 is not set
+New value: CONFIG_SENSORS_SSP_AK09918=y
+
+Value of CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is not set
+New value: CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE=y
+
+Value of CONFIG_SENSORS_SSP_STAR is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_STAR is not set
+New value: # CONFIG_SENSORS_SSP_STAR is not set
+
+Value of CONFIG_SENSORS_SSP_CROWN is redefined by fragment arch/arm64/configs/crownlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_CROWN is not set
+New value: CONFIG_SENSORS_SSP_CROWN=y
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment
+Value of CONFIG_KPROBES is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_KPROBES is not set
+New value: # Loadable module support: required by CONFIG_KPROBES (kprobes depends on CONFIG_KPROBES=y
+
+Value of CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is not set
+New value: CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+
+Value of CONFIG_CPU_FREQ_GOV_USERSPACE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_USERSPACE is not set
+New value: CONFIG_CPU_FREQ_GOV_USERSPACE=y
+
+Value of CONFIG_CPU_FREQ_GOV_ONDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ONDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_CONSERVATIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_CONSERVATIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_DARKNESS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_DARKNESS is not set
+New value: CONFIG_CPU_FREQ_GOV_DARKNESS=y
+
+Value of CONFIG_CPU_FREQ_GOV_NIGHTMARE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_NIGHTMARE is not set
+New value: CONFIG_CPU_FREQ_GOV_NIGHTMARE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_ALUCARD is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ALUCARD is not set
+New value: CONFIG_CPU_FREQ_GOV_ALUCARD=y
+
+Value of CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_BLU_ACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_YANKACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_YANKACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_YANKACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_LIONFISH is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_LIONFISH is not set
+New value: CONFIG_CPU_FREQ_GOV_LIONFISH=y
+
+Value of CONFIG_CPU_FREQ_GOV_IMPULSE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_IMPULSE is not set
+New value: CONFIG_CPU_FREQ_GOV_IMPULSE=y
+
+Value of CONFIG_CPU_FREQ_GOV_WAVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_WAVE is not set
+New value: CONFIG_CPU_FREQ_GOV_WAVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTASS2 is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTASS2 is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTASS2=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
+
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-permissive.config
+Value of CONFIG_CMDLINE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-permissive.config:
+Previous value: CONFIG_CMDLINE="loop.max_part=7"
+New value: CONFIG_CMDLINE="androidboot.selinux=permissive"
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  GEN     ./Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+==> Variant 'oneui-permissive' applied:
+CONFIG_KPROBES=y
+CONFIG_CMDLINE="androidboot.selinux=permissive"
+CONFIG_CMDLINE_EXTEND=y
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+==> Governors enabled: 19
+==> building (jobs=4)
+==> BUILD FAILED - compiler/kbuild errors:
+4245:ld.lld: error: undefined symbol: ksu_handle_setresuid
+4249:ld.lld: error: undefined symbol: ksu_handle_sys_reboot
+4252:make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1239: vmlinux] Error 1
+4254:make: *** [Makefile:152: sub-make] Error 2
+==> last 120 lines of /home/runner/work/Void-Kernal-/Void-Kernal-/logs/build.log:
+  CC      drivers/usb/gadget/function/u_serial.o
+  CC      drivers/video/fbdev/exynos/dpu_9810/bts.o
+  CC      drivers/usb/host/xhci-mem.o
+drivers/usb/gadget/udc/.tmp_trace.o: no symbols
+  AR      drivers/usb/gadget/udc/udc-core.o
+  AR      drivers/usb/gadget/udc/built-in.o
+  CC      drivers/usb/manager/usb_typec_manager_notifier.o
+  CC      drivers/video/fbdev/exynos/dpu_9810/dp_logger/dp_logger.o
+  CC      drivers/usb/gadget/function/u_ether.o
+  AR      drivers/usb/manager/built-in.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/dp_logger/built-in.o
+  CC      drivers/usb/host/xhci-ring.o
+  CC      drivers/video/fbdev/exynos/dpu_9810/panels/common_mipi_lcd.o
+  AR      drivers/usb/gadget/libcomposite.o
+  CC      drivers/usb/gadget/function/f_ncm.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/panels/built-in.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/dpp.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/dsim.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/displayport.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/decon.o
+  AR      drivers/video/fbdev/exynos/dpu_9810/built-in.o
+  AR      drivers/video/fbdev/exynos/built-in.o
+  AR      drivers/video/fbdev/built-in.o
+  AR      drivers/video/built-in.o
+  AR      drivers/usb/misc/built-in.o
+  CC      drivers/usb/host/xhci-hub.o
+  CC      drivers/usb/notify/host_notify_class.o
+  CC      drivers/usb/gadget/function/f_rndis.o
+  CC      drivers/usb/phy/of.o
+  CC      drivers/usb/host/xhci-dbg.o
+  CC      drivers/usb/notify/external_notify.o
+  AR      drivers/usb/phy/built-in.o
+  CC      drivers/usb/serial/usb-serial.o
+  CC      drivers/usb/notify/usblog_proc_notify.o
+  CC      drivers/usb/host/xhci-trace.o
+  CC      drivers/usb/gadget/function/rndis.o
+drivers/usb/host/.tmp_xhci-trace.o: no symbols
+  CC      drivers/usb/host/xhci-pci.o
+  CC      drivers/usb/serial/generic.o
+  CC      drivers/usb/host/xhci-plat.o
+  CC      drivers/usb/notify/usb_notify.o
+  CC      drivers/usb/gadget/function/f_mass_storage.o
+  AR      drivers/usb/host/xhci-hcd.o
+  AR      drivers/usb/host/xhci-plat-hcd.o
+  AR      drivers/usb/host/built-in.o
+  CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/usb/serial/bus.o
+  CC      drivers/usb/notify/usb_notify_sysfs.o
+  CC      drivers/usb/serial/ch341.o
+  CC      drivers/usb/storage/protocol.o
+  CC      drivers/usb/notify/dock_notify.o
+  CC      drivers/usb/serial/cp210x.o
+  CC      drivers/usb/gadget/function/storage_common.o
+  CC      drivers/usb/serial/ftdi_sio.o
+  CC      drivers/usb/storage/transport.o
+  CC      drivers/usb/notify/usb_notifier.o
+  AR      drivers/usb/notify/usb_notify_layer.o
+  CC      drivers/usb/gadget/function/f_fs.o
+  AR      drivers/usb/notify/built-in.o
+  CC      drivers/usb/typec/typec.o
+  CC      drivers/usb/serial/pl2303.o
+  CC      drivers/usb/storage/usb.o
+  AR      drivers/usb/serial/usbserial.o
+  AR      drivers/usb/serial/built-in.o
+  CC      drivers/usb/gadget/function/f_midi.o
+  AR      drivers/usb/typec/built-in.o
+  CC      drivers/usb/storage/initializers.o
+  CC      drivers/usb/gadget/function/f_dm.o
+  CC      drivers/usb/storage/sierra_ms.o
+  CC      drivers/usb/gadget/function/f_mtp_samsung.o
+  CC      drivers/usb/storage/option_ms.o
+  CC      drivers/usb/gadget/function/f_ptp.o
+  CC      drivers/usb/storage/usual-tables.o
+  CC      drivers/usb/gadget/function/f_audio_source.o
+  CC      drivers/usb/gadget/function/f_accessory.o
+  AR      drivers/usb/storage/usb-storage.o
+  AR      drivers/usb/storage/built-in.o
+  CC      drivers/usb/gadget/function/f_conn_gadget.o
+  CC      drivers/usb/gadget/function/multi_config.o
+  CC      drivers/usb/gadget/function/f_ss_mon_gadget.o
+  AR      drivers/usb/gadget/function/usb_f_acm.o
+  AR      drivers/usb/gadget/function/usb_f_uts.o
+  AR      drivers/usb/gadget/function/usb_f_ncm.o
+  AR      drivers/usb/gadget/function/usb_f_rndis.o
+  AR      drivers/usb/gadget/function/usb_f_mass_storage.o
+  AR      drivers/usb/gadget/function/usb_f_fs.o
+  AR      drivers/usb/gadget/function/usb_f_midi.o
+  AR      drivers/usb/gadget/function/usb_f_dm.o
+  AR      drivers/usb/gadget/function/usb_f_mtp_samsung.o
+  AR      drivers/usb/gadget/function/usb_f_ptp.o
+  AR      drivers/usb/gadget/function/usb_f_audio_source.o
+  AR      drivers/usb/gadget/function/usb_f_ss_mon_gadget.o
+  AR      drivers/usb/gadget/function/usb_f_accessory.o
+  AR      drivers/usb/gadget/function/usb_f_conn_gadget.o
+  AR      drivers/usb/gadget/function/built-in.o
+  AR      drivers/usb/gadget/built-in.o
+  AR      drivers/usb/built-in.o
+  AR      drivers/built-in.o
+  GEN     .version
+  AR      built-in.o
+  LTO     vmlinux.o
+  MODPOST vmlinux.o
+WARNING: modpost: Found 1 section mismatch(es).
+To see full details build your kernel with:
+'make CONFIG_DEBUG_SECTION_MISMATCH=y'
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  AR      init/built-in.o
+ld.lld: error: undefined symbol: ksu_handle_setresuid
+>>> referenced by sys.c:716 (/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/kernel/sys.c:716)
+>>>               vmlinux.o:(sys_setresuid)
+
+ld.lld: error: undefined symbol: ksu_handle_sys_reboot
+>>> referenced by reboot.c:308 (/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/kernel/reboot.c:308)
+>>>               vmlinux.o:(sys_reboot)
+make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1239: vmlinux] Error 1
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: *** [Makefile:152: sub-make] Error 2
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
