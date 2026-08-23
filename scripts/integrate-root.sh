@@ -23,14 +23,17 @@ case "$ROOT" in
     ksu)
         REPO="https://github.com/tiann/KernelSU.git"
         DIR="kernelsu"
+        DEFAULT_REF="v1.0.5"
         ;;
     ksu-next)
         REPO="https://github.com/rifsxd/KernelSU-Next.git"
         DIR="kernelsu_next"
+        DEFAULT_REF="v3.2.0-legacy"
         ;;
     sukisu)
         REPO="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"
         DIR="sukisu"
+        DEFAULT_REF="v2.0_beta"
         ;;
     *)
         echo "ERROR: unknown root solution '$ROOT' (expected ksu|ksu-next|sukisu)" >&2
@@ -38,23 +41,21 @@ case "$ROOT" in
         ;;
 esac
 
-KSU_REF="${KSU_REF:-}"
+KSU_REF="${KSU_REF:-$DEFAULT_REF}"
 
-echo "==> Cloning $REPO -> drivers/$DIR"
+echo "==> Cloning $REPO@$KSU_REF -> drivers/$DIR"
 
 need_clone=0
 if [ ! -d "$DRIVERS_DIR/$DIR/.git" ]; then
     need_clone=1
 elif [ -n "$KSU_REF" ]; then
-    cur_ref="$(git -C "$DRIVERS_DIR/$DIR" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
+    cur_ref="$(git -C "$DRIVERS_DIR/$DIR" describe --tags --exact-match 2>/dev/null || git -C "$DRIVERS_DIR/$DIR" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
     [ "$cur_ref" != "$KSU_REF" ] && need_clone=1
 fi
 
 if [ "$need_clone" = 1 ]; then
     rm -rf "$DRIVERS_DIR/$DIR"
-    if ! git clone --depth=1 ${KSU_REF:+--branch "$KSU_REF"} "$REPO" "$DRIVERS_DIR/$DIR"; then
-        git clone --depth=1 "$REPO" "$DRIVERS_DIR/$DIR"
-    fi
+    git clone --depth=1 --branch "$KSU_REF" "$REPO" "$DRIVERS_DIR/$DIR"
 fi
 
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;

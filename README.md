@@ -64,7 +64,8 @@ kept untouched, only the boot partition is written.
 
 1. Push this repo to GitHub.
 2. Run the **Build Void Kernel** workflow (*Actions -> Run workflow*).
-   Optionally pass a `ksu_ref` to pin a KernelSU/SukiSU release tag.
+   The workflow uses Linux 4.9-compatible root releases by default. You can
+   pass `ksu_ref` to test another tag or branch for the selected root solution.
 3. Download artifacts: one bundle per variant/root combination containing a
    zip per device, plus the **Void Kernel Manager** module.
 
@@ -79,8 +80,10 @@ scripts/build.sh --variant oneui-enforcing --root sukisu --devices starlte
 # output: build/zips/VoidKernel-4.9.337-oneui-enforcing-sukisu-starlte.zip
 ```
 
-Toolchain (Proton Clang) downloads automatically. Override with
-`KERNEL_REPO`, `KERNEL_BRANCH`, `KSU_REF`, `TOOLCHAIN_DIR` env vars.
+Toolchain (Proton Clang) downloads automatically. Root defaults are KernelSU
+`v1.0.5`, KernelSU Next `v3.2.0-legacy`, and SukiSU-Ultra `v2.0_beta`.
+Override with `KERNEL_REPO`, `KERNEL_BRANCH`, `KSU_REF`, `TOOLCHAIN_DIR` env
+vars.
 
 ## Void Kernel Manager module
 
