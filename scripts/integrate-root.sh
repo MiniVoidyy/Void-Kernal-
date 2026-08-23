@@ -77,6 +77,13 @@ if [ -f "$COMPAT_H" ]; then
         "$COMPAT_H"
 fi
 
+# 4.9 has no include/uapi/linux/sched/types.h (pre-uapi-split); the kernel-side
+# <linux/sched/types.h> included just above already provides those declarations.
+RULES_C="$DRIVERS_DIR/$DIR/kernel/selinux/rules.c"
+if [ -f "$RULES_C" ]; then
+    sed -i '\|^#include <uapi/linux/sched/types.h>|d' "$RULES_C"
+fi
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
