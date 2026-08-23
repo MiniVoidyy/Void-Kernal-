@@ -15,7 +15,7 @@ env:
 
 jobs:
   kernel:
-    name: ${{ matrix.variant }} / ${{ matrix.root }}
+    name: ${{ matrix.variant }} / ${{ matrix.root }} / ${{ matrix.device }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -24,6 +24,7 @@ jobs:
       matrix:
         variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
         root: [ksu, ksu-next, sukisu]
+        device: [starlte, star2lte, crownlte]
     steps:
       - uses: actions/checkout@v4
 
@@ -35,16 +36,16 @@ jobs:
             libssl-dev libfl-dev python-is-python3 \
             gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
 
-      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }})
+      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }} x ${{ matrix.device }})
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
           chmod +x scripts/*.sh
-          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
+          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}" --device "${{ matrix.device }}" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
 
       - name: Upload flashable zips
         uses: actions/upload-artifact@v4
         with:
-          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}
+          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
           path: build/zips/*.zip
           if-no-files-found: error
 
@@ -52,7 +53,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}
+          name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
           path: logs/*.log
           if-no-files-found: ignore
 
@@ -61,11 +62,11 @@ jobs:
         run: |
           git config user.name "void-ci-bot"
           git config user.email "bot@users.noreply.github.com"
-          mkdir -p "ci-logs/${{ matrix.variant }}-${{ matrix.root }}"
-          cp "$GITHUB_WORKSPACE/build-full.log" "ci-logs/${{ matrix.variant }}-${{ matrix.root }}/build-full.log" 2>/dev/null || true
-          cp logs/*.log "ci-logs/${{ matrix.variant }}-${{ matrix.root }}/" 2>/dev/null || true
+          mkdir -p "ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}"
+          cp "$GITHUB_WORKSPACE/build-full.log" "ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}/build-full.log" 2>/dev/null || true
+          cp logs/*.log "ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}/" 2>/dev/null || true
           git add ci-logs
-          git commit -m "ci: failure logs for ${{ matrix.variant }}/${{ matrix.root }} [skip ci]" || true
+          git commit -m "ci: failure logs for ${{ matrix.variant }}/${{ matrix.root }}/${{ matrix.device }} [skip ci]" || true
           git pull --rebase origin main || true
           git push || true
 

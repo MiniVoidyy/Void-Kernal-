@@ -2,11 +2,11 @@
 # Void Kernel exynos9810 kernel builder
 #
 # Usage:
-#   scripts/build.sh --variant <v> --root <r> [--devices "..."] [options]
+#   scripts/build.sh --variant <v> --root <r> [--device <d>] [options]
 #
 #     --variant   aosp-enforcing | aosp-permissive | oneui-enforcing | oneui-permissive
 #     --root      ksu | ksu-next | sukisu
-#     --devices   space separated: starlte star2lte crownlte (default: all)
+#     --device    starlte | star2lte | crownlte (default: starlte)
 #     --clean     remove previous kernel tree/build dirs first
 #
 # Environment overrides:
@@ -21,18 +21,23 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 VARIANT="aosp-enforcing"
 ROOT="ksu"
-DEVICES="starlte star2lte crownlte"
+DEVICE="starlte"
 CLEAN=0
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --variant) VARIANT="$2"; shift 2 ;;
         --root) ROOT="$2"; shift 2 ;;
-        --devices) DEVICES="$2"; shift 2 ;;
+        --device) DEVICE="$2"; shift 2 ;;
         --clean) CLEAN=1; shift ;;
         *) echo "Unknown option: $1" >&2; exit 1 ;;
     esac
 done
+
+case "$DEVICE" in
+    starlte|star2lte|crownlte) ;;
+    *) echo "ERROR: unknown device '$DEVICE' (expected starlte|star2lte|crownlte)" >&2; exit 1 ;;
+esac
 
 KERNEL_REPO="${KERNEL_REPO:-https://github.com/duhansysl/exynos9810-kernel.git}"
 KERNEL_BRANCH="${KERNEL_BRANCH:-}"
@@ -41,7 +46,7 @@ TOOLCHAIN_DIR="${TOOLCHAIN_DIR:-$PROJECT_ROOT/toolchain/proton-clang}"
 
 echo "==> Variant : $VARIANT"
 echo "==> Root    : $ROOT"
-echo "==> Devices : $DEVICES"
+echo "==> Device  : $DEVICE"
 
 mkdir -p "$PROJECT_ROOT/toolchain"
 
@@ -86,7 +91,7 @@ command -v clang >/dev/null 2>&1 || { echo "ERROR: clang not found after toolcha
 export ARCH=arm64
 export KBUILD_BUILD_USER=void
 export KBUILD_BUILD_HOST=exynos9810
-export LOCALVERSION="-VOID-${ROOT}-${VARIANT}"
+export LOCALVERSION="-VOID-${ROOT}-${VARIANT}-${DEVICE}"
 # Silences "environment variable ANDROID_MAJOR_VERSION undefined" kconfig warning
 export ANDROID_MAJOR_VERSION="${ANDROID_MAJOR_VERSION:-a13}"
 
@@ -96,17 +101,23 @@ CROSS_A32="arm-linux-gnueabi-"
 ZIPS=""
 mkdir -p "$PROJECT_ROOT/logs"
 
-# One kernel serves every exynos9810 device: Image.gz-dtb embeds ALL enabled
-# board DTBs ($(dtb-y)) and the bootloader picks its own. Per-device
-# *_defconfig files in this tree are tiny overlays, NOT full configs -
-# exynos9810_defconfig is the real Samsung base.
+# exynos9810_defconfig is the Samsung platform base, but it contains NONE of
+# the per-device hardware (touch/MUIC/charger/camera/OIS); those live only in
+# the tiny <device>_defconfig overlays and differ between S9/S9+/Note9, so
+# each device gets its own kernel: base + device overlay + variant fragments.
 OUT_DIR="$PROJECT_ROOT/out"
 [ -f "$KERNEL_DIR/arch/arm64/configs/exynos9810_defconfig" ] || {
     echo "ERROR: exynos9810_defconfig missing" >&2; exit 1;
 }
+[ -f "$KERNEL_DIR/arch/arm64/configs/${DEVICE}_defconfig" ] || {
+    echo "ERROR: ${DEVICE}_defconfig missing" >&2; exit 1;
+}
 
-echo "==> defconfig + variant merge"
+echo "==> defconfig + $DEVICE overlay + variant merge"
 make -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 exynos9810_defconfig
+(cd "$KERNEL_DIR" && \
+    scripts/kconfig/merge_config.sh -m -O "$OUT_DIR" "$OUT_DIR/.config" \
+        "arch/arm64/configs/${DEVICE}_defconfig")
 "$SCRIPT_DIR/apply-variant.sh" "$KERNEL_DIR" "$VARIANT" "$OUT_DIR"
 
 echo "==> building (jobs=$(nproc))"
@@ -133,14 +144,12 @@ if ! make -j"$(nproc)" -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 \
 fi
 echo "==> build OK"
 
-for dev in $DEVICES; do
-    ZIP_NAME="VoidKernel-4.9.337-${VARIANT}-${ROOT}-${dev}"
-    "$SCRIPT_DIR/package.sh" "$KERNEL_DIR" "$OUT_DIR" "$dev" "$ZIP_NAME"
-    ZIPS="$ZIPS $ZIP_NAME.zip"
-done
+ZIP_NAME="VoidKernel-4.9.337-${VARIANT}-${ROOT}-${DEVICE}"
+"$SCRIPT_DIR/package.sh" "$KERNEL_DIR" "$OUT_DIR" "$DEVICE" "$ZIP_NAME"
+ZIPS="$ZIP_NAME.zip"
 
 echo ""
-echo "==> DONE. Flashable zips:"
+echo "==> DONE. Flashable zip:"
 for z in $ZIPS; do
     echo "    $PROJECT_ROOT/build/zips/$z"
 done
