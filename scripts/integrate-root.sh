@@ -34,7 +34,8 @@ case "$ROOT" in
     sukisu)
         REPO="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"
         DIR="sukisu"
-        DEFAULT_REF="v4.1.3"            # SukiSU-Ultra supports 4.4+ non-GKI on mainline releases
+        DEFAULT_REF="v2.0_beta"         # newest tag still using kprobes hooks; v3+ syscall-table
+                                        # patching needs 4.17+ pt_regs-thunk tables, not 4.9 arm64
         ;;
     *)
         echo "ERROR: unknown root solution '$ROOT' (expected ksu|ksu-next|sukisu)" >&2
