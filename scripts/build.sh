@@ -75,6 +75,10 @@ if [ ! -x "$TOOLCHAIN_DIR/bin/clang" ]; then
     # (SHT_RELR). Remove them so HOSTCC=gcc uses the system binutils;
     # target linking uses ld.lld and cross-prefixed tools regardless.
     rm -f "$TOOLCHAIN_DIR/bin/ld" "$TOOLCHAIN_DIR/bin/as"
+    # This tree's vdso32 build invokes $(CROSS_COMPILE_ARM32)clang; no
+    # such prefixed binary exists in any clang distribution, so alias it
+    # (the prefixed ld comes from the distro binutils package).
+    ln -sf clang "$TOOLCHAIN_DIR/bin/arm-linux-gnueabi-clang"
 fi
 
 export PATH="$TOOLCHAIN_DIR/bin:$PATH"
