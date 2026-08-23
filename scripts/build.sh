@@ -5,14 +5,13 @@
 #   scripts/build.sh --variant <v> --root <r> [--devices "..."] [options]
 #
 #     --variant   aosp-enforcing | aosp-permissive | oneui-enforcing | oneui-permissive
-#     --root      ksu | ksu-next | sukisu
+#     --root      y | n
 #     --devices   space separated: starlte star2lte crownlte (default: all)
 #     --clean     remove previous kernel tree/build dirs first
 #
 # Environment overrides:
 #   KERNEL_REPO    (default duhansysl/exynos9810-kernel)
 #   KERNEL_BRANCH  (default: repo HEAD)
-#   KSU_REF        (tag/branch for the root solution repo)
 #   TOOLCHAIN_DIR  (pre-installed clang toolchain; skips proton download)
 set -euo pipefail
 
@@ -20,7 +19,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 VARIANT="aosp-enforcing"
-ROOT="ksu"
+ROOT="y"
 DEVICES="starlte star2lte crownlte"
 CLEAN=0
 
@@ -55,7 +54,10 @@ if [ ! -d "$KERNEL_DIR/.git" ] || [ "$CLEAN" = 1 ]; then
 fi
 
 "$SCRIPT_DIR/add-governors.sh" "$KERNEL_DIR"
-"$SCRIPT_DIR/integrate-root.sh" "$ROOT" "$KERNEL_DIR"
+KSU_CONFIG=""
+if [ "$ROOT" = "y" ]; then
+    KSU_CONFIG="ksu.config"
+fi
 
 # Samsung hardcodes -mcpu/-mtune=exynos-m3 (their out-of-tree toolchain);
 # neither clang's integrated assembler nor modern GNU as knows that cpu.
@@ -86,7 +88,11 @@ command -v clang >/dev/null 2>&1 || { echo "ERROR: clang not found after toolcha
 export ARCH=arm64
 export KBUILD_BUILD_USER=void
 export KBUILD_BUILD_HOST=exynos9810
-export LOCALVERSION="-VOID-${ROOT}-${VARIANT}"
+if [ "$ROOT" = "y" ]
+    export LOCALVERSION="-VOID-ksun-${VARIANT}"
+else
+    export LOCALVERSION="-VOID-${VARIANT}"
+fi
 # Silences "environment variable ANDROID_MAJOR_VERSION undefined" kconfig warning
 export ANDROID_MAJOR_VERSION="${ANDROID_MAJOR_VERSION:-a13}"
 
@@ -106,7 +112,7 @@ OUT_DIR="$PROJECT_ROOT/out"
 }
 
 echo "==> defconfig + variant merge"
-make -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 exynos9810_defconfig
+make -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 exynos9810_defconfig $KSU_CONFIG
 "$SCRIPT_DIR/apply-variant.sh" "$KERNEL_DIR" "$VARIANT" "$OUT_DIR"
 
 echo "==> building (jobs=$(nproc))"
