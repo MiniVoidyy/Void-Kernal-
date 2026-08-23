@@ -47,10 +47,9 @@ mkdir -p "$PROJECT_ROOT/toolchain"
 if [ ! -d "$KERNEL_DIR/.git" ] || [ "$CLEAN" = 1 ]; then
     rm -rf "$KERNEL_DIR"
     if [ -n "$KERNEL_BRANCH" ]; then
-        git clone --depth=1 -b "$KERNEL_BRANCH" "$KERNEL_REPO" "$KERNEL_DIR" --recursive --shallow-submodules
+        git clone --depth=1 --recursive -b "$KERNEL_BRANCH" "$KERNEL_REPO" "$KERNEL_DIR"
     else
-        git clone --depth=1 "$KERNEL_REPO" "$KERNEL_DIR" --recursive --shallow-submodules
-    fi
+        git clone --depth=1 --recursive "$KERNEL_REPO" "$KERNEL_DIR"
 fi
 
 "$SCRIPT_DIR/add-governors.sh" "$KERNEL_DIR"
