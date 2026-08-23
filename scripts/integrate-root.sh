@@ -100,9 +100,17 @@ done
 SSU_KSU_C="$DRIVERS_DIR/$DIR/kernel/ksu.c"
 [ -f "$SSU_KSU_C" ] && sed -i '\|^MODULE_IMPORT_NS(|d' "$SSU_KSU_C"
 
-# linux/compiler_types.h only exists since 5.3; <linux/compiler.h> covers it on 4.9.
-grep -rl 'include <linux/compiler_types.h>' "$DRIVERS_DIR/$DIR/kernel" 2>/dev/null |
-    xargs -r sed -i 's|#include <linux/compiler_types.h>|#include <linux/compiler.h>|'
+# Rewrite post-4.9 header includes to their 4.9 equivalents:
+#   linux/compiler_types.h      (5.3+)  -> linux/compiler.h
+#   linux/sched/{task,task_stack}.h (4.11+) -> linux/sched.h
+#   crypto/sha2.h               (5.8+)  -> crypto/sha.h
+grep -rlE 'include <(linux/compiler_types\.h|linux/sched/(task_stack|task)\.h|crypto/sha2\.h)>' \
+    "$DRIVERS_DIR/$DIR/kernel" 2>/dev/null |
+    xargs -r sed -i \
+        -e 's|#include <linux/compiler_types\.h>|#include <linux/compiler.h>|' \
+        -e 's|#include <linux/sched/task_stack\.h>|#include <linux/sched.h>|' \
+        -e 's|#include <linux/sched/task\.h>|#include <linux/sched.h>|' \
+        -e 's|#include <crypto/sha2\.h>|#include <crypto/sha.h>|'
 
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
