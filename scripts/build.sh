@@ -125,8 +125,10 @@ if ! make -j"$(nproc)" -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 \
     HOSTCC=gcc \
     HOSTAR=ar \
     Image.gz-dtb >"$BUILD_LOG" 2>&1; then
-    echo "==> BUILD FAILED - last 80 lines of $BUILD_LOG:"
-    tail -n 80 "$BUILD_LOG"
+    echo "==> BUILD FAILED - compiler/kbuild errors:"
+    grep -nE 'error:|Error [0-9]|undefined reference' "$BUILD_LOG" | head -n 40 || true
+    echo "==> last 120 lines of $BUILD_LOG:"
+    tail -n 120 "$BUILD_LOG"
     exit 1
 fi
 echo "==> build OK"
