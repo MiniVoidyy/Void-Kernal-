@@ -100,6 +100,10 @@ done
 SSU_KSU_C="$DRIVERS_DIR/$DIR/kernel/ksu.c"
 [ -f "$SSU_KSU_C" ] && sed -i '\|^MODULE_IMPORT_NS(|d' "$SSU_KSU_C"
 
+# linux/compiler_types.h only exists since 5.3; <linux/compiler.h> covers it on 4.9.
+grep -rl 'include <linux/compiler_types.h>' "$DRIVERS_DIR/$DIR/kernel" 2>/dev/null |
+    xargs -r sed -i 's|#include <linux/compiler_types.h>|#include <linux/compiler.h>|'
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
