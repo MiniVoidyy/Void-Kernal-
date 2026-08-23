@@ -68,12 +68,12 @@ if [ ! -f "$DRIVERS_DIR/$REL_DIR/Kconfig" ]; then
     exit 1
 fi
 
-# Purge stale/broken wiring for this dir (including leftovers from the
-# kernel tree itself), then append correct lines.
-sed -i "\#^[[:space:]]*obj-.CONFIG_KSU.[[:space:]]*\+= *$DIR/#d" "$DRIVERS_MAKEFILE"
+# Purge ALL stale/broken root-solution wiring (the kernel tree itself ships
+# an old 'kernelsu' source line), then append correct lines.
+sed -i '\#^[[:space:]]*obj-.CONFIG_KSU.[[:space:]]*\+= *\(kernelsu\|kernelsu_next\|sukisu\)#d' "$DRIVERS_MAKEFILE"
 printf 'obj-$(CONFIG_KSU)\t+= %s/\n' "$REL_DIR" >> "$DRIVERS_MAKEFILE"
 
-sed -i "\#source \".*$DIR/#d" "$DRIVERS_KCONFIG"
+sed -i '\#source ".*/\(kernelsu\|kernelsu_next\|sukisu\)/#d' "$DRIVERS_KCONFIG"
 printf '\nsource "drivers/%s/Kconfig"\n' "$REL_DIR" >> "$DRIVERS_KCONFIG"
 
 echo "==> Root solution '$ROOT' wired into drivers/{Makefile,Kconfig}"
