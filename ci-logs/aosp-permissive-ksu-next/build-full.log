@@ -2,7 +2,7 @@
 ==> Root    : ksu-next
 ==> Devices : starlte star2lte crownlte
 Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
-Updating files:  31% (20690/64948)Updating files:  32% (20784/64948)Updating files:  33% (21433/64948)Updating files:  34% (22083/64948)Updating files:  35% (22732/64948)Updating files:  36% (23382/64948)Updating files:  37% (24031/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  55% (36233/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  72% (46939/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  93% (60913/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Updating files:  20% (13488/64948)Updating files:  21% (13640/64948)Updating files:  22% (14289/64948)Updating files:  23% (14939/64948)Updating files:  24% (15588/64948)Updating files:  25% (16237/64948)Updating files:  26% (16887/64948)Updating files:  27% (17536/64948)Updating files:  28% (18186/64948)Updating files:  29% (18835/64948)Updating files:  30% (19485/64948)Updating files:  31% (20134/64948)Updating files:  32% (20784/64948)Updating files:  33% (21433/64948)Updating files:  34% (22083/64948)Updating files:  35% (22732/64948)Updating files:  36% (23382/64948)Updating files:  37% (24031/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  42% (27473/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  58% (38069/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  70% (45838/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  86% (56276/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  97% (63525/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
 Void governor pack installed: +13 custom (+7 stock = 20 total)
 ==> Cloning https://github.com/rifsxd/KernelSU-Next.git -> drivers/kernelsu_next
 Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/kernelsu_next'...
@@ -10,11 +10,11 @@ Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/kernels
 ==> Downloading Proton Clang toolchain
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 24  448M   24  112M    0     0  73.9M      0  0:00:06  0:00:01  0:00:05  113M 63  448M   63  285M    0     0   113M      0  0:00:03  0:00:02  0:00:01  143M100  448M  100  448M    0     0   129M      0  0:00:03  0:00:03 --:--:--  153M
-==> [starlte] defconfig + variant merge
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+ 36  448M   36  164M    0     0   155M      0  0:00:02  0:00:01  0:00:01  155M 81  448M   81  367M    0     0   177M      0  0:00:02  0:00:02 --:--:--  202M100  448M  100  448M    0     0   180M      0  0:00:02  0:00:02 --:--:--  200M
+==> defconfig + variant merge
 make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
-make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out/starlte'
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
   HOSTCC  scripts/basic/fixdep
   GEN     ./Makefile
   HOSTCC  scripts/kconfig/conf.o
@@ -23,9 +23,185 @@ make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out/sta
   SHIPPED scripts/kconfig/zconf.hash.c
   HOSTCC  scripts/kconfig/zconf.tab.o
   HOSTLD  scripts/kconfig/conf
-drivers/Kconfig:249: can't open file "drivers/kernelsu/Kconfig"
-make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/kconfig/Makefile:112: starlte_defconfig] Error 1
-make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:606: starlte_defconfig] Error 2
-make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out/starlte'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment
+Value of CONFIG_KPROBES is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_KPROBES is not set
+New value: # Loadable module support: required by CONFIG_KPROBES (kprobes depends on CONFIG_KPROBES=y
+
+Value of CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is not set
+New value: CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+
+Value of CONFIG_CPU_FREQ_GOV_USERSPACE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_USERSPACE is not set
+New value: CONFIG_CPU_FREQ_GOV_USERSPACE=y
+
+Value of CONFIG_CPU_FREQ_GOV_ONDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ONDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_CONSERVATIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_CONSERVATIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_DARKNESS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_DARKNESS is not set
+New value: CONFIG_CPU_FREQ_GOV_DARKNESS=y
+
+Value of CONFIG_CPU_FREQ_GOV_NIGHTMARE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_NIGHTMARE is not set
+New value: CONFIG_CPU_FREQ_GOV_NIGHTMARE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_ALUCARD is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ALUCARD is not set
+New value: CONFIG_CPU_FREQ_GOV_ALUCARD=y
+
+Value of CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_BLU_ACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_YANKACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_YANKACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_YANKACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_LIONFISH is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_LIONFISH is not set
+New value: CONFIG_CPU_FREQ_GOV_LIONFISH=y
+
+Value of CONFIG_CPU_FREQ_GOV_IMPULSE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_IMPULSE is not set
+New value: CONFIG_CPU_FREQ_GOV_IMPULSE=y
+
+Value of CONFIG_CPU_FREQ_GOV_WAVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_WAVE is not set
+New value: CONFIG_CPU_FREQ_GOV_WAVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTASS2 is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTASS2 is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTASS2=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
+
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/aosp-permissive.config
+Value of CONFIG_CMDLINE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/aosp-permissive.config:
+Previous value: CONFIG_CMDLINE="loop.max_part=7"
+New value: CONFIG_CMDLINE="androidboot.selinux=permissive"
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  GEN     ./Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+==> Variant 'aosp-permissive' applied:
+CONFIG_KPROBES=y
+CONFIG_CMDLINE="androidboot.selinux=permissive"
+CONFIG_CMDLINE_EXTEND=y
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+==> Governors enabled: 19
+==> building (jobs=4)
+==> BUILD FAILED - last 80 lines of /home/runner/work/Void-Kernal-/Void-Kernal-/logs/build.log:
+  WRAP    arch/arm64/include/generated/asm/switch_to.h
+  WRAP    arch/arm64/include/generated/asm/termbits.h
+  WRAP    arch/arm64/include/generated/asm/termios.h
+  WRAP    arch/arm64/include/generated/asm/trace_clock.h
+  WRAP    arch/arm64/include/generated/asm/types.h
+  WRAP    arch/arm64/include/generated/asm/unaligned.h
+  WRAP    arch/arm64/include/generated/asm/user.h
+  WRAP    arch/arm64/include/generated/asm/vga.h
+  HOSTCC  scripts/basic/fixdep
+  WRAP    arch/arm64/include/generated/uapi/asm/kvm_para.h
+  Using /home/runner/work/Void-Kernal-/Void-Kernal-/kernel as source for kernel
+  HOSTCC  scripts/basic/bin2c
+  CHK     include/generated/timeconst.h
+  CC      kernel/bounds.s
+  LDS     scripts/module-lto.lds
+  UPD     include/generated/timeconst.h
+  HOSTCC  scripts/dtbtool_exynos/dtbtool.o
+  CHK     include/generated/bounds.h
+  HOSTCC  scripts/dtc/dtc.o
+  UPD     include/generated/bounds.h
+  CC      arch/arm64/kernel/asm-offsets.s
+  HOSTCC  scripts/genksyms/genksyms.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtbtool_exynos/../dtc/libfdt/fdt.o
+  HOSTCC  scripts/dtbtool_exynos/../dtc/libfdt/fdt_ro.o
+  SHIPPED scripts/genksyms/parse.tab.c
+  SHIPPED scripts/genksyms/lex.lex.c
+  SHIPPED scripts/genksyms/keywords.hash.c
+  SHIPPED scripts/genksyms/parse.tab.h
+  HOSTCC  scripts/genksyms/parse.tab.o
+  CHK     include/generated/asm-offsets.h
+  UPD     include/generated/asm-offsets.h
+  CALL    /home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/checksyscalls.sh
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTLD  scripts/dtbtool_exynos/dtbtool
+  HOSTCC  scripts/genksyms/lex.lex.o
+  HOSTCC  scripts/dtc/data.o
+  CC      scripts/mod/empty.o
+  HOSTCC  scripts/mod/mk_elfconfig
+  HOSTCC  scripts/dtc/livetree.o
+  CC      scripts/mod/devicetable-offsets.s
+  MKELF   scripts/mod/elfconfig.h
+  CHK     scripts/mod/devicetable-offsets.h
+  UPD     scripts/mod/devicetable-offsets.h
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/mod/modpost.o
+  HOSTLD  scripts/genksyms/genksyms
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/selinux/genheaders/genheaders
+  HOSTCC  scripts/kallsyms
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/selinux/mdp/mdp
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/mod/file2alias.o
+  LDS     arch/arm64/kernel/vdso/vdso.lds
+  VDSOC   arch/arm64/kernel/vdso/vgettimeofday.o
+  VDSOA   arch/arm64/kernel/vdso/note.o
+  HOSTCC  scripts/dtc/util.o
+  SHIPPED scripts/dtc/dtc-lexer.lex.c
+  VDSOA   arch/arm64/kernel/vdso/sigreturn.o
+  HOSTCC  scripts/sortextable
+  LD      arch/arm64/kernel/vdso/vdso.so.dbg
+  VDSOSYM include/generated/vdso-offsets.h
+make[2]: arm-linux-gnueabi-clang: No such file or directory
+  SHIPPED scripts/dtc/dtc-parser.tab.h
+  SHIPPED scripts/dtc/dtc-parser.tab.c
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  LDS     arch/arm64/kernel/vdso32/vdso.lds
+  VDSOC32   arch/arm64/kernel/vdso32/vgettimeofday.o
+/bin/sh: 1: arm-linux-gnueabi-clang: not found
+make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/arch/arm64/kernel/vdso32/Makefile:154: arch/arm64/kernel/vdso32/vgettimeofday.o] Error 127
+make[1]: *** [arch/arm64/Makefile:250: vdso_prepare] Error 2
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+make[1]: *** Waiting for unfinished jobs....
+  HOSTCC  scripts/asn1_compiler
+  HOSTLD  scripts/mod/modpost
+  HOSTLD  scripts/dtc/dtc
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
 make: *** [Makefile:152: sub-make] Error 2
 make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
