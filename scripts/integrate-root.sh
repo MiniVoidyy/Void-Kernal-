@@ -112,6 +112,11 @@ grep -rlE 'include <(linux/compiler_types\.h|linux/sched/(task_stack|task)\.h|cr
         -e 's|#include <linux/sched/task\.h>|#include <linux/sched.h>|' \
         -e 's|#include <crypto/sha2\.h>|#include <crypto/sha.h>|'
 
+# security_add_hooks() grew its 'lsm name' parameter in 5.1; 4.9 takes
+# (hooks, count). SukiSU passes the name unconditionally.
+grep -rl 'security_add_hooks' "$DRIVERS_DIR/$DIR/kernel" 2>/dev/null |
+    xargs -r sed -i 's|security_add_hooks(\(.*\), ARRAY_SIZE(\1), "[^"]*")|security_add_hooks(\1, ARRAY_SIZE(\1))|'
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
