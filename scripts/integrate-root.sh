@@ -141,6 +141,234 @@ if [ -f "$SSU_RULES_C" ]; then
     perl -0777 -pi -e 's/\tstruct selinux_avc \*avc = selinux_state\.avc;\n\tavc_ss_reset\(avc, 0\);\n\tselnl_notify_policyload\(0\);\n\tselinux_status_update_policyload\(&selinux_state, 0\);/\tavc_ss_reset(0);\n\tselnl_notify_policyload(0);\n\tselinux_status_update_policyload(0);/s' "$SSU_RULES_C"
 fi
 
+# --- SukiSU sepolicy.c: filename_trans/add_type use post-4.x-only APIs ---
+# Wrap them in version guards and splice in pre-4.20/pre-5.1 implementations
+# (filename_trans via plain struct + hashtab; add_type via flex_array),
+# mirroring what KernelSU-Next's -legacy branch ships for old kernels.
+SSU_SEPOLICY_C="$DRIVERS_DIR/$DIR/kernel/selinux/sepolicy.c"
+if [ -f "$SSU_SEPOLICY_C" ]; then
+    PATCH_TMP="$(mktemp -d)"
+    sed -i 's/\r$//' "$SSU_SEPOLICY_C"
+
+    cat > "$PATCH_TMP/fnt.old.c" <<'FNT_EOF'
+static bool add_filename_trans(struct policydb *db, const char *s,
+			       const char *t, const char *c, const char *d,
+			       const char *o)
+{
+	struct type_datum *src, *tgt, *def;
+	struct class_datum *cls;
+
+	src = symtab_search(&db->p_types, s);
+	if (src == NULL) {
+		pr_warn("source type %s does not exist\n", s);
+		return false;
+	}
+	tgt = symtab_search(&db->p_types, t);
+	if (tgt == NULL) {
+		pr_warn("target type %s does not exist\n", t);
+		return false;
+	}
+	cls = symtab_search(&db->p_classes, c);
+	if (cls == NULL) {
+		pr_warn("class %s does not exist\n", c);
+		return false;
+	}
+	def = symtab_search(&db->p_types, d);
+	if (def == NULL) {
+		pr_warn("default type %s does not exist\n", d);
+		return false;
+	}
+
+	struct filename_trans key;
+	key.ttype = tgt->value;
+	key.tclass = cls->value;
+	key.name = (char *)o;
+
+	struct filename_trans_datum *trans = hashtab_search(db->filename_trans, &key);
+
+	if (trans == NULL) {
+		trans = (struct filename_trans_datum *)kcalloc(1, sizeof(*trans),
+							       GFP_ATOMIC);
+		if (!trans) {
+			pr_err("add_filename_trans: Failed to alloc datum\n");
+			return false;
+		}
+		struct filename_trans *new_key =
+			(struct filename_trans *)kzalloc(sizeof(*new_key),
+							 GFP_ATOMIC);
+		if (!new_key) {
+			pr_err("add_filename_trans: Failed to alloc new_key\n");
+			return false;
+		}
+		*new_key = key;
+		new_key->name = kstrdup(key.name, GFP_ATOMIC);
+		trans->otype = def->value;
+		hashtab_insert(db->filename_trans, new_key, trans);
+	}
+
+	return ebitmap_set_bit(&db->filename_trans_ttypes, src->value - 1, 1) == 0;
+}
+FNT_EOF
+
+    cat > "$PATCH_TMP/at.flex.c" <<'AT_EOF'
+static bool add_type(struct policydb *db, const char *type_name, bool attr)
+{
+	struct type_datum *type = symtab_search(&db->p_types, type_name);
+	if (type) {
+		pr_warn("Type %s already exists\n", type_name);
+		return true;
+	}
+
+	u32 value = ++db->p_types.nprim;
+	type = (struct type_datum *)kzalloc(sizeof(struct type_datum),
+					    GFP_ATOMIC);
+	if (!type) {
+		pr_err("add_type: alloc type_datum failed.\n");
+		return false;
+	}
+
+	type->primary = 1;
+	type->value = value;
+	type->attribute = attr;
+
+	char *key = kstrdup(type_name, GFP_ATOMIC);
+	if (!key) {
+		pr_err("add_type: alloc key failed.\n");
+		return false;
+	}
+
+	if (symtab_insert(&db->p_types, key, type)) {
+		pr_err("add_type: insert symtab failed.\n");
+		return false;
+	}
+
+	// flex_array is not extensible; create new bigger arrays instead
+	struct flex_array *new_type_attr_map_array =
+		flex_array_alloc(sizeof(struct ebitmap), db->p_types.nprim,
+				 GFP_KERNEL | __GFP_ZERO);
+	struct flex_array *new_type_val_to_struct =
+		flex_array_alloc(sizeof(struct type_datum *), db->p_types.nprim,
+				 GFP_KERNEL | __GFP_ZERO);
+	struct flex_array *new_val_to_name_types =
+		flex_array_alloc(sizeof(char *), db->symtab[SYM_TYPES].nprim,
+				 GFP_KERNEL | __GFP_ZERO);
+
+	if (!new_type_attr_map_array || !new_type_val_to_struct ||
+	    !new_val_to_name_types) {
+		pr_err("add_type: flex_array_alloc failed\n");
+		return false;
+	}
+
+	if (flex_array_prealloc(new_type_attr_map_array, 0, db->p_types.nprim,
+				GFP_KERNEL | __GFP_ZERO)) {
+		pr_err("add_type: prealloc type_attr_map_array failed\n");
+		return false;
+	}
+	if (flex_array_prealloc(new_type_val_to_struct, 0, db->p_types.nprim,
+				GFP_KERNEL | __GFP_ZERO)) {
+		pr_err("add_type: prealloc type_val_to_struct failed\n");
+		return false;
+	}
+	if (flex_array_prealloc(new_val_to_name_types, 0,
+				db->symtab[SYM_TYPES].nprim,
+				GFP_KERNEL | __GFP_ZERO)) {
+		pr_err("add_type: prealloc val_to_name failed\n");
+		return false;
+	}
+
+	int j;
+	void *old_elem;
+	for (j = 0; j < db->type_attr_map_array->total_nr_elements; j++) {
+		old_elem = flex_array_get(db->type_attr_map_array, j);
+		if (old_elem)
+			flex_array_put(new_type_attr_map_array, j, old_elem,
+				       GFP_KERNEL | __GFP_ZERO);
+	}
+	for (j = 0; j < db->type_val_to_struct_array->total_nr_elements; j++) {
+		old_elem = flex_array_get_ptr(db->type_val_to_struct_array, j);
+		if (old_elem)
+			flex_array_put_ptr(new_type_val_to_struct, j, old_elem,
+					   GFP_KERNEL | __GFP_ZERO);
+	}
+	for (j = 0; j < db->symtab[SYM_TYPES].nprim; j++) {
+		old_elem =
+			flex_array_get_ptr(db->sym_val_to_name[SYM_TYPES], j);
+		if (old_elem)
+			flex_array_put_ptr(new_val_to_name_types, j, old_elem,
+					   GFP_KERNEL | __GFP_ZERO);
+	}
+
+	struct flex_array *old_fa;
+
+	old_fa = db->type_attr_map_array;
+	db->type_attr_map_array = new_type_attr_map_array;
+	if (old_fa)
+		flex_array_free(old_fa);
+
+	ebitmap_init(flex_array_get(db->type_attr_map_array, value - 1));
+	ebitmap_set_bit(flex_array_get(db->type_attr_map_array, value - 1),
+			value - 1, 1);
+
+	old_fa = db->type_val_to_struct_array;
+	db->type_val_to_struct_array = new_type_val_to_struct;
+	if (old_fa)
+		flex_array_free(old_fa);
+	flex_array_put_ptr(db->type_val_to_struct_array, value - 1, type,
+			   GFP_KERNEL | __GFP_ZERO);
+
+	old_fa = db->sym_val_to_name[SYM_TYPES];
+	db->sym_val_to_name[SYM_TYPES] = new_val_to_name_types;
+	if (old_fa)
+		flex_array_free(old_fa);
+	flex_array_put_ptr(db->sym_val_to_name[SYM_TYPES], value - 1, key,
+			   GFP_KERNEL | __GFP_ZERO);
+
+	int i;
+	for (i = 0; i < db->p_roles.nprim; ++i) {
+		ebitmap_set_bit(&db->role_val_to_struct[i]->types, value - 1,
+				1);
+	}
+
+	return true;
+}
+AT_EOF
+
+    export FNT_OLD="$PATCH_TMP/fnt.old.c"
+    export AT_FLEX="$PATCH_TMP/at.flex.c"
+
+    # wrap add_filename_trans definition (skip forward decls; validate body sig)
+    perl -0777 -pi -e 'BEGIN{ local $/; open my $f,"<",$ENV{FNT_OLD} or die; $o=<$f>; close $f; }
+      my $sig = "static bool add_filename_trans";
+      my $pos = 0; my ($sp, $ep);
+      while (($pos = index($_, $sig, $pos)) >= 0) {
+          my $brace = index($_, "{", $pos);
+          last if $brace < 0;
+          my $semi = index($_, ";", $pos);
+          if ($semi >= 0 && $semi < $brace) { $pos += length($sig); next; }
+          my $bodychk = substr($_, $brace, 64);
+          if ($bodychk =~ /\{\n\tstruct type_datum \*src, \*tgt, \*def;/) {
+              $sp = $pos;
+              my $k = index($_, "\n}\n", $brace);
+              die "fnt end not found" if $k < 0;
+              $ep = $k + 3;
+              last;
+          }
+          $pos += length($sig);
+      }
+      die "fnt definition not located" unless defined $sp;
+      my $fn = substr($_, $sp, $ep - $sp);
+      substr($_, $sp, $ep - $sp) =
+        "#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 7, 0)\n" . $fn .
+        "#else\n" . $o . "#endif\n";' "$SSU_SEPOLICY_C"
+
+    # wrap add_type 5.x-style tail; splice flex_array implementation below 5.1
+    perl -0777 -pi -e 'BEGIN{ local $/; open my $f,"<",$ENV{AT_FLEX} or die; $o=<$f>; close $f; }
+      s{(\tstruct ebitmap \*new_type_attr_map_array =[\s\S]*?\n\treturn true;\n\}\n)}
+       {"#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)\n" . $1 . "#else\n" . $o . "#endif\n"}se' "$SSU_SEPOLICY_C"
+
+    rm -rf "$PATCH_TMP"
+fi
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
