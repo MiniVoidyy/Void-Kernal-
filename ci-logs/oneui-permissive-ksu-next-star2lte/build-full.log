@@ -1,0 +1,31 @@
+==> Variant : oneui-permissive
+==> Root    : ksu-next
+==> Device  : star2lte
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
+Updating files:  38% (24971/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  61% (40009/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  83% (54395/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Void governor pack installed: +13 custom (+7 stock = 20 total)
+==> Cloning https://github.com/KernelSU-Next/KernelSU-Next.git -> drivers/kernelsu_next
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/kernelsu_next'...
+Note: switching to '9b08e88862000d5c50fb2e43a5b75123cf472e54'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Backslash found where operator expected at -e line 1, near "\"
+Backslash found where operator expected at -e line 1, near "n\"
+Operator or semicolon missing before &policydb at -e line 1.
+Ambiguous use of & resolved as operator & at -e line 1.
+syntax error at -e line 1, near "\"
+Execution of -e aborted due to compilation errors.
