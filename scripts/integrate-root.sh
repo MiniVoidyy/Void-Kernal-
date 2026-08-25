@@ -136,7 +136,7 @@ if [ -f "$SSU_RULES_C" ]; then
     # ensure avc_ss_reset() prototype is visible on the pre-4.19 path
     sed -i 's|#include "ss/services.h"|#include "ss/services.h"\n#include "avc.h"|' "$SSU_RULES_C"
     # get_policydb(): selinux_state.policy is 4.19+/5.10+; use the global policydb before that
-    perl -0777 -pi -e 's/static struct policydb \*get_policydb\(void\)\s*\{[^}]*?\}/static struct policydb *get_policydb(void)\n{\n#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 19, 0)\n\tstruct selinux_policy *policy = rcu_dereference(selinux_state.policy);\n\treturn &policy->policydb;\n#else\n\t\/* selinux_state does not exist before 4.19 *\\/\n\treturn &policydb;\n#endif\n}/s' "$SSU_RULES_C"
+    perl -0777 -pi -e 's/static struct policydb \*get_policydb\(void\)\s*\{[^}]*?\}/static struct policydb *get_policydb(void)\n{\n#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 19, 0)\n\tstruct selinux_policy *policy = rcu_dereference(selinux_state.policy);\n\treturn &policy->policydb;\n#else\n\treturn &policydb;\n#endif\n}/s' "$SSU_RULES_C"
     # reset_avc_cache(): same story for selinux_state.avc / status_update_policyload
     perl -0777 -pi -e 's/\tstruct selinux_avc \*avc = selinux_state\.avc;\n\tavc_ss_reset\(avc, 0\);\n\tselnl_notify_policyload\(0\);\n\tselinux_status_update_policyload\(&selinux_state, 0\);/\tavc_ss_reset(0);\n\tselnl_notify_policyload(0);\n\tselinux_status_update_policyload(0);/s' "$SSU_RULES_C"
 fi
