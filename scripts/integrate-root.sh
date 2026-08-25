@@ -117,6 +117,30 @@ grep -rlE 'include <(linux/compiler_types\.h|linux/sched/(task_stack|task)\.h|cr
 grep -rl 'security_add_hooks' "$DRIVERS_DIR/$DIR/kernel" 2>/dev/null |
     xargs -r sed -i 's|security_add_hooks(\(.*\), ARRAY_SIZE(\1), "[^"]*")|security_add_hooks(\1, ARRAY_SIZE(\1))|'
 
+# --- SukiSU selinux layer dropped tiann's pre-4.19 guards; restore them. ---
+# avc.h exports 'extern int selinux_enforcing' when SELINUX_DEVELOP=y; the
+# global 'struct policydb policydb' replaces selinux_state.policy before 4.19;
+# the pre-6.4 AVC reset must not touch selinux_state either.
+SSU_SELINUX_C="$DRIVERS_DIR/$DIR/kernel/selinux/selinux.c"
+if [ -f "$SSU_SELINUX_C" ]; then
+    sed -i 's|#include "objsec.h"|#include "objsec.h"\n#include "avc.h"|' "$SSU_SELINUX_C"
+    sed -i \
+        -e 's|selinux_state\.enforcing = enforce;|selinux_enforcing = enforce;|' \
+        -e 's|if (selinux_state\.disabled) {|if (selinux_disabled) {|' \
+        -e 's|return selinux_state\.enforcing;|return selinux_enforcing;|' \
+        "$SSU_SELINUX_C"
+fi
+
+SSU_RULES_C="$DRIVERS_DIR/$DIR/kernel/selinux/rules.c"
+if [ -f "$SSU_RULES_C" ]; then
+    # ensure avc_ss_reset() prototype is visible on the pre-4.19 path
+    sed -i 's|#include "ss/services.h"|#include "ss/services.h"\n#include "avc.h"|' "$SSU_RULES_C"
+    # get_policydb(): selinux_state.policy is 4.19+/5.10+; use the global policydb before that
+    perl -0777 -pi -e 's/static struct policydb \*get_policydb\(void\)\s*\{[^}]*?\}/static struct policydb *get_policydb(void)\n{\n#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 19, 0)\n\tstruct selinux_policy *policy = rcu_dereference(selinux_state.policy);\n\treturn &policy->policydb;\n#else\n\t\/* selinux_state does not exist before 4.19 *\\/\n\treturn &policydb;\n#endif\n}/s' "$SSU_RULES_C"
+    # reset_avc_cache(): same story for selinux_state.avc / status_update_policyload
+    perl -0777 -pi -e 's/\tstruct selinux_avc \*avc = selinux_state\.avc;\n\tavc_ss_reset\(avc, 0\);\n\tselnl_notify_policyload\(0\);\n\tselinux_status_update_policyload\(&selinux_state, 0\);/\tavc_ss_reset(0);\n\tselnl_notify_policyload(0);\n\tselinux_status_update_policyload(0);/s' "$SSU_RULES_C"
+fi
+
 # The root-solution repos ship the kbuild module inside a kernel/ subdir;
 # wire kbuild to whichever layout this checkout actually provides.
 REL_DIR="$DIR"
