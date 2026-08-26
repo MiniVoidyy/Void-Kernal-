@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ksu_ref:
-        description: "Root solution repo ref (tag/branch, blank = HEAD)"
+        description: "Root solution repo ref (tag/branch, blank = compatible default)"
         required: false
         default: ""
   push:
@@ -15,13 +15,14 @@ env:
 
 jobs:
   kernel:
-    name: ${{ matrix.variant }} / ${{ matrix.root }}
+    name: ${{ matrix.variant }} / ${{ matrix.root }} / ${{ matrix.device }}
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
         root: [ksu, ksu-next, sukisu]
+        device: [starlte, star2lte, crownlte]
     steps:
       - uses: actions/checkout@v4
 
@@ -33,16 +34,16 @@ jobs:
             libssl-dev libfl-dev python-is-python3 \
             gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
 
-      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }})
+      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }} x ${{ matrix.device }})
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
           chmod +x scripts/*.sh
-          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
+          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}" --device "${{ matrix.device }}" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
 
       - name: Upload flashable zips
         uses: actions/upload-artifact@v4
         with:
-          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}
+          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
           path: build/zips/*.zip
           if-no-files-found: error
 
@@ -50,7 +51,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}
+          name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
           path: logs/*.log
           if-no-files-found: ignore
 

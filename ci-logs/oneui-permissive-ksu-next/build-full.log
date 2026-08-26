@@ -1,0 +1,251 @@
+==> Variant : oneui-permissive
+==> Root    : ksu-next
+==> Devices : starlte star2lte crownlte
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
+Updating files:  37% (24361/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  63% (41516/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  71% (46114/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  88% (57155/64948)Updating files:  88% (57609/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Void governor pack installed: +13 custom (+7 stock = 20 total)
+==> Cloning https://github.com/rifsxd/KernelSU-Next.git -> drivers/kernelsu_next
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/kernelsu_next'...
+==> Root solution 'ksu-next' wired into drivers/{Makefile,Kconfig}
+==> Downloading Proton Clang toolchain
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0  448M    0 64213    0     0   178k      0  0:42:49 --:--:--  0:42:49  178k 32  448M   32  147M    0     0   109M      0  0:00:04  0:00:01  0:00:03  147M 70  448M   70  317M    0     0   135M      0  0:00:03  0:00:02  0:00:01  158M100  448M  100  448M    0     0   143M      0  0:00:03  0:00:03 --:--:--  162M
+==> defconfig + variant merge
+make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  HOSTCC  scripts/basic/fixdep
+  GEN     ./Makefile
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment
+Value of CONFIG_KPROBES is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_KPROBES is not set
+New value: # Loadable module support: required by CONFIG_KPROBES (kprobes depends on CONFIG_KPROBES=y
+
+Value of CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is not set
+New value: CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+
+Value of CONFIG_CPU_FREQ_GOV_USERSPACE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_USERSPACE is not set
+New value: CONFIG_CPU_FREQ_GOV_USERSPACE=y
+
+Value of CONFIG_CPU_FREQ_GOV_ONDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ONDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_CONSERVATIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_CONSERVATIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_DARKNESS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_DARKNESS is not set
+New value: CONFIG_CPU_FREQ_GOV_DARKNESS=y
+
+Value of CONFIG_CPU_FREQ_GOV_NIGHTMARE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_NIGHTMARE is not set
+New value: CONFIG_CPU_FREQ_GOV_NIGHTMARE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_ALUCARD is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ALUCARD is not set
+New value: CONFIG_CPU_FREQ_GOV_ALUCARD=y
+
+Value of CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_BLU_ACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_YANKACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_YANKACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_YANKACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_LIONFISH is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_LIONFISH is not set
+New value: CONFIG_CPU_FREQ_GOV_LIONFISH=y
+
+Value of CONFIG_CPU_FREQ_GOV_IMPULSE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_IMPULSE is not set
+New value: CONFIG_CPU_FREQ_GOV_IMPULSE=y
+
+Value of CONFIG_CPU_FREQ_GOV_WAVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_WAVE is not set
+New value: CONFIG_CPU_FREQ_GOV_WAVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTASS2 is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTASS2 is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTASS2=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
+
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-permissive.config
+Value of CONFIG_CMDLINE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-permissive.config:
+Previous value: CONFIG_CMDLINE="loop.max_part=7"
+New value: CONFIG_CMDLINE="androidboot.selinux=permissive"
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  GEN     ./Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+==> Variant 'oneui-permissive' applied:
+CONFIG_KPROBES=y
+CONFIG_CMDLINE="androidboot.selinux=permissive"
+CONFIG_CMDLINE_EXTEND=y
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+==> Governors enabled: 19
+==> building (jobs=4)
+==> BUILD FAILED - compiler/kbuild errors:
+2744:make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: drivers/kernelsu] Error 2
+2763:make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1258: drivers] Error 2
+2982:make: *** [Makefile:152: sub-make] Error 2
+==> last 120 lines of /home/runner/work/Void-Kernal-/Void-Kernal-/logs/build.log:
+  CC      net/sunrpc/backchannel_rqst.o
+  CC      net/wireless/mlme.o
+  CC      net/netfilter/nf_nat_proto_udp.o
+  AS      net/wireguard/crypto/zinc/chacha20/chacha20-arm64.o
+  AS      net/wireguard/crypto/zinc/poly1305/poly1305-arm64.o
+  CC      net/sunrpc/stats.o
+  CC      net/wireless/ibss.o
+  AR      net/wireguard/wireguard.o
+  AR      net/wireguard/built-in.o
+  CC      net/xfrm/xfrm_policy.o
+  CC      net/netfilter/nf_nat_proto_tcp.o
+  CC      net/netfilter/nf_nat_helper.o
+  CC      net/wireless/sme.o
+  CC      net/sunrpc/sysctl.o
+  CC      net/sunrpc/auth_gss/auth_gss.o
+  CC      net/netfilter/nf_nat_redirect.o
+  CC      net/xfrm/xfrm_state.o
+  CC      net/wireless/chan.o
+  CC      net/sunrpc/auth_gss/gss_generic_token.o
+  CC      net/netfilter/nf_nat_proto_dccp.o
+  CC      net/sunrpc/auth_gss/gss_mech_switch.o
+  CC      net/wireless/ethtool.o
+  CC      net/netfilter/nf_nat_proto_udplite.o
+  CC      net/xfrm/xfrm_hash.o
+  CC      net/xfrm/xfrm_input.o
+  CC      net/wireless/mesh.o
+  CC      net/netfilter/nf_nat_proto_sctp.o
+  CC      net/sunrpc/auth_gss/svcauth_gss.o
+  CC      net/wireless/ap.o
+  CC      net/netfilter/nf_nat_amanda.o
+  CC      net/xfrm/xfrm_output.o
+  CC      net/wireless/trace.o
+  CC      net/netfilter/nf_nat_ftp.o
+  CC      net/sunrpc/auth_gss/gss_rpc_upcall.o
+net/wireless/.tmp_trace.o: no symbols
+  CC      net/wireless/ocb.o
+  CC      net/netfilter/nf_nat_irc.o
+  CC      net/sunrpc/auth_gss/gss_rpc_xdr.o
+  CC      net/xfrm/xfrm_sysctl.o
+  AR      net/wireless/cfg80211.o
+  AR      net/wireless/built-in.o
+  CC      net/compat.o
+  CC      net/netfilter/nf_nat_tftp.o
+  CC      net/xfrm/xfrm_replay.o
+  CC      net/sunrpc/auth_gss/gss_krb5_mech.o
+  CC      net/sunrpc/auth_gss/gss_krb5_seal.o
+  CC      net/netfilter/x_tables.o
+  CC      net/sunrpc/auth_gss/gss_krb5_unseal.o
+  CC      net/sysctl_net.o
+  CC      net/xfrm/xfrm_proc.o
+  CC      net/sunrpc/auth_gss/gss_krb5_seqnum.o
+  CC      net/sunrpc/auth_gss/gss_krb5_wrap.o
+  CC      net/xfrm/xfrm_algo.o
+  CC      net/sunrpc/auth_gss/gss_krb5_crypto.o
+  CC      net/netfilter/xt_tcpudp.o
+  CC      net/netfilter/xt_mark.o
+  CC      net/sunrpc/auth_gss/gss_krb5_keys.o
+  CC      net/xfrm/xfrm_user.o
+  CC      net/netfilter/xt_connmark.o
+  AR      net/sunrpc/auth_gss/auth_rpcgss.o
+  AR      net/sunrpc/auth_gss/rpcsec_gss_krb5.o
+  CC      net/netfilter/xt_nat.o
+  AR      net/sunrpc/auth_gss/built-in.o
+  AR      net/sunrpc/sunrpc.o
+  AR      net/sunrpc/built-in.o
+  CC      net/xfrm/xfrm_ipcomp.o
+  CC      net/xfrm/xfrm_interface.o
+  CC      net/netfilter/xt_CLASSIFY.o
+  CC      net/netfilter/xt_CONNSECMARK.o
+  CC      net/netfilter/xt_CT.o
+  CC      net/netfilter/xt_LOG.o
+  AR      net/xfrm/built-in.o
+  CC      net/netfilter/xt_NETMAP.o
+  CC      net/netfilter/xt_NFLOG.o
+  CC      net/netfilter/xt_NFQUEUE.o
+  CC      net/netfilter/xt_REDIRECT.o
+  CC      net/netfilter/xt_SECMARK.o
+  CC      net/netfilter/xt_TPROXY.o
+  CC      net/netfilter/xt_TCPMSS.o
+  CC      net/netfilter/xt_TRACE.o
+  CC      net/netfilter/xt_IDLETIMER.o
+  CC      net/netfilter/xt_bpf.o
+  CC      net/netfilter/xt_comment.o
+  CC      net/netfilter/xt_connbytes.o
+  CC      net/netfilter/xt_connlabel.o
+  CC      net/netfilter/xt_connlimit.o
+  CC      net/netfilter/xt_conntrack.o
+  CC      net/netfilter/xt_ecn.o
+  CC      net/netfilter/xt_hashlimit.o
+  CC      net/netfilter/xt_helper.o
+  CC      net/netfilter/xt_hl.o
+  CC      net/netfilter/xt_iprange.o
+  CC      net/netfilter/xt_l2tp.o
+  CC      net/netfilter/xt_length.o
+  CC      net/netfilter/xt_limit.o
+  CC      net/netfilter/xt_mac.o
+  CC      net/netfilter/xt_owner.o
+  CC      net/netfilter/xt_pkttype.o
+  CC      net/netfilter/xt_policy.o
+  CC      net/netfilter/xt_quota.o
+  CC      net/netfilter/xt_quota2.o
+  CC      net/netfilter/xt_sctp.o
+  CC      net/netfilter/xt_socket.o
+  CC      net/netfilter/xt_state.o
+  CC      net/netfilter/xt_statistic.o
+  CC      net/netfilter/xt_string.o
+  CC      net/netfilter/xt_time.o
+  CC      net/netfilter/xt_u32.o
+  CC      net/netfilter/xt_domainfilter.o
+  CC      net/netfilter/xt_PRIO.o
+  CC      net/netfilter/nf_history.o
+  AR      net/netfilter/netfilter.o
+  AR      net/netfilter/nf_conntrack.o
+  AR      net/netfilter/nf_conntrack_h323.o
+  AR      net/netfilter/nf_nat.o
+  AR      net/netfilter/built-in.o
+  AR      net/built-in.o
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: *** [Makefile:152: sub-make] Error 2
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'

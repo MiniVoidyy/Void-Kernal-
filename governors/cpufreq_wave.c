@@ -106,7 +106,7 @@ static ssize_t store_up_threshold(struct gov_attr_set *attr_set,
 }
 
 static ssize_t store_down_threshold_pct(struct gov_attr_set *attr_set,
-					const char *buf, size_t count)
+				    const char *buf, size_t count)
 {
 	struct dbs_data *dbs_data = to_dbs_data(attr_set);
 	struct wave_dbs_tuners *tuners = dbs_data->tuners;
@@ -122,8 +122,8 @@ static ssize_t store_down_threshold_pct(struct gov_attr_set *attr_set,
 	return count;
 }
 
-static ssize_t store_wave_step_pct(struct gov_attr_set *attr_set,
-				   const char *buf, size_t count)
+static ssize_t store_wave_step_pct(struct gov_attr_set *attr_set, const char *buf,
+			       size_t count)
 {
 	struct dbs_data *dbs_data = to_dbs_data(attr_set);
 	struct wave_dbs_tuners *tuners = dbs_data->tuners;
