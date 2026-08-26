@@ -47,6 +47,32 @@ Permissive variants append `androidboot.selinux=permissive` to the kernel
 command line (works on Android 10+ ROMs). Verify after flashing with
 `adb shell getenforce`.
 
+## Compatibility
+
+Tested with custom ROMs targeting **Android 10 through 17** and
+**One UI 1 through 8** on Galaxy S9/S9+/Note 9 (Exynos). The kernel
+ships the base userspace hooks Android expects:
+
+| Knob | Status |
+|---|---|
+| SECCOMP + SECCOMP_FILTER | ✓ (required by zygote, Android 10+) |
+| CGROUPS + CGROUP_FREEZER | ✓ (process freezer for apps) |
+| Binder (binderfs falls back to legacy) | ✓ |
+| TMPFS / ASHMEM | ✓ (shared memory backing) |
+| PSTORE | ✓ (persistent crash logs) |
+| CMDLINE_EXTEND | ✓ (ROM cmdline preserved) |
+| SELINUX_DEVELOP | ✓ (runtime enforce/permissive switch) |
+
+**Known limitations**
+
+- **SysV IPC** (`CONFIG_SYSVIPC`) is disabled — not used by Android
+  userspace; apps relying on SysV shared memory segments will fail.
+- **EROFS** (`CONFIG_EROFS_FS`) is not available in this 4.9 tree.
+  Custom ROMs using EROFS for the system partition require a 4.19+
+  kernel; all community ROMs for these devices ship ext4.
+- **BINDERFS** is a 5.0+ kernel feature — Android automatically falls
+  back to the legacy `/dev/binder` interface, so this causes no issues.
+
 ## Flashing in TWRP
 
 Every kernel zip is a standard **AnyKernel3** package - it flashes in TWRP
@@ -107,7 +133,7 @@ The saved profile is re-applied automatically at every boot by `service.sh`.
 
 - duhansysl / ananjaser1211 (Apollo) - DS-ACK base
 - RestlessGoose - CrownTrail/EMS work
-- tiann (KernelSU), rifsxd (KernelSU-Next), SukiSU-Ultra team
+- tiann (KernelSU), KernelSU-Next team, SukiSU-Ultra team
 - osm0sis - AnyKernel3
 
 GPL-2.0 applies to all kernel sources.
