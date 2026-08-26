@@ -346,6 +346,15 @@ AT_EOF
         "#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)\n" . $tail .
         "#else\n" . $o . "\n#endif\n";' "$SSU_SEPOLICY_C"
 
+    # add_typeattribute_raw: plain-array indexing below 5.1, flex_array_get on old trees
+    perl -0777 -pi -e '
+      my $old = "struct ebitmap *sattr = &db->type_attr_map_array[type->value - 1];";
+      my $i = index($_, $old);
+      exit 0 if $i < 0;
+      my $new = "#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)\n\t" . $old .
+        "\n#else\n\tstruct ebitmap *sattr =\n\t\tflex_array_get(db->type_attr_map_array, type->value - 1);\n#endif";
+      substr($_, $i, length($old)) = $new;' "$SSU_SEPOLICY_C"
+
     rm -rf "$PATCH_TMP"
 fi
 
