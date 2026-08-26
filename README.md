@@ -68,7 +68,7 @@ kept untouched, only the boot partition is written.
    The workflow uses Linux 4.9-compatible root releases by default. You can
    pass `ksu_ref` to test another tag or branch for the selected root solution.
 3. Download artifacts: one flashable zip per variant/root/device combination,
-   plus the **Void Kernel Manager** module.
+   plus the **Void Kernel Manager v1.1** module.
 
 Artifacts are named `VoidKernel-<variant>-<root>-<device>`; zips inside are
 `VoidKernel-4.9.337-<variant>-<root>-<device>.zip`.

@@ -1,6 +1,7 @@
 #!/system/bin/sh
 # voidman - Void Kernel Manager CLI
-# Manage the 20-governor DSACK exynos9810 kernel from a root shell.
+# Manage the 20-governor Void Kernel for exynos9810 (S9 / S9+ / Note 9).
+VERSION="1.1"
 CPU=/sys/devices/system/cpu
 CONF=/data/adb/void_kernel_manager/profile.conf
 
@@ -31,30 +32,61 @@ policy_for() {
     esac
 }
 
+detect_root_solution() {
+    # KernelSU-family kernels expose a version node in debugfs/sysfs.
+    if [ -r /sys/kernel/kernelsu/version ]; then
+        echo "KernelSU-compatible (version $(cat /sys/kernel/kernelsu/version 2>/dev/null))"
+        return
+    fi
+    if [ -d /sys/kernel/kernelsu ]; then
+        echo "KernelSU-compatible"
+        return
+    fi
+    if [ -n "$(ksud --help 2>/dev/null)" ]; then
+        echo "ksud present"
+        return
+    fi
+    echo "unknown"
+}
+
+is_num() {
+    case "$1" in
+        ''|*[!0-9]*) return 1 ;;
+        *) return 0 ;;
+    esac
+}
+
 cmd_status() {
+    echo "Void Kernel Manager v$VERSION"
     echo "Kernel : $(uname -r)"
     echo "SELinux: $(getenforce 2>/dev/null || echo unknown)"
+    echo "Root   : $(detect_root_solution)"
     echo ""
     for p in $(list_policies); do
         CLUSTER=$([ "$p" = "$(policy_for little)" ] && echo little || echo big)
         echo "[$CLUSTER] $p"
-        echo "  governor: $(cat $p/scaling_governor)"
-        echo "  cur     : $(cat $p/scaling_cur_freq)"
-        echo "  min/max : $(cat $p/scaling_min_freq)/$(cat $p/scaling_max_freq)"
-        echo "  hw range: $(cat $p/cpuinfo_min_freq)-$(cat $p/cpuinfo_max_freq)"
+        echo "  governor: $(cat $p/scaling_governor 2>/dev/null)"
+        echo "  cur     : $(cat $p/scaling_cur_freq 2>/dev/null)"
+        echo "  min/max : $(cat $p/scaling_min_freq 2>/dev/null)/$(cat $p/scaling_max_freq 2>/dev/null)"
+        echo "  hw range: $(cat $p/cpuinfo_min_freq 2>/dev/null)-$(cat $p/cpuinfo_max_freq 2>/dev/null)"
     done
     echo ""
     echo "Governors available:"
-    echo "  $(cat $(policy_for big)/scaling_available_governors 2>/dev/null || cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors)"
+    echo "  $(cat $(policy_for big)/scaling_available_governors 2>/dev/null || cat $CPU/cpu0/cpufreq/scaling_available_governors 2>/dev/null)"
 }
 
 cmd_govs() {
     cat "$(policy_for big)/scaling_available_governors" 2>/dev/null \
-        || cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+        || cat $CPU/cpu0/cpufreq/scaling_available_governors 2>/dev/null
 }
 
 setgov() {
     ROLE="$1"; GOV="$2"
+    if [ -z "$GOV" ]; then
+        echo "voidman: usage: voidman setgov <little|big|all> <governor>" >&2
+        exit 1
+    fi
+    need_root
     for p in $(policy_for "$ROLE"); do
         if ! grep -qw "$GOV" "$p/scaling_available_governors" 2>/dev/null; then
             echo "voidman: '$GOV' not available on $p" >&2
@@ -67,10 +99,15 @@ setgov() {
 
 freqset() {
     ROLE="$1"; WHICH="$2"; VAL="$3"
+    if ! is_num "$VAL"; then
+        echo "voidman: frequency must be a number in kHz (got '$VAL')" >&2
+        exit 1
+    fi
     FILE="scaling_${WHICH}_freq"
+    need_root
     for p in $(policy_for "$ROLE"); do
-        echo "$VAL" > "$p/$FILE"
-        echo "$p/$FILE = $VAL"
+        echo "$VAL" > "$p/$FILE" 2>/dev/null || { echo "voidman: failed to write $p/$FILE" >&2; continue; }
+        echo "$p/$FILE = $(cat "$p/$FILE")"
     done
 }
 
@@ -87,10 +124,11 @@ apply_profile_file() {
 }
 
 save_current() {
+    need_root
     mkdir -p "$(dirname "$CONF")"
     L=$(policy_for little); B=$(policy_for big)
     cat > "$CONF" <<EOF
-# DSACK Manager saved profile (applied at boot)
+# Void Kernel Manager saved profile (applied at boot)
 LITTLE_GOVERNOR=$(cat $L/scaling_governor)
 LITTLE_MIN=$(cat $L/scaling_min_freq)
 LITTLE_MAX=$(cat $L/scaling_max_freq)
@@ -98,6 +136,7 @@ BIG_GOVERNOR=$(cat $B/scaling_governor)
 BIG_MIN=$(cat $B/scaling_min_freq)
 BIG_MAX=$(cat $B/scaling_max_freq)
 EOF
+    chmod 0644 "$CONF"
     echo "saved current settings to $CONF (boot-persistent)"
 }
 
@@ -144,17 +183,38 @@ builtin_profile() {
     apply_profile_file /tmp/dsprof
 }
 
+set_selinux() {
+    need_root
+    if [ -z "${1:-}" ]; then
+        getenforce 2>/dev/null || echo unknown
+        return
+    fi
+    case "$1" in
+        enforcing)  V=1 ;;
+        permissive) V=0 ;;
+        *) echo "voidman: expected enforcing|permissive" >&2; exit 1 ;;
+    esac
+    # Prefer the sysfs node: the toybox 'setenforce' binary is not everywhere.
+    if [ -w /sys/fs/selinux/enforce ]; then
+        echo "$V" > /sys/fs/selinux/enforce
+    else
+        setenforce "$([ "$V" = 1 ] && echo enforcing || echo permissive)" 2>/dev/null
+    fi
+    getenforce 2>/dev/null || echo unknown
+}
+
 usage() {
-    cat <<'EOF'
-Void Manager - usage:
-  dsman status                     show kernel/SELinux/policy state
-  dsman govs                       list all available governors (20)
-  dsman setgov <little|big|all> <governor>
-  dsman freq <little|big> <min|max> <kHz>
-  dsman profile battery|balanced|performance|gaming
-  dsman save                       persist current settings (boot-applied)
-  dsman selinux                    get SELinux mode
-  dsman selinux enforcing|permissive
+    cat <<EOF
+Void Kernel Manager v$VERSION - usage:
+  voidman status                            show kernel/root/SELinux/policy state
+  voidman govs                              list all available governors
+  voidman setgov <little|big|all> <governor>
+  voidman freq <little|big> <min|max> <kHz>
+  voidman profile battery|balanced|performance|gaming
+  voidman save                              persist current settings (applied at boot)
+  voidman selinux                           get SELinux mode
+  voidman selinux enforcing|permissive
+  voidman version                           print CLI version
 EOF
 }
 
@@ -163,16 +223,15 @@ EOF
 case "$1" in
     status|info) cmd_status ;;
     govs|governors) cmd_govs ;;
-    setgov) shift; need_root; setgov "$@" ;;
-    freq)   shift; need_root; freqset "$@" ;;
+    setgov) shift; setgov "$@" ;;
+    freq)   shift; freqset "$@" ;;
     profile) shift; need_root; builtin_profile "$1" ;;
-    save)   need_root; save_current ;;
+    save)   save_current ;;
     selinux)
         shift
-        need_root
-        if [ -z "${1:-}" ]; then getenforce
-        else setenforce "$([ "$1" = enforcing ] && echo 1 || echo 0)"; getenforce; fi
+        set_selinux "$@"
         ;;
+    version|--version|-v) echo "voidman v$VERSION" ;;
     help|--help|-h) usage ;;
     *) usage; exit 1 ;;
 esac

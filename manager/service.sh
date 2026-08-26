@@ -1,8 +1,6 @@
 #!/system/bin/sh
 # Void Kernel Manager - apply saved profile at boot (late_start service)
-MODDIR=${0%/*}
-CONF="$MODDIR/../void_kernel_manager/profile.conf"
-[ -f "$CONF" ] || CONF=/data/adb/void_kernel_manager/profile.conf
+CONF=/data/adb/void_kernel_manager/profile.conf
 
 apply_profile() {
     [ -f "$CONF" ] || return 0

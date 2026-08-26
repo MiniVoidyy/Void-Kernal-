@@ -64,10 +64,10 @@ jobs:
       - name: Pack manager module
         run: |
           mkdir -p build/zips
-          (cd manager && zip -r9 ../build/zips/VoidKernel-Manager-v1.0.zip .)
+          (cd manager && zip -r9 ../build/zips/VoidKernel-Manager-v1.1.zip .)
 
       - name: Upload manager module
         uses: actions/upload-artifact@v4
         with:
           name: VoidKernel-Manager
-          path: build/zips/VoidKernel-Manager-v1.0.zip
+          path: build/zips/VoidKernel-Manager-v1.1.zip

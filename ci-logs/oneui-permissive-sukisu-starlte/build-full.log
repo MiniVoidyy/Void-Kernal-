@@ -1,0 +1,371 @@
+==> Variant : oneui-permissive
+==> Root    : sukisu
+==> Device  : starlte
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'...
+Updating files:  20% (13482/64948)Updating files:  21% (13640/64948)Updating files:  22% (14289/64948)Updating files:  23% (14939/64948)Updating files:  24% (15588/64948)Updating files:  25% (16237/64948)Updating files:  26% (16887/64948)Updating files:  27% (17536/64948)Updating files:  28% (18186/64948)Updating files:  29% (18835/64948)Updating files:  30% (19485/64948)Updating files:  31% (20134/64948)Updating files:  32% (20784/64948)Updating files:  33% (21433/64948)Updating files:  34% (22083/64948)Updating files:  35% (22732/64948)Updating files:  36% (23382/64948)Updating files:  37% (24031/64948)Updating files:  38% (24681/64948)Updating files:  39% (25330/64948)Updating files:  40% (25980/64948)Updating files:  41% (26629/64948)Updating files:  42% (27279/64948)Updating files:  42% (27764/64948)Updating files:  43% (27928/64948)Updating files:  44% (28578/64948)Updating files:  45% (29227/64948)Updating files:  46% (29877/64948)Updating files:  47% (30526/64948)Updating files:  48% (31176/64948)Updating files:  49% (31825/64948)Updating files:  50% (32474/64948)Updating files:  51% (33124/64948)Updating files:  52% (33773/64948)Updating files:  53% (34423/64948)Updating files:  54% (35072/64948)Updating files:  55% (35722/64948)Updating files:  56% (36371/64948)Updating files:  57% (37021/64948)Updating files:  58% (37670/64948)Updating files:  58% (38289/64948)Updating files:  59% (38320/64948)Updating files:  60% (38969/64948)Updating files:  61% (39619/64948)Updating files:  62% (40268/64948)Updating files:  63% (40918/64948)Updating files:  64% (41567/64948)Updating files:  65% (42217/64948)Updating files:  66% (42866/64948)Updating files:  67% (43516/64948)Updating files:  68% (44165/64948)Updating files:  69% (44815/64948)Updating files:  70% (45464/64948)Updating files:  71% (46114/64948)Updating files:  71% (46296/64948)Updating files:  72% (46763/64948)Updating files:  73% (47413/64948)Updating files:  74% (48062/64948)Updating files:  75% (48711/64948)Updating files:  76% (49361/64948)Updating files:  77% (50010/64948)Updating files:  78% (50660/64948)Updating files:  79% (51309/64948)Updating files:  80% (51959/64948)Updating files:  81% (52608/64948)Updating files:  82% (53258/64948)Updating files:  83% (53907/64948)Updating files:  84% (54557/64948)Updating files:  85% (55206/64948)Updating files:  86% (55856/64948)Updating files:  87% (56505/64948)Updating files:  87% (57076/64948)Updating files:  88% (57155/64948)Updating files:  89% (57804/64948)Updating files:  90% (58454/64948)Updating files:  91% (59103/64948)Updating files:  92% (59753/64948)Updating files:  93% (60402/64948)Updating files:  94% (61052/64948)Updating files:  95% (61701/64948)Updating files:  96% (62351/64948)Updating files:  97% (63000/64948)Updating files:  98% (63650/64948)Updating files:  98% (64238/64948)Updating files:  99% (64299/64948)Updating files: 100% (64948/64948)Updating files: 100% (64948/64948), done.
+Void governor pack installed: +13 custom (+7 stock = 20 total)
+==> Cloning https://github.com/SukiSU-Ultra/SukiSU-Ultra.git -> drivers/sukisu
+Cloning into '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu'...
+Note: switching to '98b1c045120d9a823c6fbfbac267d0bf26c86624'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+==> Root solution 'sukisu' wired into drivers/{Makefile,Kconfig}
+==> Downloading Proton Clang toolchain
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0  448M    0 96123    0     0   327k      0  0:23:19 --:--:--  0:23:19  327k 35  448M   35  161M    0     0   126M      0  0:00:03  0:00:01  0:00:02  162M 79  448M   79  356M    0     0   156M      0  0:00:02  0:00:02 --:--:--  178M100  448M  100  448M    0     0   159M      0  0:00:02  0:00:02 --:--:--  176M
+==> defconfig + starlte overlay + variant merge
+make: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  HOSTCC  scripts/basic/fixdep
+  GEN     ./Makefile
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging arch/arm64/configs/starlte_defconfig
+Value of CONFIG_VMPRESSURE_LEVEL_MED is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: CONFIG_VMPRESSURE_LEVEL_MED=60
+New value: CONFIG_VMPRESSURE_LEVEL_MED=60
+
+Value of CONFIG_MUIC_UNIVERSAL is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_MUIC_UNIVERSAL is not set
+New value: CONFIG_MUIC_UNIVERSAL=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN_TCLM is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN_TCLM is not set
+New value: CONFIG_INPUT_TOUCHSCREEN_TCLM=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is not set
+New value: # CONFIG_INPUT_TOUCHSCREEN_TCLMV2 is not set
+
+Value of CONFIG_TOUCHSCREEN_SEC_TS is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_TOUCHSCREEN_SEC_TS is not set
+New value: CONFIG_TOUCHSCREEN_SEC_TS=y
+
+Value of CONFIG_TOUCHSCREEN_SEC_TS_Y771 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_TOUCHSCREEN_SEC_TS_Y771 is not set
+New value: # CONFIG_TOUCHSCREEN_SEC_TS_Y771 is not set
+
+Value of CONFIG_INPUT_WACOM is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_INPUT_WACOM is not set
+New value: # CONFIG_INPUT_WACOM is not set
+
+Value of CONFIG_EPEN_WACOM_W9018 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_EPEN_WACOM_W9018 is not set
+New value: # CONFIG_EPEN_WACOM_W9018 is not set
+
+Value of CONFIG_MFD_MAX77865 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_MFD_MAX77865 is not set
+New value: CONFIG_MFD_MAX77865=y
+
+Value of CONFIG_CAMERA_CIS_3M3_OBJ is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_CIS_3M3_OBJ is not set
+New value: # CONFIG_CAMERA_CIS_3M3_OBJ is not set
+
+Value of CONFIG_OIS_USE_RUMBA_S4 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_OIS_USE_RUMBA_S4 is not set
+New value: CONFIG_OIS_USE_RUMBA_S4=y
+
+Value of CONFIG_CAMERA_STAR is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_STAR is not set
+New value: CONFIG_CAMERA_STAR=y
+
+Value of CONFIG_CAMERA_STAR2 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_STAR2 is not set
+New value: # CONFIG_CAMERA_STAR2 is not set
+
+Value of CONFIG_CAMERA_CROWN is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CAMERA_CROWN is not set
+New value: # CONFIG_CAMERA_CROWN is not set
+
+Value of CONFIG_OIS_USE_RUMBA_S6 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_OIS_USE_RUMBA_S6 is not set
+New value: # CONFIG_OIS_USE_RUMBA_S6 is not set
+
+Value of CONFIG_SUPPORT_DIM_FLASH is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SUPPORT_DIM_FLASH is not set
+New value: # CONFIG_SUPPORT_DIM_FLASH is not set
+
+Value of CONFIG_SELF_MOVE_3PX is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SELF_MOVE_3PX is not set
+New value: # CONFIG_SELF_MOVE_3PX is not set
+
+Value of CONFIG_FUELGAUGE_MAX77865 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_FUELGAUGE_MAX77865 is not set
+New value: CONFIG_FUELGAUGE_MAX77865=y
+
+Value of CONFIG_CHARGER_MAX77865 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_CHARGER_MAX77865 is not set
+New value: CONFIG_CHARGER_MAX77865=y
+
+Value of CONFIG_WIRELESS_FIRMWARE_65 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_WIRELESS_FIRMWARE_65 is not set
+New value: # CONFIG_WIRELESS_FIRMWARE_65 is not set
+
+Value of CONFIG_SENSORS_SSP_AK09918 is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_AK09918 is not set
+New value: # CONFIG_SENSORS_SSP_AK09918 is not set
+
+Value of CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is not set
+New value: # CONFIG_SENSORS_SSP_LIGHT_MAX_GAIN_2BYTE is not set
+
+Value of CONFIG_SENSORS_SSP_STAR is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_STAR is not set
+New value: CONFIG_SENSORS_SSP_STAR=y
+
+Value of CONFIG_SENSORS_SSP_CROWN is redefined by fragment arch/arm64/configs/starlte_defconfig:
+Previous value: # CONFIG_SENSORS_SSP_CROWN is not set
+New value: # CONFIG_SENSORS_SSP_CROWN is not set
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+Using /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config as base
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment
+Value of CONFIG_KPROBES is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_KPROBES is not set
+New value: # Loadable module support: required by CONFIG_KPROBES (kprobes depends on CONFIG_KPROBES=y
+
+Value of CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is not set
+New value: CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+
+Value of CONFIG_CPU_FREQ_GOV_USERSPACE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_USERSPACE is not set
+New value: CONFIG_CPU_FREQ_GOV_USERSPACE=y
+
+Value of CONFIG_CPU_FREQ_GOV_ONDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ONDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_CONSERVATIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_CONSERVATIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_DARKNESS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_DARKNESS is not set
+New value: CONFIG_CPU_FREQ_GOV_DARKNESS=y
+
+Value of CONFIG_CPU_FREQ_GOV_NIGHTMARE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_NIGHTMARE is not set
+New value: CONFIG_CPU_FREQ_GOV_NIGHTMARE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIDEMAND is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIDEMAND=y
+
+Value of CONFIG_CPU_FREQ_GOV_ALUCARD is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_ALUCARD is not set
+New value: CONFIG_CPU_FREQ_GOV_ALUCARD=y
+
+Value of CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_BLU_ACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_BLU_ACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_INTELLIACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_INTELLIACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_YANKACTIVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_YANKACTIVE is not set
+New value: CONFIG_CPU_FREQ_GOV_YANKACTIVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_LIONFISH is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_LIONFISH is not set
+New value: CONFIG_CPU_FREQ_GOV_LIONFISH=y
+
+Value of CONFIG_CPU_FREQ_GOV_IMPULSE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_IMPULSE is not set
+New value: CONFIG_CPU_FREQ_GOV_IMPULSE=y
+
+Value of CONFIG_CPU_FREQ_GOV_WAVE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_WAVE is not set
+New value: CONFIG_CPU_FREQ_GOV_WAVE=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTASS2 is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTASS2 is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTASS2=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX=y
+
+Value of CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/base.fragment:
+Previous value: # CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS is not set
+New value: CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
+
+Merging /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-permissive.config
+Value of CONFIG_CMDLINE is redefined by fragment /home/runner/work/Void-Kernal-/Void-Kernal-/scripts/../configs/oneui-permissive.config:
+Previous value: CONFIG_CMDLINE="loop.max_part=7"
+New value: CONFIG_CMDLINE="androidboot.selinux=permissive"
+
+#
+# merged configuration written to /home/runner/work/Void-Kernal-/Void-Kernal-/out/.config (needs make)
+#
+make[1]: Entering directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+  GEN     ./Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+==> Variant 'oneui-permissive' applied:
+CONFIG_KPROBES=y
+CONFIG_CMDLINE="androidboot.selinux=permissive"
+CONFIG_CMDLINE_EXTEND=y
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+==> Governors enabled: 19
+==> building (jobs=4)
+==> BUILD FAILED - compiler/kbuild errors:
+3902:/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/selinux/sepolicy.c:851:18: error: incompatible pointer types initializing 'struct ebitmap *' with an expression of type 'struct flex_array *' [-Werror,-Wincompatible-pointer-types]
+3906:make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:337: drivers/sukisu/kernel/selinux/sepolicy.o] Error 1
+3907:make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: drivers/sukisu/kernel] Error 2
+3951:make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1258: drivers] Error 2
+3953:make: *** [Makefile:152: sub-make] Error 2
+==> last 120 lines of /home/runner/work/Void-Kernal-/Void-Kernal-/logs/build.log:
+  CC      drivers/staging/android/ion/exynos/exynos_ion.o
+  CC      drivers/staging/android/ion/exynos/exynos_ion_sync.o
+  CC      drivers/net/wireless/bcmdhd_101_16/bcm_app_utils.o
+  CC      drivers/soc/samsung/usi_v2.o
+  CC      drivers/staging/android/ion/exynos/dmabuf_container.o
+  CC      drivers/soc/samsung/cpuidle_profiler.o
+  CC      drivers/staging/android/ion/exynos/ion_hpa_heap.o
+-- KernelSU version: 12596
+-- KernelSU Manager signature size: 0x35c
+-- KernelSU Manager signature hash: 947ae944f3de4ed4c21a7e4f7953ecf351bfa2b36239da37a34111ad29993eef
+-- Supported Unofficial Manager: ShirkNeko (GKI) (Non-GKI)
+-- KERNEL_VERSION: 4.9
+  CC      drivers/sukisu/kernel/ksu.o
+  CC      drivers/net/wireless/bcmdhd_101_16/wl_bam.o
+  CC      drivers/soc/samsung/exynos-cpu_hotplug.o
+  CC      drivers/sukisu/kernel/allowlist.o
+  AR      drivers/staging/android/ion/exynos/built-in.o
+  AR      drivers/staging/android/ion/built-in.o
+  CC      drivers/staging/android/freecess.o
+  CC      drivers/net/wireless/bcmdhd_101_16/dhd_pktlog.o
+  CC      drivers/soc/samsung/exynos-hotplug_governor.o
+  CC      drivers/sukisu/kernel/apk_sign.o
+  CC      drivers/staging/android/freecess_pkg.o
+  CC      drivers/soc/samsung/exynos-dm.o
+  CC      drivers/net/wireless/bcmdhd_101_16/wl_bigdata.o
+  CC      drivers/sukisu/kernel/sucompat.o
+  AR      drivers/staging/android/built-in.o
+  CC      drivers/staging/samsung/sec_log.o
+drivers/staging/samsung/.tmp_sec_log.o: no symbols
+  CC      drivers/staging/samsung/sec_sysfs.o
+  CC      drivers/soc/samsung/exynos-mcinfo.o
+  CC      drivers/sukisu/kernel/throne_tracker.o
+  CC      drivers/net/wireless/bcmdhd_101_16/dhd_event_log_filter.o
+  CC      drivers/staging/samsung/sec_batt.o
+  CC      drivers/soc/samsung/pmu-cp.o
+  CC      drivers/staging/samsung/sec_reboot.o
+  CC      drivers/sukisu/kernel/core_hook.o
+  CC      drivers/soc/samsung/exynos-seclog.o
+  AR      drivers/net/wireless/bcmdhd_101_16/dhd.o
+  AR      drivers/net/wireless/bcmdhd_101_16/built-in.o
+  CC      drivers/net/wireless/bcmdhd_101_16/dhd_custom_memprealloc.o
+  CC      drivers/soc/samsung/secmem.o
+  CC      drivers/sukisu/kernel/ksud.o
+  CC      drivers/staging/samsung/sec_nad.o
+  CC      drivers/soc/samsung/sec_dummy.o
+  AR      drivers/soc/samsung/built-in.o
+  AR      drivers/soc/built-in.o
+  CC      drivers/thermal/thermal_core.o
+  CC      drivers/net/wireless/bcmdhd_101_16/dhd_custom_exynos.o
+  CC      drivers/staging/samsung/sec_nad_balancer.o
+  CC      drivers/staging/samsung/sec_heavy_task_cpu.o
+  CC      drivers/sukisu/kernel/embed_ksud.o
+  CC      drivers/sukisu/kernel/kernel_compat.o
+  AR      drivers/net/wireless/built-in.o
+  AR      drivers/net/built-in.o
+  CC      drivers/staging/samsung/sec_pm_debug.o
+  CC      drivers/trace/exynos-condbg.o
+  CC      drivers/staging/samsung/sec_hqm_device.o
+  CC      drivers/sukisu/kernel/selinux/selinux.o
+  CC      drivers/thermal/thermal_hwmon.o
+  AR      drivers/staging/samsung/built-in.o
+  CC      drivers/staging/sti/abc/abc_common.o
+  CC      drivers/sukisu/kernel/selinux/sepolicy.o
+  CC      drivers/trace/exynos-condbg-dev.o
+  CC      drivers/thermal/of-thermal.o
+  AR      drivers/trace/built-in.o
+  CC      drivers/tty/tty_io.o
+/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/sukisu/kernel/selinux/sepolicy.c:851:18: error: incompatible pointer types initializing 'struct ebitmap *' with an expression of type 'struct flex_array *' [-Werror,-Wincompatible-pointer-types]
+        struct ebitmap *sattr = &db->type_attr_map_array[type->value - 1];
+                        ^       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+make[3]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:337: drivers/sukisu/kernel/selinux/sepolicy.o] Error 1
+make[2]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/scripts/Makefile.build:650: drivers/sukisu/kernel] Error 2
+make[2]: *** Waiting for unfinished jobs....
+  CC      drivers/thermal/step_wise.o
+  CC      drivers/staging/sti/abc/abc_hub.o
+  CC      drivers/thermal/power_allocator.o
+  CC      drivers/tty/n_tty.o
+  CC      drivers/thermal/cpu_cooling.o
+  CC      drivers/staging/sti/abc/abc_hub_cond.o
+  CC      drivers/tty/tty_ioctl.o
+  CC      drivers/staging/sti/abc/abc_hub_bootc.o
+  CC      drivers/thermal/devfreq_cooling.o
+  CC      drivers/tty/tty_ldisc.o
+  AR      drivers/staging/sti/abc/built-in.o
+  AR      drivers/staging/sti/built-in.o
+  AR      drivers/staging/built-in.o
+  CC      drivers/tty/tty_buffer.o
+  CC      drivers/thermal/samsung/exynos_tmu.o
+  CC      drivers/thermal/samsung/exynos_acpm_tmu.o
+  CC      drivers/thermal/gpu_cooling.o
+  CC      drivers/tty/tty_port.o
+  CC      drivers/tty/tty_mutex.o
+  AR      drivers/thermal/samsung/built-in.o
+  CC      drivers/thermal/isp_cooling.o
+  CC      drivers/tty/tty_ldsem.o
+  AR      drivers/thermal/thermal_sys.o
+  CC      drivers/tty/pty.o
+  CC      drivers/tty/tty_audit.o
+  AR      drivers/thermal/built-in.o
+  CC      drivers/tty/sysrq.o
+  AR      drivers/tty/ipwireless/built-in.o
+  CC      drivers/tty/serial/serial_core.o
+  CC      drivers/tty/serial/earlycon.o
+  AR      drivers/tty/vt/built-in.o
+  CC      drivers/tty/serial/samsung.o
+In file included from /home/runner/work/Void-Kernal-/Void-Kernal-/kernel/drivers/tty/sysrq.c:29:
+/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/include/linux/nmi.h:111:49: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
+static inline void sl_softirq_entry(const char *, void *) { }
+                                                ^
+/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/include/linux/nmi.h:111:57: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
+static inline void sl_softirq_entry(const char *, void *) { }
+                                                        ^
+2 warnings generated.
+  AR      drivers/tty/serial/built-in.o
+  AR      drivers/tty/built-in.o
+make[1]: *** [/home/runner/work/Void-Kernal-/Void-Kernal-/kernel/Makefile:1258: drivers] Error 2
+make[1]: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/out'
+make: *** [Makefile:152: sub-make] Error 2
+make: Leaving directory '/home/runner/work/Void-Kernal-/Void-Kernal-/kernel'

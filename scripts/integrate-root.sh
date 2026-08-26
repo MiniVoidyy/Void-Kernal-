@@ -3,7 +3,7 @@
 # Usage: integrate-root.sh <ksu|ksu-next|sukisu> [kernel_dir]
 #
 #   ksu       -> tiann/KernelSU          into drivers/kernelsu
-#   ksu-next  -> rifsxd/KernelSU-Next    into drivers/kernelsu_next
+#   ksu-next  -> KernelSU-Next           into drivers/kernelsu_next
 #   sukisu    -> SukiSU-Ultra/SukiSU     into drivers/sukisu
 #
 # All three expose the same CONFIG_KSU tristate from their own Kconfig,
@@ -34,7 +34,7 @@ case "$ROOT" in
     sukisu)
         REPO="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"
         DIR="sukisu"
-        DEFAULT_REF="v2.0_beta"
+        DEFAULT_REF="v2.0_beta"         # newest tag still using kprobes hooks
         ;;
     *)
         echo "ERROR: unknown root solution '$ROOT' (expected ksu|ksu-next|sukisu)" >&2
