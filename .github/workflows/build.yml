@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ksu_ref:
-        description: "Root solution repo ref (tag/branch, blank = HEAD)"
+        description: "Root solution repo ref (tag/branch, blank = compatible default)"
         required: false
         default: ""
   push:
@@ -17,8 +17,6 @@ jobs:
   kernel:
     name: ${{ matrix.variant }} / ${{ matrix.root }} / ${{ matrix.device }}
     runs-on: ubuntu-22.04
-    permissions:
-      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -56,24 +54,6 @@ jobs:
           name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
           path: logs/*.log
           if-no-files-found: ignore
-
-      - name: Commit failure logs back to repo
-        if: failure()
-        run: |
-          git config user.name "void-ci-bot"
-          git config user.email "bot@users.noreply.github.com"
-          D="ci-logs/${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}"
-          mkdir -p "$D"
-          cp "$GITHUB_WORKSPACE/build-full.log" "$D/build-full.log" 2>/dev/null || true
-          cp logs/*.log "$D/" 2>/dev/null || true
-          git add ci-logs
-          git commit -m "ci: failure logs for ${{ matrix.variant }}/${{ matrix.root }}/${{ matrix.device }} [skip ci]" || exit 0
-          for i in 1 2 3 4 5; do
-            if git pull --rebase --autostash origin main && git push origin HEAD:main; then
-              exit 0
-            fi
-            sleep $((RANDOM % 20 + 5))
-          done
 
   manager:
     name: Void Kernel Manager module

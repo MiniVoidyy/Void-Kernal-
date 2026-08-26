@@ -103,7 +103,7 @@ jobs:
               - **root**: `ksu` (KernelSU), `ksu-next` (KernelSU-Next), `sukisu` (SukiSU-Ultra)
               - **device**: starlte = S9, star2lte = S9+, crownlte = Note 9
 
-                        ## Manager module
+            ## Manager module
             Flash `VoidKernel-Manager-v1.1.zip` in Magisk/KernelSU manager to get the
             `voidman` CLI (governor switching, profiles, boot-persistent settings).
 

@@ -100,7 +100,6 @@ CROSS_A32="arm-linux-gnueabi-"
 
 ZIPS=""
 mkdir -p "$PROJECT_ROOT/logs"
-
 # exynos9810_defconfig is the Samsung platform base, but it contains NONE of
 # the per-device hardware (touch/MUIC/charger/camera/OIS); those live only in
 # the tiny <device>_defconfig overlays and differ between S9/S9+/Note9, so
@@ -115,14 +114,14 @@ OUT_DIR="$PROJECT_ROOT/out"
 
 echo "==> defconfig + $DEVICE overlay + variant merge"
 make -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 exynos9810_defconfig
-(cd "$KERNEL_DIR" && \
-    scripts/kconfig/merge_config.sh -m -O "$OUT_DIR" "$OUT_DIR/.config" \
-        "arch/arm64/configs/${DEVICE}_defconfig")
-"$SCRIPT_DIR/apply-variant.sh" "$KERNEL_DIR" "$VARIANT" "$OUT_DIR"
+"$SCRIPT_DIR/apply-variant.sh" "$KERNEL_DIR" "$VARIANT" "$OUT_DIR" \
+    "$KERNEL_DIR/arch/arm64/configs/${DEVICE}_defconfig"
 
 echo "==> building (jobs=$(nproc))"
 BUILD_LOG="$PROJECT_ROOT/logs/build.log"
 if ! make -j"$(nproc)" -C "$KERNEL_DIR" O="$OUT_DIR" ARCH=arm64 \
+    LLVM=1 \
+    LLVM_IAS=1 \
     CROSS_COMPILE="$CROSS_A64" \
     CROSS_COMPILE_ARM32="$CROSS_A32" \
     CC=clang \

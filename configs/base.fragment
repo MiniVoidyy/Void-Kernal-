@@ -1,24 +1,26 @@
 # Void Kernel base fragment - applied to every build
 
-# Loadable module support: required by CONFIG_KPROBES (kprobes depends on
-# modules in 4.9) and keeps tristate governor options selectable as =y
+# Loadable module support keeps kprobes and tristate governors selectable.
 CONFIG_MODULES=y
 
 # Root-solution support (KernelSU / KernelSU Next / SukiSU use kprobes
 # for syscall hooking on this non-GKI kernel)
 CONFIG_KPROBES=y
 
-# Flashable image: embed all enabled board DTBs (S9/S9+/Note9) into Image.gz-dtb
+# Embed each device's enabled board DTBs in its flashable kernel image.
 CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
 CONFIG_BUILD_ARM64_APPENDED_KERNEL_IMAGE_NAME="Image.gz-dtb"
 
 # Allow runtime SELinux mode switching from userspace
 CONFIG_SECURITY_SELINUX_DEVELOP=y
 
-# Enable every stock governor not already on (schedutil/interactive are on)
+# Enable every stock governor not already on (schedutil is on in the base)
+CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+CONFIG_CPU_FREQ_GOV_POWERSAVE=y
 CONFIG_CPU_FREQ_GOV_USERSPACE=y
 CONFIG_CPU_FREQ_GOV_ONDEMAND=y
 CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+CONFIG_CPU_FREQ_GOV_INTERACTIVE=y
 
 # Void custom governors (7 stock + 13 custom = 20 total)
 CONFIG_CPU_FREQ_GOV_DARKNESS=y
@@ -34,3 +36,6 @@ CONFIG_CPU_FREQ_GOV_WAVE=y
 CONFIG_CPU_FREQ_GOV_SMARTASS2=y
 CONFIG_CPU_FREQ_GOV_SMARTMAX=y
 CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
+
+# Keep the integrated root solution enabled explicitly.
+CONFIG_KSU=y

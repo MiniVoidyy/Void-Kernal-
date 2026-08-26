@@ -39,8 +39,9 @@ frequency while the display is off.
 | One UI enforcing | enforcing | KSU / KSU Next / SukiSU |
 | One UI permissive | permissive | KSU / KSU Next / SukiSU |
 
-Each combination builds all three devices (`starlte`, `star2lte`, `crownlte`)
-via AnyKernel3 and keeps your original ramdisk.
+Each variant/root/device combination runs as its own job. The matrix builds
+`starlte`, `star2lte`, and `crownlte` via AnyKernel3 and keeps your original
+ramdisk.
 
 Permissive variants append `androidboot.selinux=permissive` to the kernel
 command line (works on Android 10+ ROMs). Verify after flashing with
@@ -64,23 +65,26 @@ kept untouched, only the boot partition is written.
 
 1. Push this repo to GitHub.
 2. Run the **Build Void Kernel** workflow (*Actions -> Run workflow*).
-   Optionally pass a `ksu_ref` to pin a KernelSU/SukiSU release tag.
-3. Download artifacts: one bundle per variant/root combination containing a
-   zip per device, plus the **Void Kernel Manager** module.
+   The workflow uses Linux 4.9-compatible root releases by default. You can
+   pass `ksu_ref` to test another tag or branch for the selected root solution.
+3. Download artifacts: one flashable zip per variant/root/device combination,
+   plus the **Void Kernel Manager v1.1** module.
 
-Artifacts are named `VoidKernel-<variant>-<root>`; zips inside are
+Artifacts are named `VoidKernel-<variant>-<root>-<device>`; zips inside are
 `VoidKernel-4.9.337-<variant>-<root>-<device>.zip`.
 
 ## Build locally (Linux/WSL2)
 
 ```sh
 sudo apt install bc bison build-essential curl flex git unzip zip libssl-dev python-is-python3 gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
-scripts/build.sh --variant oneui-enforcing --root sukisu --devices starlte
+scripts/build.sh --variant oneui-enforcing --root sukisu --device starlte
 # output: build/zips/VoidKernel-4.9.337-oneui-enforcing-sukisu-starlte.zip
 ```
 
-Toolchain (Proton Clang) downloads automatically. Override with
-`KERNEL_REPO`, `KERNEL_BRANCH`, `KSU_REF`, `TOOLCHAIN_DIR` env vars.
+Toolchain (Proton Clang) downloads automatically. Root defaults are KernelSU
+`v0.9.5`, KernelSU Next `v3.2.0-legacy`, and SukiSU-Ultra `v2.0_beta`.
+Override with `KERNEL_REPO`, `KERNEL_BRANCH`, `KSU_REF`, `TOOLCHAIN_DIR` env
+vars.
 
 ## Void Kernel Manager module
 
