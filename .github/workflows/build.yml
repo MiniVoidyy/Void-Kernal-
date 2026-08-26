@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
-        root: [ksu, ksu-next, sukisu]
+        root: [ksu-next, sukisu]
         device: [starlte, star2lte, crownlte]
     steps:
       - uses: actions/checkout@v4
