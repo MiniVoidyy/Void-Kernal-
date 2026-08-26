@@ -21,6 +21,14 @@ rm -rf "$AK3_DIR/.git" "$AK3_DIR/README.md" "$AK3_DIR/.github"
 
 cp -f "$PROJECT_ROOT/anykernel/anykernel.sh" "$AK3_DIR/anykernel.sh"
 
+# Samsung Exynos 9810 uses dynamic partitions on One UI 3+ (or has no
+# static /product on older ROMs).  AnyKernel3's mount_all() tries to
+# mount /product and the direct block-device fallback prints a visible
+# "failed to mount product" error in TWRP.  Kernel flashing doesn't
+# need /product, so remove it from the mount loop.
+UB="$AK3_DIR/META-INF/com/google/android/update-binary"
+sed -i 's|for mount in /vendor /product /system_ext;|for mount in /vendor /system_ext;|' "$UB"
+
 if [ -f "$BOOT_DIR/Image.gz-dtb" ]; then
     cp -f "$BOOT_DIR/Image.gz-dtb" "$AK3_DIR/"
 elif [ -f "$BOOT_DIR/Image.gz" ]; then
