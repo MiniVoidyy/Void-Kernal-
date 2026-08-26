@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 # Integrates a root solution into an exynos9810 kernel tree.
-# Usage: integrate-root.sh <ksu-next|sukisu> [kernel_dir]
+# Usage: integrate-root.sh <ksu|ksu-next|sukisu> [kernel_dir]
 #
+#   ksu       -> tiann/KernelSU          into drivers/kernelsu
 #   ksu-next  -> KernelSU-Next           into drivers/kernelsu_next
 #   sukisu    -> SukiSU-Ultra/SukiSU     into drivers/sukisu
 #
-# Both expose the same CONFIG_KSU tristate from their own Kconfig,
+# All three expose the same CONFIG_KSU tristate from their own Kconfig,
 # and hook syscalls via kprobes/manual hooks on non-GKI kernels
 # (CONFIG_KPROBES=y is set by configs/base.fragment). Each root is pinned
 # to a release ref known to build against 4.9-era kernels; override with
 # the KSU_REF env var. Exactly one root solution is integrated per build.
 set -euo pipefail
 
-ROOT="${1:?usage: integrate-root.sh <ksu-next|sukisu> [kernel_dir]}"
+ROOT="${1:?usage: integrate-root.sh <ksu|ksu-next|sukisu> [kernel_dir]}"
 KERNEL_DIR="${2:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/kernel}"
 
 DRIVERS_DIR="$KERNEL_DIR/drivers"
@@ -20,6 +21,11 @@ DRIVERS_MAKEFILE="$DRIVERS_DIR/Makefile"
 DRIVERS_KCONFIG="$DRIVERS_DIR/Kconfig"
 
 case "$ROOT" in
+    ksu)
+        REPO="https://github.com/tiann/KernelSU.git"
+        DIR="kernelsu"
+        DEFAULT_REF="v0.9.5"
+        ;;
     ksu-next)
         REPO="https://github.com/KernelSU-Next/KernelSU-Next.git"
         DIR="kernelsu_next"
@@ -31,7 +37,7 @@ case "$ROOT" in
         DEFAULT_REF="v2.0_beta"         # newest tag still using kprobes hooks
         ;;
     *)
-        echo "ERROR: unknown root solution '$ROOT' (expected ksu-next|sukisu)" >&2
+        echo "ERROR: unknown root solution '$ROOT' (expected ksu|ksu-next|sukisu)" >&2
         exit 1
         ;;
 esac
@@ -90,8 +96,8 @@ if [ -f "$KSU_COMPAT_SOURCE" ]; then
     sed -i 's/kvfree(p);/kvfree((void *)p);/' "$KSU_COMPAT_SOURCE"
 fi
 
-# The base tree's manual calls match KernelSU Next, but SukiSU does
-# not provide those symbols and instead uses its own kprobe/LSM hooks.
+# The base tree's manual calls match KernelSU Next, but KernelSU and SukiSU do
+# not provide those symbols and instead use their own kprobe/LSM hooks.
 if [ "$ROOT" != "ksu-next" ]; then
     for hook_source in \
         "$KERNEL_DIR/kernel/sys.c" \

@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
-        root: [ksu-next, sukisu]
+        root: [ksu, ksu-next, sukisu]
         device: [starlte, star2lte, crownlte]
     steps:
       - uses: actions/checkout@v4
@@ -100,7 +100,7 @@ jobs:
               - **variant**: ROM base x SELinux mode
                 - `aosp-*` for custom AOSP-based ROMs, `oneui-*` for One UI stock ROMs
                 - `-enforcing` keeps SELinux enforcing, `-permissive` boots permissive
-              - **root**: `ksu-next` (KernelSU-Next), `sukisu` (SukiSU-Ultra)
+              - **root**: `ksu` (KernelSU), `ksu-next` (KernelSU-Next), `sukisu` (SukiSU-Ultra)
               - **device**: starlte = S9, star2lte = S9+, crownlte = Note 9
 
             ## Manager module

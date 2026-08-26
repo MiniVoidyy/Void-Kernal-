@@ -20,7 +20,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 VARIANT="aosp-enforcing"
-ROOT="ksu-next"
+ROOT="ksu"
 DEVICE="starlte"
 CLEAN=0
 

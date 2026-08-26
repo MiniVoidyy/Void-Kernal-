@@ -10,7 +10,7 @@ Galaxy S9 (`starlte`), S9+ (`star2lte`) and Note 9 (`crownlte`) Exynos models.
 | Source | [duhansysl/exynos9810-kernel](https://github.com/duhansysl/exynos9810-kernel) (DS-ACK) |
 | Kernel | **4.9.337** (real, bootable base) |
 | Governors | **20** (7 stock + 13 custom) |
-| Root | KernelSU-Next / SukiSU-Ultra (kprobe hooks, non-GKI) |
+| Root | KernelSU / KernelSU Next / SukiSU-Ultra (kprobe hooks, non-GKI) |
 
 > **Why not 6.6?** A true 6.6 build for Exynos 9810 exists only as a bare
 > mainline port (no display, modem, camera or touch drivers), so it cannot
@@ -30,14 +30,14 @@ Custom (added by this project, in `governors/`):
 Screen-aware governors (`smartassV2`, `smartmax`, `smartmax_eps`) cap the
 frequency while the display is off.
 
-## Build matrix - 24 flashable zips
+## Build matrix - 36 flashable zips
 
 | Variant | SELinux mode | Root solutions |
 |---|---|---|
-| AOSP enforcing | enforcing | KSU Next / SukiSU |
-| AOSP permissive | permissive | KSU Next / SukiSU |
-| One UI enforcing | enforcing | KSU Next / SukiSU |
-| One UI permissive | permissive | KSU Next / SukiSU |
+| AOSP enforcing | enforcing | KSU / KSU Next / SukiSU |
+| AOSP permissive | permissive | KSU / KSU Next / SukiSU |
+| One UI enforcing | enforcing | KSU / KSU Next / SukiSU |
+| One UI permissive | permissive | KSU / KSU Next / SukiSU |
 
 Each variant/root/device combination runs as its own job. The matrix builds
 `starlte`, `star2lte`, and `crownlte` via AnyKernel3 and keeps your original
@@ -108,13 +108,13 @@ scripts/build.sh --variant oneui-enforcing --root sukisu --device starlte
 ```
 
 Toolchain (Proton Clang) downloads automatically. Root defaults are KernelSU
-Next `v3.2.0-legacy` and SukiSU-Ultra `v2.0_beta`.
+`v0.9.5`, KernelSU Next `v3.2.0-legacy`, and SukiSU-Ultra `v2.0_beta`.
 Override with `KERNEL_REPO`, `KERNEL_BRANCH`, `KSU_REF`, `TOOLCHAIN_DIR` env
 vars.
 
 ## Void Kernel Manager module
 
-Flashable in TWRP **or** via KernelSU Next / SukiSU app.
+Flashable in TWRP **or** via Magisk / KernelSU / KernelSU Next / SukiSU app.
 Installs the `voidman` CLI:
 
 ```

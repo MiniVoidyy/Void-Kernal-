@@ -37,3 +37,6 @@ CONFIG_CPU_FREQ_GOV_SMARTASS2=y
 CONFIG_CPU_FREQ_GOV_SMARTMAX=y
 CONFIG_CPU_FREQ_GOV_SMARTMAX_EPS=y
 
+# Keep the integrated root solution enabled explicitly.
+CONFIG_KSU=y
+
