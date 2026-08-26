@@ -1,5 +1,6 @@
-# Keep everything LF - shell scripts and kernel sources must not get CRLF
-* text=auto eol=lf
-*.zip binary
-*.png binary
-*.jpg binary
+# Force LF for shell scripts so heredocs and perl -e programs parse identically everywhere
+*.sh text eol=lf
+*.fragment text
+*.config text
+*.yml text eol=lf
+*.prop text eol=lf

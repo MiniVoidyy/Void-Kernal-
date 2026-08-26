@@ -1,0 +1,118 @@
+name: Release Void Kernel
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  kernel:
+    name: ${{ matrix.variant }} / ${{ matrix.root }} / ${{ matrix.device }}
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
+        root: [ksu, ksu-next, sukisu]
+        device: [starlte, star2lte, crownlte]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            bc bison build-essential ccache curl flex git unzip zip \
+            libssl-dev libfl-dev python-is-python3 \
+            gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
+
+      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }} x ${{ matrix.device }})
+        shell: bash --noprofile --norc -eo pipefail {0}
+        run: |
+          chmod +x scripts/*.sh
+          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}" --device "${{ matrix.device }}" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
+
+      - name: Upload flashable zips
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
+          path: build/zips/*.zip
+          if-no-files-found: error
+
+      - name: Upload build logs (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
+          path: |
+            logs/*.log
+            build-full.log
+          if-no-files-found: ignore
+
+  manager:
+    name: Void Kernel Manager module
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pack manager module
+        run: |
+          mkdir -p build/zips
+          (cd manager && zip -r9 ../build/zips/VoidKernel-Manager-v1.1.zip .)
+
+      - name: Upload manager module
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoidKernel-Manager
+          path: build/zips/VoidKernel-Manager-v1.1.zip
+          if-no-files-found: error
+
+  publish:
+    name: Publish GitHub Release
+    needs: [kernel, manager]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Collect zips
+        run: |
+          mkdir -p release
+          find artifacts -name '*.zip' -exec cp {} release/ \;
+          ls -la release/
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Void Kernel ${{ github.ref_name }}
+          body: |
+            **Void Kernel** for Galaxy S9 (starlte), S9+ (star2lte) and Note 9 (crownlte) - exynos9810, Linux 4.9.337 (DS-ACK).
+
+            ## Downloads
+            Pick ONE zip matching your device and ROM setup:
+
+            - `VoidKernel-<variant>-<root>-<device>.zip`
+              - **variant**: ROM base x SELinux mode
+                - `aosp-*` for custom AOSP-based ROMs, `oneui-*` for One UI stock ROMs
+                - `-enforcing` keeps SELinux enforcing, `-permissive` boots permissive
+              - **root**: `ksu` (KernelSU), `ksu-next` (KernelSU-Next), `sukisu` (SukiSU-Ultra)
+              - **device**: starlte = S9, star2lte = S9+, crownlte = Note 9
+
+                        ## Manager module
+            Flash `VoidKernel-Manager-v1.1.zip` in Magisk/KernelSU manager to get the
+            `voidman` CLI (governor switching, profiles, boot-persistent settings).
+
+            ## Features
+            - 20 CPU governors incl. smartmax_eps, intelliactive, darkness, wave, ...
+            - KPROBES enabled, SELinux developer mode, tuned exynos9810 base
+            - Per-device hardware support (touch/MUIC/charger/camera/OIS overlays)
+
+            > Flash via AnyKernel3 recovery zip. Backup before flashing.
+          files: release/*.zip
+          fail_on_unmatched_files: true
+          generate_release_notes: true

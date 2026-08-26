@@ -146,7 +146,7 @@ fi
 # (filename_trans via plain struct + hashtab; add_type via flex_array),
 # mirroring what KernelSU-Next's -legacy branch ships for old kernels.
 SSU_SEPOLICY_C="$DRIVERS_DIR/$DIR/kernel/selinux/sepolicy.c"
-if [ -f "$SSU_SEPOLICY_C" ]; then
+if [ -f "$SSU_SEPOLICY_C" ] && [ "$DIR" = "sukisu" ]; then
     PATCH_TMP="$(mktemp -d)"
     sed -i 's/\r$//' "$SSU_SEPOLICY_C"
 
@@ -210,133 +210,103 @@ static bool add_filename_trans(struct policydb *db, const char *s,
 }
 FNT_EOF
 
-    cat > "$PATCH_TMP/at.flex.c" <<'AT_EOF'
-static bool add_type(struct policydb *db, const char *type_name, bool attr)
-{
-	struct type_datum *type = symtab_search(&db->p_types, type_name);
-	if (type) {
-		pr_warn("Type %s already exists\n", type_name);
-		return true;
-	}
+    cat > "$PATCH_TMP/at.flex.tail.c" <<'AT_EOF'
+// flex_array is not extensible; create new bigger arrays instead
+struct flex_array *new_type_attr_map_array =
+	flex_array_alloc(sizeof(struct ebitmap), db->p_types.nprim,
+			 GFP_KERNEL | __GFP_ZERO);
+struct flex_array *new_type_val_to_struct =
+	flex_array_alloc(sizeof(struct type_datum *), db->p_types.nprim,
+			 GFP_KERNEL | __GFP_ZERO);
+struct flex_array *new_val_to_name_types =
+	flex_array_alloc(sizeof(char *), db->symtab[SYM_TYPES].nprim,
+			 GFP_KERNEL | __GFP_ZERO);
 
-	u32 value = ++db->p_types.nprim;
-	type = (struct type_datum *)kzalloc(sizeof(struct type_datum),
-					    GFP_ATOMIC);
-	if (!type) {
-		pr_err("add_type: alloc type_datum failed.\n");
-		return false;
-	}
-
-	type->primary = 1;
-	type->value = value;
-	type->attribute = attr;
-
-	char *key = kstrdup(type_name, GFP_ATOMIC);
-	if (!key) {
-		pr_err("add_type: alloc key failed.\n");
-		return false;
-	}
-
-	if (symtab_insert(&db->p_types, key, type)) {
-		pr_err("add_type: insert symtab failed.\n");
-		return false;
-	}
-
-	// flex_array is not extensible; create new bigger arrays instead
-	struct flex_array *new_type_attr_map_array =
-		flex_array_alloc(sizeof(struct ebitmap), db->p_types.nprim,
-				 GFP_KERNEL | __GFP_ZERO);
-	struct flex_array *new_type_val_to_struct =
-		flex_array_alloc(sizeof(struct type_datum *), db->p_types.nprim,
-				 GFP_KERNEL | __GFP_ZERO);
-	struct flex_array *new_val_to_name_types =
-		flex_array_alloc(sizeof(char *), db->symtab[SYM_TYPES].nprim,
-				 GFP_KERNEL | __GFP_ZERO);
-
-	if (!new_type_attr_map_array || !new_type_val_to_struct ||
-	    !new_val_to_name_types) {
-		pr_err("add_type: flex_array_alloc failed\n");
-		return false;
-	}
-
-	if (flex_array_prealloc(new_type_attr_map_array, 0, db->p_types.nprim,
-				GFP_KERNEL | __GFP_ZERO)) {
-		pr_err("add_type: prealloc type_attr_map_array failed\n");
-		return false;
-	}
-	if (flex_array_prealloc(new_type_val_to_struct, 0, db->p_types.nprim,
-				GFP_KERNEL | __GFP_ZERO)) {
-		pr_err("add_type: prealloc type_val_to_struct failed\n");
-		return false;
-	}
-	if (flex_array_prealloc(new_val_to_name_types, 0,
-				db->symtab[SYM_TYPES].nprim,
-				GFP_KERNEL | __GFP_ZERO)) {
-		pr_err("add_type: prealloc val_to_name failed\n");
-		return false;
-	}
-
-	int j;
-	void *old_elem;
-	for (j = 0; j < db->type_attr_map_array->total_nr_elements; j++) {
-		old_elem = flex_array_get(db->type_attr_map_array, j);
-		if (old_elem)
-			flex_array_put(new_type_attr_map_array, j, old_elem,
-				       GFP_KERNEL | __GFP_ZERO);
-	}
-	for (j = 0; j < db->type_val_to_struct_array->total_nr_elements; j++) {
-		old_elem = flex_array_get_ptr(db->type_val_to_struct_array, j);
-		if (old_elem)
-			flex_array_put_ptr(new_type_val_to_struct, j, old_elem,
-					   GFP_KERNEL | __GFP_ZERO);
-	}
-	for (j = 0; j < db->symtab[SYM_TYPES].nprim; j++) {
-		old_elem =
-			flex_array_get_ptr(db->sym_val_to_name[SYM_TYPES], j);
-		if (old_elem)
-			flex_array_put_ptr(new_val_to_name_types, j, old_elem,
-					   GFP_KERNEL | __GFP_ZERO);
-	}
-
-	struct flex_array *old_fa;
-
-	old_fa = db->type_attr_map_array;
-	db->type_attr_map_array = new_type_attr_map_array;
-	if (old_fa)
-		flex_array_free(old_fa);
-
-	ebitmap_init(flex_array_get(db->type_attr_map_array, value - 1));
-	ebitmap_set_bit(flex_array_get(db->type_attr_map_array, value - 1),
-			value - 1, 1);
-
-	old_fa = db->type_val_to_struct_array;
-	db->type_val_to_struct_array = new_type_val_to_struct;
-	if (old_fa)
-		flex_array_free(old_fa);
-	flex_array_put_ptr(db->type_val_to_struct_array, value - 1, type,
-			   GFP_KERNEL | __GFP_ZERO);
-
-	old_fa = db->sym_val_to_name[SYM_TYPES];
-	db->sym_val_to_name[SYM_TYPES] = new_val_to_name_types;
-	if (old_fa)
-		flex_array_free(old_fa);
-	flex_array_put_ptr(db->sym_val_to_name[SYM_TYPES], value - 1, key,
-			   GFP_KERNEL | __GFP_ZERO);
-
-	int i;
-	for (i = 0; i < db->p_roles.nprim; ++i) {
-		ebitmap_set_bit(&db->role_val_to_struct[i]->types, value - 1,
-				1);
-	}
-
-	return true;
+if (!new_type_attr_map_array || !new_type_val_to_struct ||
+    !new_val_to_name_types) {
+	pr_err("add_type: flex_array_alloc failed\n");
+	return false;
 }
+
+if (flex_array_prealloc(new_type_attr_map_array, 0, db->p_types.nprim,
+			GFP_KERNEL | __GFP_ZERO)) {
+	pr_err("add_type: prealloc type_attr_map_array failed\n");
+	return false;
+}
+if (flex_array_prealloc(new_type_val_to_struct, 0, db->p_types.nprim,
+			GFP_KERNEL | __GFP_ZERO)) {
+	pr_err("add_type: prealloc type_val_to_struct failed\n");
+	return false;
+}
+if (flex_array_prealloc(new_val_to_name_types, 0,
+			db->symtab[SYM_TYPES].nprim,
+			GFP_KERNEL | __GFP_ZERO)) {
+	pr_err("add_type: prealloc val_to_name failed\n");
+	return false;
+}
+
+int j;
+void *old_elem;
+for (j = 0; j < db->type_attr_map_array->total_nr_elements; j++) {
+	old_elem = flex_array_get(db->type_attr_map_array, j);
+	if (old_elem)
+		flex_array_put(new_type_attr_map_array, j, old_elem,
+			       GFP_KERNEL | __GFP_ZERO);
+}
+for (j = 0; j < db->type_val_to_struct_array->total_nr_elements; j++) {
+	old_elem = flex_array_get_ptr(db->type_val_to_struct_array, j);
+	if (old_elem)
+		flex_array_put_ptr(new_type_val_to_struct, j, old_elem,
+				   GFP_KERNEL | __GFP_ZERO);
+}
+for (j = 0; j < db->symtab[SYM_TYPES].nprim; j++) {
+	old_elem =
+		flex_array_get_ptr(db->sym_val_to_name[SYM_TYPES], j);
+	if (old_elem)
+		flex_array_put_ptr(new_val_to_name_types, j, old_elem,
+				   GFP_KERNEL | __GFP_ZERO);
+}
+
+struct flex_array *old_fa;
+
+old_fa = db->type_attr_map_array;
+db->type_attr_map_array = new_type_attr_map_array;
+if (old_fa)
+	flex_array_free(old_fa);
+
+ebitmap_init(flex_array_get(db->type_attr_map_array, value - 1));
+ebitmap_set_bit(flex_array_get(db->type_attr_map_array, value - 1),
+		value - 1, 1);
+
+old_fa = db->type_val_to_struct_array;
+db->type_val_to_struct_array = new_type_val_to_struct;
+if (old_fa)
+	flex_array_free(old_fa);
+flex_array_put_ptr(db->type_val_to_struct_array, value - 1, type,
+		   GFP_KERNEL | __GFP_ZERO);
+
+old_fa = db->sym_val_to_name[SYM_TYPES];
+db->sym_val_to_name[SYM_TYPES] = new_val_to_name_types;
+if (old_fa)
+	flex_array_free(old_fa);
+flex_array_put_ptr(db->sym_val_to_name[SYM_TYPES], value - 1, key,
+		   GFP_KERNEL | __GFP_ZERO);
+
+int i;
+for (i = 0; i < db->p_roles.nprim; ++i) {
+	ebitmap_set_bit(&db->role_val_to_struct[i]->types, value - 1,
+			1);
+}
+
+return true;
 AT_EOF
 
     export FNT_OLD="$PATCH_TMP/fnt.old.c"
-    export AT_FLEX="$PATCH_TMP/at.flex.c"
+    export AT_FLEX="$PATCH_TMP/at.flex.tail.c"
 
-    # wrap add_filename_trans definition (skip forward decls; validate body sig)
+    # wrap add_filename_trans definition (skip forward decls; validate body sig).
+    # Tolerant of tab/space indentation. If the layout is unrecognized
+    # (e.g. an already version-guarded upstream), skip instead of failing.
     perl -0777 -pi -e 'BEGIN{ local $/; open my $f,"<",$ENV{FNT_OLD} or die; $o=<$f>; close $f; }
       my $sig = "static bool add_filename_trans";
       my $pos = 0; my ($sp, $ep);
@@ -346,25 +316,35 @@ AT_EOF
           my $semi = index($_, ";", $pos);
           if ($semi >= 0 && $semi < $brace) { $pos += length($sig); next; }
           my $bodychk = substr($_, $brace, 64);
-          if ($bodychk =~ /\{\n\tstruct type_datum \*src, \*tgt, \*def;/) {
+          if ($bodychk =~ /\{\n[ \t]*struct type_datum \*src,[ \t]*\*tgt,[ \t]*\*def;/) {
               $sp = $pos;
               my $k = index($_, "\n}\n", $brace);
-              die "fnt end not found" if $k < 0;
-              $ep = $k + 3;
+              $ep = $k + 3 if $k >= 0;
               last;
           }
           $pos += length($sig);
       }
-      die "fnt definition not located" unless defined $sp;
-      my $fn = substr($_, $sp, $ep - $sp);
-      substr($_, $sp, $ep - $sp) =
-        "#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 7, 0)\n" . $fn .
-        "#else\n" . $o . "#endif\n";' "$SSU_SEPOLICY_C"
+      if (defined $sp) {
+          my $fn = substr($_, $sp, $ep - $sp);
+          substr($_, $sp, $ep - $sp) =
+            "#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 7, 0)\n" . $fn .
+            "#else\n" . $o . "#endif\n";
+      }' "$SSU_SEPOLICY_C"
 
-    # wrap add_type 5.x-style tail; splice flex_array implementation below 5.1
+    # wrap add_type 5.x-style tail; splice flex_array tail below 5.1
+    # (keeps ONE function envelope: guards live inside the braces)
     perl -0777 -pi -e 'BEGIN{ local $/; open my $f,"<",$ENV{AT_FLEX} or die; $o=<$f>; close $f; }
-      s{(\tstruct ebitmap \*new_type_attr_map_array =[\s\S]*?\n\treturn true;\n\}\n)}
-       {"#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)\n" . $1 . "#else\n" . $o . "#endif\n"}se' "$SSU_SEPOLICY_C"
+      my $marker = "\tstruct ebitmap *new_type_attr_map_array =";
+      my $i = index($_, $marker);
+      die "add_type tail marker not found" if $i < 0;
+      my $closer = "\n\treturn true;\n}";
+      my $k = index($_, $closer, $i);
+      die "add_type tail end not found" if $k < 0;
+      my $tailend = $k + length($closer) - 1;   # exclude the closing brace
+      my $tail = substr($_, $i, $tailend - $i);
+      substr($_, $i, $tailend - $i) =
+        "#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0)\n" . $tail .
+        "#else\n" . $o . "\n#endif\n";' "$SSU_SEPOLICY_C"
 
     rm -rf "$PATCH_TMP"
 fi
