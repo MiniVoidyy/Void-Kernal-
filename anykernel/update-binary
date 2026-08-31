@@ -1,0 +1,186 @@
+#!/sbin/sh
+# Void Kernel universal installer for TWRP
+# Auto-detects device, ROM type, and SELinux mode.
+# Based on AnyKernel3 by osm0sis @ xda-developers
+
+OUTFD=$2;
+ZIPFILE=$3;
+AKHOME=/tmp/voidkernel;
+
+# --- UI helpers ---
+ui_print() {
+  echo "ui_print $1" >> /proc/self/fd/$OUTFD;
+  echo "ui_print" >> /proc/self/fd/$OUTFD;
+}
+set_progress() {
+  echo "set_progress $1" >> /proc/self/fd/$OUTFD;
+}
+
+# --- Boot mode detection ---
+BOOTMODE=false;
+ps | grep zygote | grep -v grep >/dev/null && BOOTMODE=true;
+$BOOTMODE || ps -A 2>/dev/null | grep zygote | grep -v grep >/dev/null && BOOTMODE=true;
+
+# --- getprop fallback (some recoveries lack getprop) ---
+getprop() {
+  local prop="$1";
+  local val="";
+  if command -v getprop >/dev/null 2>&1; then
+    val=$(command getprop "$prop" 2>/dev/null);
+    [ "$val" ] && { echo "$val"; return; };
+  fi;
+  for pdir in / /system /system_root /vendor /product /product/etc /system_ext; do
+    [ -f "$pdir/build.prop" ] || [ -f "$pdir/system/build.prop" ] || continue;
+    local f="$pdir/build.prop";
+    [ -f "$f" ] || f="$pdir/system/build.prop";
+    val=$(grep "^$prop=" "$f" 2>/dev/null | tail -n1 | cut -d= -f2-);
+    [ "$val" ] && { echo "$val"; return; };
+  done;
+  echo "";
+}
+
+# --- Setup ---
+rm -rf $AKHOME;
+mkdir -p $AKHOME;
+cd $AKHOME;
+unzip -o "$ZIPFILE";
+
+mkdir -p $AKHOME/bin;
+mkdir -p $AKHOME/split_img;
+
+# Setup busybox
+setup_bb() {
+  local arch32 bb;
+  for arch32 in x86 arm; do
+    if [ -d $AKHOME/tools/$arch32 ]; then
+      bb=$AKHOME/tools/$arch32/busybox;
+      chmod 755 $bb;
+      $bb >/dev/null 2>&1;
+      if [ $? == 0 ]; then
+        $bb mv -f $AKHOME/tools/$arch32/* $AKHOME/tools;
+        break;
+      fi;
+    fi;
+  done;
+  bb=$AKHOME/tools/busybox;
+  chmod 755 $bb;
+  $bb chmod -R 755 tools bin;
+  $bb --install -s bin;
+};
+setup_bb;
+
+OLD_PATH="$PATH";
+export PATH="$AKHOME/tools:$AKHOME/bin:$PATH";
+
+# Source AK3 core functions
+. $AKHOME/tools/ak3-core.sh;
+
+ui_print " ";
+ui_print "==========================================";
+ui_print "  VOID KERNEL EXYNOS9810 INSTALLER";
+ui_print "  by Mini_Voidyy | 20 Governors";
+ui_print "==========================================";
+ui_print " ";
+
+# --- Auto-detect device ---
+DEVICE=$(getprop ro.product.device 2>/dev/null);
+if [ ! "$DEVICE" ]; then
+  DEVICE=$(getprop ro.build.product 2>/dev/null);
+fi;
+# Normalize model code (e.g. crownltexx -> crownlte)
+case "$DEVICE" in
+  starlte*) DEVICE=starlte;;
+  star2lte|star2qlte*) DEVICE=star2lte;;
+  crownlte*) DEVICE=crownlte;;
+esac;
+ui_print "  Device: $DEVICE";
+
+case "$DEVICE" in
+  starlte|star2lte|crownlte) ;;
+  *)
+    ui_print "  ERROR: unsupported device '$DEVICE'" ;
+    ui_print "  Aborting..." ;
+    exit 1;
+  ;;
+esac;
+
+# --- Auto-detect ROM type ---
+# OneUI bears one or more of: ro.build.version.oneui, Samsung UI version,
+# ro.build.display.id starting with R/Z/TPXA (OneUI 2.5+), or Samsung build id.
+ROM_TYPE="aosp";
+ROM_NAME="AOSP";
+ROM_PROP="/system/build.prop /system_root/system/build.prop /vendor/build.prop /product/build.prop";
+for pf in $ROM_PROP; do
+  [ -f "$pf" ] || continue;
+  if grep -qE "^ro\.build\.version\.oneui=" "$pf" 2>/dev/null; then
+    ROM_TYPE="oneui";
+    ROM_NAME="OneUI";
+    break;
+  fi;
+done;
+if [ "$ROM_TYPE" = "aosp" ]; then
+  OSVER=$(getprop ro.build.version.release 2>/dev/null);
+  case "$OSVER" in
+    10|11|12|13) 
+      # Android 10-13 could be either; check Samsung-specific props
+      MANU=$(getprop ro.product.manufacturer 2>/dev/null);
+      [ "$MANU" = "samsung" ] && { ROM_TYPE="oneui"; ROM_NAME="OneUI"; }
+    ;;
+    14|15|16|17)
+      # OneUI 6-8 uses One UI version prop; if absent it's AOSP
+      ONEUI=$(getprop ro.build.version.oneui 2>/dev/null);
+      [ -n "$ONEUI" ] && { ROM_TYPE="oneui"; ROM_NAME="OneUI"; }
+    ;;
+  esac;
+fi;
+ui_print "  ROM: $ROM_NAME";
+
+# --- Auto-detect SELinux mode ---
+SELINUX="enforcing";
+SEL_NAME="Enforcing";
+if [ -f /sys/fs/selinux/enforce ]; then
+  ENFORCE=$(cat /sys/fs/selinux/enforce 2>/dev/null);
+  if [ "$ENFORCE" = "0" ]; then
+    SELINUX="permissive";
+    SEL_NAME="Permissive";
+  fi;
+fi;
+# Also check kernel cmdline for permissive
+if grep -q "androidboot.selinux=permissive" /proc/cmdline 2>/dev/null; then
+  SELINUX="permissive";
+  SEL_NAME="Permissive";
+fi;
+ui_print "  SELinux: $SEL_NAME";
+ui_print " ";
+
+# --- Determine which kernel image to flash ---
+VARIANT="${ROM_TYPE}-${SELINUX}";
+KERNEL_FILE="$AKHOME/kernels/${DEVICE}/${VARIANT}/Image.gz-dtb";
+
+ui_print "  Kernel: $VARIANT";
+ui_print " ";
+ui_print "  Please wait...";
+ui_print " ";
+
+if [ ! -f "$KERNEL_FILE" ]; then
+  ui_print "  ERROR: Kernel image not found!";
+  ui_print "  Expected: $KERNEL_FILE";
+  ui_print "  Aborting...";
+  exit 1;
+fi;
+
+# Copy selected kernel to AK3 working area
+cp -f "$KERNEL_FILE" "$AKHOME/Image.gz-dtb";
+
+# --- Flash boot using AK3 functions ---
+split_boot;
+flash_boot;
+
+ui_print " ";
+ui_print "==========================================";
+ui_print "  VOID KERNEL FLASHED SUCCESSFULLY!";
+ui_print "  $ROM_NAME | $SEL_NAME";
+ui_print "==========================================";
+ui_print " ";
+
+exit 0;

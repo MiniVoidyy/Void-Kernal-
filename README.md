@@ -30,21 +30,28 @@ Custom (added by this project, in `governors/`):
 Screen-aware governors (`smartassV2`, `smartmax`, `smartmax_eps`) cap the
 frequency while the display is off.
 
-## Build matrix - 36 flashable zips
+## Universal installer - 3 flashable zips
 
-| Variant | SELinux mode | Root solutions |
-|---|---|---|
-| AOSP enforcing | enforcing | KSU / KSU Next / SukiSU |
-| AOSP permissive | permissive | KSU / KSU Next / SukiSU |
-| One UI enforcing | enforcing | KSU / KSU Next / SukiSU |
-| One UI permissive | permissive | KSU / KSU Next / SukiSU |
+Pick ONE zip matching your **root solution** - no need to pick ROM/SELinux/device:
 
-Each variant/root/device combination runs as its own job. The matrix builds
-`starlte`, `star2lte`, and `crownlte` via AnyKernel3 and keeps your original
-ramdisk.
+| Zip | Root |
+|---|---|
+| `VoidKernel-ksu-universal-4.9.337.zip` | KernelSU v0.9.5 |
+| `VoidKernel-ksu-next-universal-4.9.337.zip` | KernelSU Next v3.2.0-legacy |
+| `VoidKernel-sukisu-universal-4.9.337.zip` | SukiSU Ultra v2.0_beta |
 
-Permissive variants append `androidboot.selinux=permissive` to the kernel
-command line (works on Android 10+ ROMs). Verify after flashing with
+Each zip bundles all 12 kernels (3 devices × 4 variants). The installer
+**auto-detects** your ROM (AOSP/OneUI), SELinux mode (enforcing/permissive) and
+device (S9/S9+/Note 9) at flash time and installs the matching kernel:
+
+| Auto-detected | Detection |
+|---|---|
+| Device | `ro.product.device` |
+| ROM type | `ro.build.version.oneui` / Samsung props |
+| SELinux mode | `/sys/fs/selinux/enforce` + kernel cmdline |
+
+Permissive setups are picked automatically when the current SELinux state is
+permissive; enforcing otherwise. Verify after flashing with
 `adb shell getenforce`.
 
 ## Compatibility
@@ -79,9 +86,9 @@ Every kernel zip is a standard **AnyKernel3** package - it flashes in TWRP
 exactly like any other custom kernel:
 
 1. Unlock bootloader + have TWRP installed for your device.
-2. Download the zip for **your device** from Actions artifacts.
+2. Download the universal zip for **your root solution** (3 devices supported in one zip).
 3. Move it to internal storage / SD card.
-4. TWRP -> Install -> select `VoidKernel-4.9.337-<variant>-<root>-<device>.zip`.
+4. TWRP -> Install -> select `VoidKernel-<root>-universal-4.9.337.zip`.
 5. Reboot.
 
 Flags are Samsung-friendly: `KEEPVERITY KEEPFORCEENCRYPT`, original ramdisk
@@ -91,13 +98,17 @@ kept untouched, only the boot partition is written.
 
 1. Push this repo to GitHub.
 2. Run the **Build Void Kernel** workflow (*Actions -> Run workflow*).
-   The workflow uses Linux 4.9-compatible root releases by default. You can
-   pass `ksu_ref` to test another tag or branch for the selected root solution.
-3. Download artifacts: one flashable zip per variant/root/device combination,
-   plus the **Void Kernel Manager v1.1** module.
+   - Default (`universal`) builds 3 universal zips (one per root).
+   - Set **Build mode** = `individual` to build all 36 separate
+     variant/root/device zips instead.
+   - The workflow uses Linux 4.9-compatible root releases by default. You can
+     pass `ksu_ref` to test another tag or branch for the selected root solution.
+3. Download artifacts: one universal zip per root solution, plus the
+   **Void Kernel Manager v1.1** module.
 
-Artifacts are named `VoidKernel-<variant>-<root>-<device>`; zips inside are
-`VoidKernel-4.9.337-<variant>-<root>-<device>.zip`.
+Artifacts are named `VoidKernel-<root>-universal`; zips inside are
+`VoidKernel-<root>-universal-4.9.337.zip` (or individual
+`VoidKernel-4.9.337-<variant>-<root>-<device>.zip` in individual mode).
 
 ## Build locally (Linux/WSL2)
 

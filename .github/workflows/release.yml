@@ -8,15 +8,14 @@ permissions:
   contents: write
 
 jobs:
-  kernel:
-    name: ${{ matrix.variant }} / ${{ matrix.root }} / ${{ matrix.device }}
+  universal:
+    name: Build universal (${{ matrix.root }})
     runs-on: ubuntu-22.04
+    timeout-minutes: 240
     strategy:
       fail-fast: false
       matrix:
-        variant: [aosp-enforcing, aosp-permissive, oneui-enforcing, oneui-permissive]
         root: [ksu, ksu-next, sukisu]
-        device: [starlte, star2lte, crownlte]
     steps:
       - uses: actions/checkout@v4
 
@@ -28,16 +27,16 @@ jobs:
             libssl-dev libfl-dev python-is-python3 \
             gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
 
-      - name: Void Kernel (${{ matrix.variant }} x ${{ matrix.root }} x ${{ matrix.device }})
+      - name: Build universal zip (${{ matrix.root }})
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
           chmod +x scripts/*.sh
-          scripts/build.sh --variant "${{ matrix.variant }}" --root "${{ matrix.root }}" --device "${{ matrix.device }}" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
+          scripts/package-universal.sh "${{ matrix.root }}" "$GITHUB_WORKSPACE/kernel-src" 2>&1 | tee "$GITHUB_WORKSPACE/build-full.log"
 
-      - name: Upload flashable zips
+      - name: Upload universal zip
         uses: actions/upload-artifact@v4
         with:
-          name: VoidKernel-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
+          name: VoidKernel-${{ matrix.root }}-universal
           path: build/zips/*.zip
           if-no-files-found: error
 
@@ -45,7 +44,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: buildlogs-${{ matrix.variant }}-${{ matrix.root }}-${{ matrix.device }}
+          name: buildlogs-${{ matrix.root }}-universal
           path: |
             logs/*.log
             build-full.log
@@ -71,7 +70,7 @@ jobs:
 
   publish:
     name: Publish GitHub Release
-    needs: [kernel, manager]
+    needs: [universal, manager]
     runs-on: ubuntu-22.04
     steps:
       - name: Download all build artifacts
@@ -94,25 +93,26 @@ jobs:
             **Void Kernel** for Galaxy S9 (starlte), S9+ (star2lte) and Note 9 (crownlte) - exynos9810, Linux 4.9.337 (DS-ACK).
 
             ## Downloads
-            Pick ONE zip matching your device and ROM setup:
+            Pick ONE universal zip matching your root solution:
 
-            - `VoidKernel-<variant>-<root>-<device>.zip`
-              - **variant**: ROM base x SELinux mode
-                - `aosp-*` for custom AOSP-based ROMs, `oneui-*` for One UI stock ROMs
-                - `-enforcing` keeps SELinux enforcing, `-permissive` boots permissive
-              - **root**: `ksu` (KernelSU), `ksu-next` (KernelSU-Next), `sukisu` (SukiSU-Ultra)
-              - **device**: starlte = S9, star2lte = S9+, crownlte = Note 9
+            - `VoidKernel-ksu-universal-4.9.337.zip` - KernelSU v0.9.5
+            - `VoidKernel-ksu-next-universal-4.9.337.zip` - KernelSU Next v3.2.0-legacy
+            - `VoidKernel-sukisu-universal-4.9.337.zip` - SukiSU Ultra v2.0_beta
+
+            Each universal zip **auto-detects** your ROM (AOSP/OneUI), SELinux mode
+            (enforcing/permissive), and device (S9/S9+/Note 9). Just flash and reboot.
 
             ## Manager module
-            Flash `VoidKernel-Manager-v1.1.zip` in Magisk/KernelSU manager to get the
+            Flash `VoidKernel-Manager-v1.1.zip` in your root manager app to get the
             `voidman` CLI (governor switching, profiles, boot-persistent settings).
 
             ## Features
             - 20 CPU governors incl. smartmax_eps, intelliactive, darkness, wave, ...
             - KPROBES enabled, SELinux developer mode, tuned exynos9810 base
             - Per-device hardware support (touch/MUIC/charger/camera/OIS overlays)
+            - Auto-detection: ROM type, SELinux mode, device model
 
-            > Flash via AnyKernel3 recovery zip. Backup before flashing.
+            > Flash via TWRP recovery. Backup before flashing.
           files: release/*.zip
           fail_on_unmatched_files: true
           generate_release_notes: true

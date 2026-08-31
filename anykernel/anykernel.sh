@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-## AnyKernel3 flashable zip configuration for Void Kernel exynos9810 builds.
-## Devices: Galaxy S9 (starlte), S9+ (star2lte), Note9 (crownlte)
-## This file replaces the stock AnyKernel3 anykernel.sh at packaging time.
+## AnyKernel3 config for Void Kernel universal installer
+## Minimal - just enough for ak3-core.sh split_boot/flash_boot to work.
 
 kernel.string=Void Kernel exynos9810 | by Mini_Voidyy | 20 Governors
 
@@ -15,14 +14,8 @@ device.name3=crownlte
 supported.versions=
 supported.vendorversions=
 
-# Keep dm-verity and forceencrypt state untouched (Samsung friendly)
 flags="KEEPVERITY KEEPFORCEENCRYPT"
 
-# Boot partition of all three Exynos 9810 devices
 BLOCK=/dev/block/bootdevice/by-name/BOOT;
-
 is_slot_device=0;
 ramdisk_compression=auto;
-
-split_boot;
-flash_boot;
