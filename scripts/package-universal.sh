@@ -43,6 +43,9 @@ rm -rf "$KERNEL_SRC"
 echo "==> Cloning kernel source for root=$ROOT"
 git clone --depth=1 https://github.com/duhansysl/exynos9810-kernel.git "$KERNEL_SRC"
 
+# --- Add the 13 custom governors ---
+"$SCRIPT_DIR/add-governors.sh" "$KERNEL_SRC"
+
 # --- Integrate root ---
 "$SCRIPT_DIR/integrate-root.sh" "$ROOT" "$KERNEL_SRC"
 
